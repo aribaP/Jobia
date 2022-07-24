@@ -1,10 +1,26 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CandidateModule } from './candidate/candidate.module';
+import { ResumeModule } from './resume/resume.module';
+import { OrganizationModule } from './organization/organization.module';
+import { JobDescriptionModule } from './job-description/job-description.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'ariba05',
+      database: 'jobia',
+      entities: [CandidateModule, ResumeModule, OrganizationModule, JobDescriptionModule],
+      synchronize: true,
+    }),
+    CandidateModule,
+    ResumeModule,
+    OrganizationModule,
+    JobDescriptionModule,
+  ],
 })
 export class AppModule {}
