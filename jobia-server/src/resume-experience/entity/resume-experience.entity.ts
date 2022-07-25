@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { resume } from "src/resume/entity/resume.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class resumeExperience{
@@ -15,7 +16,9 @@ export class resumeExperience{
     @Column()
     expDescription: String
 
-  
 
     // resumeID foriegn key
+    @ManyToOne(() => resume, (resFK) => resFK.expFK) // specify inverse side as a second parameter
+    @JoinColumn()
+    resFK: resume
 }   

@@ -13,6 +13,8 @@ import { jobDescription } from './job-description/entity/job-description.entity'
 import { resumeEduction } from './resume-education/entity/resume-education.entity';
 import { resumeExperience } from './resume-experience/entity/resume-experience.entity';
 import { resumeProjects } from './resume-projects/entity/resume-projects.entity';
+import { ScoreModule } from './score/score.module';
+import { score } from './score/entity/score.entity';
 
 @Module({
   controllers: [AppController],
@@ -25,13 +27,14 @@ import { resumeProjects } from './resume-projects/entity/resume-projects.entity'
       username: 'root',
       password: 'ariba05',
       database: 'jobia',
-      entities: [candidate, resume, organization, jobDescription, resumeEduction, resumeExperience, resumeProjects],
+      entities: [candidate, resume, organization, jobDescription, resumeEduction, resumeExperience, resumeProjects, score],
       synchronize: true,
       autoLoadEntities: true, 
     }),
     ResumeExperienceModule,
     ResumeEductionModule,
     ResumeProjectsModule,
+    ScoreModule,
   ],
   providers: [ResumeEducationService],
 })

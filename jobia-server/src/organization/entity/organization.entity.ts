@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { jobDescription } from "src/job-description/entity/job-description.entity";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()                          // typeORM Decorator
 export class organization{
@@ -17,5 +18,9 @@ export class organization{
 
     @Column()
     orgContactNumber: string
+
+    @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter
+    @JoinColumn()
+    jdFK: jobDescription
 
 }
