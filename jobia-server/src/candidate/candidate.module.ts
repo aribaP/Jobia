@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { CandidateController } from './candidate.controller';
 import { CandidateService } from './candidate.service';
+import { candidate } from './entity/candidate.entity';
 
 @Module({
   controllers: [CandidateController],     // takes request and responses back, no business logics
   providers: [CandidateService],          // all logical part is handled here, service
+  imports: [TypeOrmModule.forFeature([candidate])],
 })
 export class CandidateModule {}
  

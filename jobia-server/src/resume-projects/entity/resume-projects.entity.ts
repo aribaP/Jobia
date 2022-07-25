@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class resume{
+export class resumeProjects{
+    
     @PrimaryGeneratedColumn()
-    resumeId: string
+    projId: number
 
     @Column()
-    careerObjective: string
+    projTitle: String
 
     @Column()
-    position: string
+    projDescription: String
 
-    @Column()
-    education: object
-}
+    // resumeID foriegn key
+}   
