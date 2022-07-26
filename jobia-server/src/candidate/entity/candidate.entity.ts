@@ -30,3 +30,16 @@ export class candidate{
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter
     resFK: resume
 }
+
+
+
+// {
+//     "candId": 1,
+//     "candName": "Ariba Mehdi",
+//     "candEmail": "ariba.mehdi2001@gmail.com",
+//     "candPassword": "ariba",
+//     "candContactNumber": "03333333333",
+//     "candCity": "Karachi",
+//     "candAddress": "FB Area",
+//     "candCNIC": "4444444444444"
+// }
