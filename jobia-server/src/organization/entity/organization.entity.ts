@@ -5,7 +5,7 @@ import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "t
 export class organization{
 
     @PrimaryGeneratedColumn()
-    orgId: string
+    orgId: number
 
     @Column()
     orgName: string
@@ -20,7 +20,6 @@ export class organization{
     orgContactNumber: string
 
     @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter
-    @JoinColumn()
     jdFK: jobDescription
 
 }

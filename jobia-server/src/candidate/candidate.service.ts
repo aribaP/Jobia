@@ -28,11 +28,8 @@ export class CandidateService {
         return this.candidateRepository.update(candId, candUpdateDto);
     }
 
-    // showCByName(candName: string) {
-        
-    //     // return this.connection.query("Select * from candidate;");
-    //     return this.candidateRepository.findOne({where: {candName : candName}});
-      
+    // showCByName(candName: string): Promise<candidate> {
+    //     return this.candidateRepository.findOne({ where:{candName} }); 
     // }
 
     showCById(candId: number) {

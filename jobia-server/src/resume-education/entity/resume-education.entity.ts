@@ -2,7 +2,7 @@ import { resume } from "src/resume/entity/resume.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class resumeEduction{
+export class resumeEducation{
     
     @PrimaryGeneratedColumn()
     eduId: number

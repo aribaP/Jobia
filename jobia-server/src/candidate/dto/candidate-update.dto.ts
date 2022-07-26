@@ -1,5 +1,5 @@
 export class candidateUpdateDto {
-    // candName: String;
+    candName: String;
     candEmail: String;
     candPassword: String;
     candContactNumber: String;

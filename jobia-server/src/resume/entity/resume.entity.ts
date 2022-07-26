@@ -1,6 +1,6 @@
 import { candidate } from "src/candidate/entity/candidate.entity";
 import { score } from "src/score/entity/score.entity";
-import { resumeEduction } from "src/resume-education/entity/resume-education.entity";
+import { resumeEducation } from "src/resume-education/entity/resume-education.entity";
 import { resumeExperience } from "src/resume-experience/entity/resume-experience.entity";
 import { resumeProjects } from "src/resume-projects/entity/resume-projects.entity";
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -33,8 +33,8 @@ export class resume{
     candFK: candidate
     // education, experience, project
 
-    @OneToMany(() => resumeEduction, (eduFK) => eduFK.resFK) // specify inverse side as a second parameter
-    eduFK: resumeEduction
+    @OneToMany(() => resumeEducation, (eduFK) => eduFK.resFK) // specify inverse side as a second parameter
+    eduFK: resumeEducation
 
     @OneToMany(() => resumeExperience, (expFK) => expFK.resFK) // specify inverse side as a second parameter
     expFK: resumeExperience

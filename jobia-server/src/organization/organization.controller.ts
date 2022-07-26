@@ -1,36 +1,46 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete} from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, Req, Post, Patch, Param, Delete, ParseIntPipe, Body} from '@nestjs/common';
+import { organizationCreateDto } from './dto/organization-create.dto';
+import { organizationUpdateDto } from './dto/organization-update.dto';
 import { OrganizationService } from './organization.service';
+
 
 @Controller('organization')
 export class OrganizationController {
 
-    constructor (private orgService: OrganizationService) {}
-    
+    constructor(private orgService: OrganizationService) {}
+
     @Get()
-    getOrganization(){
-        return this.orgService.getOrg();
+    getorganizations() {
+        return this.orgService.getO();
+        // return "I am from organization controller"
     }
 
-    // @Post()
-    // store(@Req() req: Request) {
-    //     return this.orgService.createC(req);
+    @Post()
+    store(@Body() orgCreateDto: organizationCreateDto){
+
+        return this.orgService.createO(orgCreateDto);
+    }
+
+    @Patch('/:orgId')
+    update(
+        @Body() orgUpdateDto: organizationUpdateDto,
+        @Param('orgId', ParseIntPipe) orgId: number) {
+    
+        return this.orgService.updateO(orgUpdateDto, orgId);
+    }
+    @Get('/:orgId')
+    getorganizationById(@Param('orgId') orgId: number) {
+        return this.orgService.showOById(orgId);
+    }
+
+    // @Get('/:orgName')
+    // getorganizationByName(@Param('orgName') orgName: string) {
+    //   return this.orgService.showCByName(orgName);
     // }
 
-    // @Patch('/:orgId')
-    // update(@Req() req: Request, @Param() param: {orgId: number},) {
-    //     return this.orgService.updateC(req, param);
-    // }
-
-    // @Get('/:orgId')
-    // getorgidateById(@Param() param: {orgId: number}) {
-    //     return this.orgService.showCById(param);
-    // }
-
-    // @Delete('/:orgId')
-    // deleteorgidate(@Param() params: {orgId: number}) {
-    //     return this.orgService.deleteC(params);
-    // }
-
+    @Delete('/:orgId')
+    deleteorganization(@Param('orgId', ParseIntPipe) orgId: number) {
+        return this.orgService.deleteO(orgId);
+    }
 
 }

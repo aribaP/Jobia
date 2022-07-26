@@ -1,20 +1,34 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { CandidateModule } from './candidate/candidate.module';
-import { candidate } from './candidate/entity/candidate.entity';
-import { ResumeExperienceModule } from './resume-experience/resume-experience.module';
-import { ResumeEductionModule } from './resume-education/resume-eduction.module';
-import { ResumeProjectsModule } from './resume-projects/resume-projects.module';
-import { ResumeEducationService } from './resume-education/resume-education.service';
-import { resume } from './resume/entity/resume.entity';
+
+
 import { organization } from './organization/entity/organization.entity';
+import { OrganizationModule } from './organization/organization.module';
+
+import { JobDescriptionModule } from './job-description/job-description.module';
 import { jobDescription } from './job-description/entity/job-description.entity';
-import { resumeEduction } from './resume-education/entity/resume-education.entity';
+
+import { candidate } from './candidate/entity/candidate.entity';
+import { CandidateModule } from './candidate/candidate.module';
+
+import { resume } from './resume/entity/resume.entity';
+import { ResumeModule } from './resume/resume.module';
+
+import { resumeEducation } from './resume-education/entity/resume-education.entity';
+import { ResumeEducationModule } from './resume-education/resume-education.module';
+
+import { ResumeExperienceModule } from './resume-experience/resume-experience.module';
 import { resumeExperience } from './resume-experience/entity/resume-experience.entity';
+
 import { resumeProjects } from './resume-projects/entity/resume-projects.entity';
+import { ResumeProjectsModule } from './resume-projects/resume-projects.module';
+
 import { ScoreModule } from './score/score.module';
 import { score } from './score/entity/score.entity';
+
+
+
 
 @Module({
   controllers: [AppController],
@@ -27,15 +41,18 @@ import { score } from './score/entity/score.entity';
       username: 'root',
       password: 'ariba05',
       database: 'jobia',
-      entities: [candidate, resume, organization, jobDescription, resumeEduction, resumeExperience, resumeProjects, score],
+      entities: [candidate, resume, organization, jobDescription, resumeEducation, resumeExperience, resumeProjects, score],
       synchronize: true,
       autoLoadEntities: true, 
     }),
+    ResumeModule,
     ResumeExperienceModule,
-    ResumeEductionModule,
+    ResumeEducationModule,
     ResumeProjectsModule,
+    OrganizationModule,
+    JobDescriptionModule,
     ScoreModule,
   ],
-  providers: [ResumeEducationService],
+  providers: [candidate],
 })
 export class AppModule {}

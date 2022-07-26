@@ -1,27 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
+import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
+import { Connection, Repository } from 'typeorm';
+import { organizationCreateDto } from './dto/organization-create.dto';
+import { organizationUpdateDto } from './dto/organization-update.dto';
+import { organization } from './entity/organization.entity';
 
 @Injectable()
 export class OrganizationService {
 
-    getOrg(){
-        return "I am organization service";
+    constructor(
+        @InjectRepository(organization)
+        private organizationRepository: Repository<organization>,
+        @InjectConnection() private readonly connection: Connection,
+
+    ) { }
+
+    getO(): Promise<organization[]> {
+        return this.organizationRepository.find();
     }
 
-    createOrg(req: Request) {
-        return req.body;
+    createO(orgCreateDto: organizationCreateDto) {
+        return this.organizationRepository.save(orgCreateDto);
     }
 
-    updateOrg(req: Request, param: { orgId: number }) {
-        return {body: req.body, param};
+    updateO(orgUpdateDto: organizationUpdateDto, orgId: number ){
+        return this.organizationRepository.update(orgId, orgUpdateDto);
     }
 
-    showOrgById(param: { orgId: number }) {
-        return param;
+    // showCByName(orgName: string): Promise<organization> {
+    //     return this.organizationRepository.findOne({ where:{orgName} }); 
+    // }
+
+    showOById(orgId: number) {
+        return this.organizationRepository.findOne({where :{orgId}});
     }
 
-    deleteOrg(param: { orgId: number }) {
-        return param;
+    deleteO( orgId: number ) {
+        return this.organizationRepository.delete(orgId);
     }
-
 }
