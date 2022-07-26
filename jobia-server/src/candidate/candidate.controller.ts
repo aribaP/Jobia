@@ -1,7 +1,8 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete, Body} from '@nestjs/common';
+import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe} from '@nestjs/common';
 import { Request } from 'express';
 import { CandidateService } from './candidate.service';
-import { candidateSignupDto } from './dto/candidate-signup.dto';
+import { candidateCreateDto } from './dto/candidate-create.dto';
+import { candidateUpdateDto } from './dto/candidate-update.dto';
 
 @Controller('candidate')
 export class CandidateController {
@@ -15,23 +16,30 @@ export class CandidateController {
   }
 
   @Post()
-  store(@Body() candSignupDto: candidateSignupDto){
+  store(@Body() candCreateDto: candidateCreateDto){
 
-      return this.candService.createC(candSignupDto);
+      return this.candService.createC(candCreateDto);
   }
 
-  // @Patch('/:candId')
-  // update(@Req() req: Request, @Param() param: {candId: number},) {
-  //   return this.candService.updateC(req, param);
+  @Patch('/:candId')
+  update(
+    @Body() candUpdateDto: candidateUpdateDto,
+    @Param('candId', ParseIntPipe) candId: number) {
+  
+    return this.candService.updateC(candUpdateDto, candId);
+  }
+  @Get('/:candId')
+  getCandidateById(@Param('candId') candId: number) {
+    return this.candService.showCById(candId);
+  }
+
+  // @Get('/:candName')
+  // getCandidateByName(@Param('candName') candName: string) {
+  //   return this.candService.showCByName(candName);
   // }
 
-  // @Get('/:candId')
-  // getCandidateById(@Param() param: {candId: number}) {
-  //   return this.candService.showCById(param);
-  // }
-
-  // @Delete('/:candId')
-  // deletecandidate(@Param() params: {candId: number}) {
-  //   return this.candService.deleteC(params);
-  // }
+  @Delete('/:candId')
+  deletecandidate(@Param('candId', ParseIntPipe) candId: number) {
+    return this.candService.deleteC(candId);
+  }
 }

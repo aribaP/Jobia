@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
 import { Request } from 'express';
-import { Repository } from 'typeorm';
-import { candidateSignupDto } from './dto/candidate-signup.dto';
+import { Connection, Repository } from 'typeorm';
 import { candidate } from './entity/candidate.entity';
+import { candidateCreateDto } from './dto/candidate-create.dto';
+import { candidateUpdateDto } from './dto/candidate-update.dto';
 
 @Injectable()
 export class CandidateService {
@@ -11,25 +12,34 @@ export class CandidateService {
     constructor(
         @InjectRepository(candidate)
         private candidateRepository: Repository<candidate>,
+        @InjectConnection() private readonly connection: Connection,
+
     ) { }
 
     getC(): Promise<candidate[]> {
         return this.candidateRepository.find();
     }
 
-    createC(candSignupDto: candidateSignupDto) {
-        return this.candidateRepository.save(candSignupDto);
+    createC(candCreateDto: candidateCreateDto) {
+        return this.candidateRepository.save(candCreateDto);
     }
 
-    // updateC(req: Request, param: { candId: number }) {
-    //     return {body: req.body, param};
+    updateC(candUpdateDto: candidateUpdateDto, candId: number ){
+        return this.candidateRepository.update(candId, candUpdateDto);
+    }
+
+    // showCByName(candName: string) {
+        
+    //     // return this.connection.query("Select * from candidate;");
+    //     return this.candidateRepository.findOne({where: {candName : candName}});
+      
     // }
 
-    // showCById(param: { candId: number }) {
-    //     return param;
-    // }
+    showCById(candId: number) {
+        return this.candidateRepository.findOne({where :{candId}});
+    }
 
-    // deleteC(param: { candId: number }) {
-    //     return param;
-    // }
+    deleteC( candId: number ) {
+        return this.candidateRepository.delete(candId);
+    }
 }

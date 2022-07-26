@@ -3,7 +3,7 @@ import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()                          // typeORM Decorator
 export class candidate{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     candId: number
 
     @Column()
