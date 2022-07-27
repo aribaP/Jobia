@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Header />
       <section className="home-container">
-      <div className="container">
+      <div>
         <h3 className="heading_1">Find The Perfect Job That You <br></br>Deserved</h3>
         <Link to='/registrationOption'><button>Join Today</button></Link>
         </div>
@@ -23,11 +23,11 @@ export default function Home() {
         </p>
         <div className="d-flex justify-content-around mt-5">
           <div className="good-company-section-rectangle"></div>
-          <div className="good-company-section-rectangle"></div>
-          <div className="good-company-section-rectangle"></div>
-          <div className="good-company-section-rectangle"></div>
-          <div className="good-company-section-rectangle"></div>
-          <div className="good-company-section-rectangle"></div>
+          <div className="good-company-section-rectangle1"></div>
+          <div className="good-company-section-rectangle2"></div>
+          <div className="good-company-section-rectangle3"></div>
+          <div className="good-company-section-rectangle4"></div>
+          <div className="good-company-section-rectangle5"></div>
         </div>
         </div>
       </section>
