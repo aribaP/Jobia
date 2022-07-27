@@ -19,6 +19,9 @@ export class organization{
     @Column()
     orgContactNumber: string
 
+    @Column()
+    orgLogo: String
+
     @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter
     jdFK: jobDescription
 

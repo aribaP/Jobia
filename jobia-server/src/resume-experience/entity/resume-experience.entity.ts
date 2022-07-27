@@ -8,7 +8,7 @@ export class resumeExperience{
     expId: number
 
     @Column()
-    expYear: String
+    expYear: number
 
     @Column()
     expCompanyName: String
