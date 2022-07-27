@@ -9,7 +9,7 @@ export class score{
     @PrimaryGeneratedColumn()
     scoreId: String
 
-    @Column()
+    @Column({ type: 'numeric', precision: 65, scale: 2 })
     score: number
 
 

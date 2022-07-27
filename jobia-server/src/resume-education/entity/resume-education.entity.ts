@@ -8,7 +8,7 @@ export class resumeEducation{
     eduId: number
 
     @Column()
-    expEndYear: number
+    eduEndYear: number
 
     @Column()
     eduInstituteName: String
