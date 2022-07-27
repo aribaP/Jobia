@@ -30,7 +30,7 @@ const ContactUs = () => {
                     rows="6"
                   />
                 </div>
-                <button className="btn btn-secondary body-button-style" type="submit">Send</button>
+                <button className="btn btn-secondary body-button-style11" type="submit">Send</button>
               </div>
             </div>
           </div>

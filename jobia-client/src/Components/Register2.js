@@ -11,7 +11,7 @@ const Register2 = () => {
 			<div className='body'>
 				<h4 className='white-txt font-28 mb-revert '>Ready to join the best job solution?</h4>
 				<div className='body-form'>
-					<h5 className='mb-revert text-center'>Sign up for a free account</h5>
+					<h5 className='mb-revert text-center'>Sign up for a free account1</h5>
 					<div class="row mb-3">
 						<div class="col">
 							<input type="text" class="form-control input-Fields" placeholder="First name" aria-label="First name" />

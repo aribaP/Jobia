@@ -42,7 +42,19 @@
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 .body-button-style {
+  width: 70%;
+  margin-left: 50px;
+  padding: 0.375rem 0.75rem;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+.body-button-style1 {
   width: 100%;
+  padding: 0.375rem 0.75rem;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+.body-button-style11 {
+  width: 70%;
+  margin-left: 80px;
   padding: 0.375rem 0.75rem;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
@@ -171,8 +183,8 @@
 .col1{
   background-image: url(../assets/register.jpg);
   position: relative;
-  width: 643px;
-  height: 437px;
+  width: 50%;
+  height: 497px;
 left: 0px;
 top: 0px;
 background-position: center;
@@ -182,8 +194,8 @@ background-size: cover;
 .col2{
   background-image: url(../assets/emploee.jpg);
   position: relative;
-  width: 643px;
-  height: 437px;
+  width: 50%;
+  height: 497px;
 left: 0px;
 top: 0px;
 background-position: center;
@@ -192,7 +204,7 @@ background-size: cover;
 }
 .container {
   max-width: 1440px;
-  margin: 0 auto;
+  margin: auto;
 }
 .home-container {
   background: url("../assets/carousel-1.jpg");
@@ -233,7 +245,6 @@ background-size: cover;
 
 
 .good-company-section {
-  margin-top: 83px;
   background: #5b4f64;
   position: relative;
   height: 411px;
@@ -266,8 +277,53 @@ background-size: cover;
   color: rgba(255, 255, 255, 0.8);
 }
 .good-company-section-rectangle {
-  background: url("../assets/hero-bg.png");
-  background-position: center;
+  background: url("../assets/folio3.png");
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 173px;
+  height: 76px;
+}
+
+.good-company-section-rectangle1 {
+  background: url("../assets/systems.png");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 173px;
+  height: 76px;
+}
+
+.good-company-section-rectangle2 {
+  background: url("../assets/10pearls.png.opdownload");
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 173px;
+  height: 76px;
+}
+
+.good-company-section-rectangle3 {
+  background: url("../assets/finance.png");
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 173px;
+  height: 76px;
+}
+
+.good-company-section-rectangle4 {
+  background: url("../assets/spursol.png");
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 173px;
+  height: 76px;
+}
+
+.good-company-section-rectangle5 {
+  background: url("../assets/techlogix.png");
+  background-position:bottom;
   background-repeat: no-repeat;
   background-size: cover;
   width: 173px;
@@ -308,21 +364,21 @@ background-size: cover;
 }
 .center{
   margin-top: 9px;
-  margin-left: 208px;  
+  margin-left: 260px;  
 }
 .center:hover {background-color: #5b4f64}
 
 .center2{
   margin-top: 9px;
-  margin-left: 208px;
+  margin-left: 260px;
 
 }
 .center2:hover {background-color: #5b4f64}
 
 .Heading_5{
   color: #fff;
-  margin-top: 170px;
-  margin-left: 166px;
+  margin-top: 200px;
+  margin-left: 200px;
   background-color:#5B4F64;
   width: 222px;
   height: 35px;
@@ -545,4 +601,8 @@ color: rgba(0, 0, 0, 0.8);
     width: 1280px;
     height: 36px;
     top: 201px;
+}
+
+.home-image{
+  margin-left: 50px;
 }
