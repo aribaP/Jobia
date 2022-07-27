@@ -99,8 +99,8 @@ const Account = (props) => {
           }
           {check === 'Resume' &&
             <CreateResume
-              onChangeTabs={(val) => setTabs(val)}
               onChangeStatus={(val) => setCheck(val)}
+              onChangeTabs={(val) => setTabs(val)}
             />
           }
           {check === 'ResumeView' && <ResumeView

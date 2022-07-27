@@ -28,7 +28,7 @@ const Header = () => {
             </ul>
             <form className="d-flex">
             <Link to='/login'><button className="btn btn-outline-secondary me-2 btn-sm padding-l-15 padding-r-15" type="submit">Log in</button></Link>
-            <Link to='/registrationOption'><button className="btn btn-secondary body-button-style1" type="submit">Register</button></Link>
+            <Link to='/registrationOption'><button className="btn btn-secondary me-2 btn-sm body-button-style1" type="submit">Register</button></Link>
             </form>
           </div>
         </div>
