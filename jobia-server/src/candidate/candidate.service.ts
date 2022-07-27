@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Request } from 'express';
-import { Connection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { candidate } from './entity/candidate.entity';
 import { candidateCreateDto } from './dto/candidate-create.dto';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
@@ -12,7 +12,6 @@ export class CandidateService {
     constructor(
         @InjectRepository(candidate)
         private candidateRepository: Repository<candidate>,
-        @InjectConnection() private readonly connection: Connection,
 
     ) { }
 
@@ -28,9 +27,11 @@ export class CandidateService {
         return this.candidateRepository.update(candId, candUpdateDto);
     }
 
-    // showCByName(candName: string): Promise<candidate> {
-    //     return this.candidateRepository.findOne({ where:{candName} }); 
-    // }
+    showCByEmail(cndEmail: string): Promise<candidate> {
+        return this.candidateRepository.findOne({where :{candEmail: cndEmail}});
+        // return this.candidateRepository.createQueryBuilder().where('candEmail = :candEmail', { candEmail }).execute();
+    
+    }
 
     showCById(candId: number) {
         return this.candidateRepository.findOne({where :{candId}});

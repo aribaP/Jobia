@@ -7,6 +7,7 @@ import { candidate } from './entity/candidate.entity';
 @Module({
   controllers: [CandidateController],     // takes request and responses back, no business logics
   providers: [CandidateService],          // all logical part is handled here, service
+  exports: [CandidateService],
   imports: [TypeOrmModule.forFeature([candidate])],
 })
 export class CandidateModule {}

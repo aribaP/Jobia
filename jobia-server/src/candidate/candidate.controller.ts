@@ -33,10 +33,10 @@ export class CandidateController {
       return this.candService.showCById(candId);
     }
 
-    // @Get('/:candName')
-    // getCandidateByName(@Param('candName') candName: string) {
-    //   return this.candService.showCByName(candName);
-    // }
+    @Get(':candEmail')
+    getCandidateByName(@Param('candEmail') candEmail: string) {
+      return this.candService.showCByEmail(candEmail);
+    }
 
     @Delete('/:candId')
     deletecandidate(@Param('candId', ParseIntPipe) candId: number) {

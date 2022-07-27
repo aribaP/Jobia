@@ -7,28 +7,28 @@ export class candidate{
     candId: number
 
     @Column()
-    candName: String
+    candName: string
 
     @Column()
-    candEmail: String
+    candEmail: string
 
     @Column()
-    candPassword: String
+    candPassword: string
 
     @Column()
-    candContactNumber: String
+    candContactNumber: string
 
     @Column()
-    candCity: String
+    candCity: string
 
     @Column()
-    candAddress: String
+    candAddress: string
 
     @Column()
-    candCNIC: String
+    candCNIC: string
 
     @Column()
-    candPhoto: String
+    candPhoto: string
 
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter
     resFK: resume
