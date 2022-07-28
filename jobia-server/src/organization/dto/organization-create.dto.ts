@@ -15,4 +15,5 @@ export class organizationCreateDto{
     
     @IsString()
     orgContactNumber: string
+
 }

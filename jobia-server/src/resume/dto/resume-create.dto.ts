@@ -21,6 +21,6 @@ export class resumeCreateDto{
     @IsString()
     hobbiesInterest: String
     
-    // candId: number
+    //candId
     // education, experience, project
 }
