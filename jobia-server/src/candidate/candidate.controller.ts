@@ -1,5 +1,5 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe} from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe, UseGuards} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CandidateService } from './candidate.service';
 import { candidateCreateDto } from './dto/candidate-create.dto';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
@@ -9,18 +9,20 @@ export class CandidateController {
 
     constructor(private candService: CandidateService) {}
 
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     getcandidates() {
       return this.candService.getC();
       // return "I am from candidate controller"
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     store(@Body() candCreateDto: candidateCreateDto){
-
         return this.candService.createC(candCreateDto);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Patch('/:candId')
     update(
       @Body() candUpdateDto: candidateUpdateDto,
@@ -28,16 +30,20 @@ export class CandidateController {
     
       return this.candService.updateC(candUpdateDto, candId);
     }
+
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:candId')
     getCandidateById(@Param('candId') candId: number) {
       return this.candService.showCById(candId);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Get(':candEmail')
-    getCandidateByName(@Param('candEmail') candEmail: string) {
+    getCandidateByEmail(@Param('candEmail') candEmail: string) {
       return this.candService.showCByEmail(candEmail);
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/:candId')
     deletecandidate(@Param('candId', ParseIntPipe) candId: number) {
       return this.candService.deleteC(candId);

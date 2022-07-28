@@ -27,3 +27,12 @@ export class AuthService {
         }
     }
 }
+// async validateUser(username: string, pass: string): Promise<any> {
+//     const user = await this.usersService.findOne(username);
+//     if (user && user.password === pass) {
+//       const { password, ...result } = user;
+//       return result;
+//     }
+//     return null;
+//   }
+// in a real application, you wouldn't store a password in plain text. You'd instead use a library like bcrypt

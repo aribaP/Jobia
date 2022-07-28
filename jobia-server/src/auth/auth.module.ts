@@ -24,3 +24,5 @@ import { JwtStrategy } from './auth.jwt.strategy';
     providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
+ // We'll start with the first requirement: authenticating a user. We'll then extend that by 
+ // issuing a JWT. Finally, we'll create a protected route that checks for a valid JWT on the request.

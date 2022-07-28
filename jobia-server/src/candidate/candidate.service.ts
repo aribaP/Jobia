@@ -40,4 +40,5 @@ export class CandidateService {
     deleteC( candId: number ) {
         return this.candidateRepository.delete(candId);
     }
+    
 }
