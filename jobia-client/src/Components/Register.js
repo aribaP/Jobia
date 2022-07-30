@@ -1,31 +1,65 @@
 import React from 'react'
 import '../Styles/style.css'
+import {useState} from 'react';
+import validator from 'validator'
 import polygon from '../assets/Polygon.png'
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { Link } from 'react-router-dom';
 const Register = () => {
+  const [errorMessage, setErrorMessage] = useState('')
+ 
+  const validate = (value) => {
+ 
+    if (validator.isStrongPassword(value, {
+      minLength: 8, minLowercase: 1,
+      minUppercase: 1, minNumbers: 1, minSymbols: 1
+    })) {
+      setErrorMessage('')
+    } else {
+      setErrorMessage('Password is not strong')
+    }
+  }
+  
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const handleChange = event => {
+    if (!isValidEmail(event.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+
+    setMessage(event.target.value);
+  };
   return (
     <>
       <Header />
       <div className='body'>
-        <h4 className='white-txt font-28 mb-revert '>Ready to join the best job solution?</h4>
-        <div className='body-form'>
+        <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
+        <div className='body-form-register'>
           <h5 className='mb-revert text-center'>Sign up for a free account</h5>
           <div class="mb-3">
             <input type="text" class="form-control input-Fields" id="OrganizationName" placeholder="Organization name" />
           </div>
           <div class="mb-3">
-            <input type="text" class="form-control input-Fields" id="EmailAddress" placeholder="Email address" />
+            <input type="text" name='email' onChange={handleChange} class="form-control input-Fields" id="EmailAddress" placeholder="Email address" />
+            {error && <h6 style={{color: 'red'}}>{error}</h6>}
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control input-Fields" id="Password" placeholder="Create password" />
+            <input type="password" onChange={(e) => validate(e.target.value)} class="form-control input-Fields" id="Password" placeholder="Create password" />
+            {errorMessage === '' ? null : <span style={{ fontWeight: 'bold', color: 'red', }}>{errorMessage}</span>}
           </div>
-         <Link to='/organization'><button className="btn btn-secondary body-button-style" type="submit">Register</button></Link>
+         <Link to='/organization'><button className="btn body-button-style11" type="submit">Register</button></Link>
         </div>
-        <img className='polygon' src={polygon} alt="" width="100" height="24" />
-      </div>
-      <Footer />
+        <img className='polygon' src={polygon} alt="" />
+      </div><footer>
+      <Footer /></footer>
     </>
   )
 }

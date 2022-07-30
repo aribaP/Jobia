@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Routes>
-      <Route path='/' element={<Home />}/>
+      <Route exact path='/' element={<Home />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register2' element={<Register2 />}/>
@@ -36,7 +36,7 @@ function App() {
         <Route path='/about' element={<About />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/profile2' element={<Profile2 />}/>
-        <Route path='/Jobs' element={<Jobs />}/>
+        <Route path='/jobs' element={<Jobs />}/>
         <Route path='/organization' element={<Organization />}/>
         <Route path='/resume' element={<Resume />}/>
         {/* <Route path='/policy' element={<Policy />}/> */}
