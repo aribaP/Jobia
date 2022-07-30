@@ -28,9 +28,9 @@ export class OrganizationService {
         return this.organizationRepository.update(orgId, orgUpdateDto);
     }
 
-    // showCByName(orgName: string): Promise<organization> {
-    //     return this.organizationRepository.findOne({ where:{orgName} }); 
-    // }
+    showCByName(orgName: string): Promise<organization> {
+        return this.organizationRepository.findOne({ where:{orgName} }); 
+    }
 
     showOById(orgId: number) {
         return this.organizationRepository.findOne({where :{orgId}});
@@ -39,4 +39,16 @@ export class OrganizationService {
     deleteO( orgId: number ) {
         return this.organizationRepository.delete(orgId);
     }
+
+    async showAllJDOrg(): Promise<organization[]> {
+        return await this.organizationRepository.find({
+            relations: ['jdFK']
+        });
+          
+    }
+    
+
+    // updateO(orgId: number, orgLogo: string ){
+    //     return this.organizationRepository.update(orgId, );
+    // }
 }

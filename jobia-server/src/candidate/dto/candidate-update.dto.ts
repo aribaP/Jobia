@@ -1,23 +1,23 @@
 import { IsEmail, IsString } from 'class-validator';
 
 export class candidateUpdateDto {
-    candName: String;
+    candName: string;
 
     @IsEmail()
-    candEmail: String;
+    candEmail: string;
 
     @IsString()
-    candPassword: String;
+    candPassword: string;
 
     @IsString()
-    candContactNumber: String;
+    candContactNumber: string;
 
     @IsString()
-    candCity: String;
+    candCity: string;
 
     @IsString()
-    candAddress: String;
+    candAddress: string;
 
     @IsString()
-    candPhoto: String
+    candPhoto: string
 }

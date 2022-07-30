@@ -26,7 +26,7 @@ import { ResumeProjectsModule } from './resume-projects/resume-projects.module';
 import { score } from './score/entity/score.entity';
 import { ScoreModule } from './score/score.module';
 
-
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -51,6 +51,7 @@ import { ScoreModule } from './score/score.module';
     OrganizationModule,
     JobDescriptionModule,
     ScoreModule,
+    AuthModule,
   ],
   providers: [candidate],
 })

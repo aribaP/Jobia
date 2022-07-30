@@ -19,4 +19,7 @@ export class jobDescriptionCreateDto{
     jdCity: string
 
     // orgFK: number      // FK
+    @IsInt()
+    orgFKOrgId: number
+    
 }
