@@ -14,21 +14,21 @@ const Header = () => {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <Link to='/about' class="nav-link active" aria-current="page">About US</Link>
+                <Link to='/about' class="nav-link" aria-current="page">About US</Link>
               </li>
               <li class="nav-item">
                 <Link to='/contact' class="nav-link">Contact Us</Link>
               </li>
               <li class="nav-item">
-                <Link to='/account' class="nav-link" >Get a Job</Link>
+                <Link to='/register2' class="nav-link" >Get a Job</Link>
               </li>
               <li class="nav-item">
-                <Link to='/organization' class="nav-link">Hire Employees</Link>
+                <Link to='/register' class="nav-link">Hire Employees</Link>
               </li>
             </ul>
             <form className="d-flex">
-            <Link to='/login'><button className="btn btn-outline-secondary me-2 btn-sm padding-l-15 padding-r-15" type="submit">Log in</button></Link>
-            <Link to='/registrationOption'><button className="btn btn-secondary me-2 btn-sm body-button-style1" type="submit">Register</button></Link>
+            <Link to='/login'><button className="btn body-button-style1 padding-l-15 padding-r-15" type="submit">Log in</button></Link>&ensp;
+            <Link to='/registrationOption'><button className="btn body-button-style" type="submit">Register</button></Link>
             </form>
           </div>
         </div>

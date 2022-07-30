@@ -32,8 +32,8 @@ const Account = (props) => {
    
 
       />
-      <div className='contactUsHeader'>
-        <h2 style={{ fontWeight: 400 }}>Account Title</h2>
+      <div className='profileHeader'>
+        <h2 style={{ fontWeight: 400 }}></h2>
       </div>
       <div class='row'>
         <div class='col-2 bg-Gray'>
@@ -44,7 +44,7 @@ const Account = (props) => {
             >
               <div className='Account-Tabs'>
                 <img src={Profilee} height='30px' width='30px' />
-                <p className='m-l-2'>profile</p>
+                <p className='m-l-2'>Profile</p>
               </div>
             </button>
             {
@@ -52,7 +52,6 @@ const Account = (props) => {
                 className={tabs === 'Resume' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
                 onClick={() => {
                   setCheck('Resume')
-                  setTabs('Resume')
                 }}
               >
                 <div className='Account-Tabs m-l-07'>
@@ -62,8 +61,8 @@ const Account = (props) => {
               </button> : <button
                 className={tabs === 'Jobs' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
                 onClick={() => {
-                  setCheck('Job')
-                  setTabs('Job')
+                  setCheck('Jobs')
+                  setTabs('Jobs')
                 }}
               >
                 <div className='Account-Tabs m-l-07'>
@@ -123,8 +122,8 @@ const Account = (props) => {
           }
         </div>
       </div>
-
-      <Footer dark={true} />
+          <footer>
+      <Footer dark={true} /></footer>
     </>
 
   )

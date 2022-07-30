@@ -65,8 +65,8 @@ const Resume = ({handleOnSave, onChangeTabs}) => {
             </div>
             <div className='resume-brdr'></div>
             <form className="d-flex justifyContent width-100">
-              <Link to='/login'><button className="btn button-style-outline me-2 btn-sm" type="submit" >Cancel</button></Link>
-              <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => handleOnSave('ResumeView')}>Save</button>
+            <Link to='/account'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
+              <Link to='/account'><button className="btn body-button-style3 btn-sm" type="submit" onClick={() => handleOnSave('ResumeView')}>Save</button></Link>
             </form>
           </div>
         </div>

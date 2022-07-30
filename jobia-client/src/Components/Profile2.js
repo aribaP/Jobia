@@ -58,22 +58,8 @@ const Profile2 = () => {
             rows="4"
           />
           <form className="d-flex justifyContent">
-            <Link to="/login">
-              <button
-                className="btn btn-outline-secondary me-2 btn-sm padding-l-15 padding-r-15"
-                type="submit"
-              >
-                Log in
-              </button>
-            </Link>
-            <Link to="/">
-              <button
-                className="btn btn-secondary btn-sm"
-                type="submit"
-              >
-                Register
-              </button>
-            </Link>
+          <Link to='/organization'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
+              <Link to='/organization'><button className="btn body-button-style3 btn-sm" type="submit">Save</button></Link>
           </form>
         </div>
       </div>

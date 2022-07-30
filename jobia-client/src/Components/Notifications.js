@@ -15,23 +15,9 @@ const Notifications = () => {
     </div>
     <button 
     className='notification-sub-header padding-10 border-0 width-100' 
-    onClick= {() => alert('----this is deleted----')}>
+    >
     <div >
-      <img src={Delete} alt="" width="16px" height="20px" />
-    </div>
-    </button>
-    <button 
-    className='notification-sub-header padding-10 border-0 width-100' 
-    onClick= {() => alert('----this is deleted----')}>
-    <div >
-      <img src={Delete} alt="" width="16px" height="20px" />
-    </div>
-    </button>
-    <button 
-    className='notification-sub-header padding-10 border-0 width-100' 
-    onClick= {() => alert('----this is deleted----')}>
-    <div >
-      <img src={Delete} alt="" width="16px" height="20px" />
+      <img onClick= {() => alert('----this is deleted----')} src={Delete} alt="" width="16px" height="20px" />
     </div>
     </button>
   </div>

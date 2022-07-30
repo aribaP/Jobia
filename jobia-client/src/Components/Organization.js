@@ -32,8 +32,8 @@ const Organization = (props) => {
 
 
       />
-      <div className='contactUsHeader'>
-        <h2 style={{ fontWeight: 400 }}>Organization Title</h2>
+      <div className='profileHeader'>
+        <h2 style={{ fontWeight: 400 }}>*organization title*</h2>
       </div>
       <div class='row'>
         <div class='col-2 bg-Gray'>
@@ -62,7 +62,10 @@ const Organization = (props) => {
             
             <button
               className={check === 'Notifications' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-              onClick={() => setCheck('Notifications')}
+              onClick={() => {
+                setCheck('Notifications')
+                setTabs('Notificcations')
+            }}
             >
               <div className='Account-Tabs m-l-07'>
                 <img src={Notifications} height='20px' width='20px' />
@@ -100,9 +103,9 @@ const Organization = (props) => {
 
         </div>
       </div>
-
+<footer>
       <Footer dark={true} />
-    </>
+      </footer></>
 
   )
 }
