@@ -52,3 +52,22 @@ export class OrganizationService {
     //     return this.organizationRepository.update(orgId, );
     // }
 }
+
+
+// {
+//     "orgId": 1,
+//     "orgName": "Folio3",
+//     "orgEmail": "folio3@gmail.com",
+//     "orgPassword": "Folio3",
+//     "orgContactNumber": "3043048",
+//     "orgLogo": "nfdieur"
+// }
+
+// {
+//      "jdId": 7,
+//      "jdPosition": "Folio3",
+//      "jdMinimumExperience": 3,
+//      "jdRequiredSkills": "Folio3efeifner",
+//      "jdLocation": "FB",
+//      "jdCity": "Karachi"
+// }
