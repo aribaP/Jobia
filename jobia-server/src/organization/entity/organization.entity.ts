@@ -7,19 +7,19 @@ export class organization{
     @PrimaryGeneratedColumn()
     orgId: number
 
-    @Column()
+    @Column({default: "00000"})
     orgName: string
 
-    @Column()
+    @Column({default: "00000"})
     orgEmail: string
 
-    @Column()
+    @Column({default: "00000"})
     orgPassword: string
 
-    @Column()
+    @Column({default: "00000"})
     orgContactNumber: string
 
-    @Column()
+    @Column({default: "00000"})
     orgLogo: string
 
     @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter

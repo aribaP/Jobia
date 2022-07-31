@@ -32,9 +32,9 @@ export class OrganizationController {
         // return "I am from organization controller"
     }
 
-    @Post()
-    store(@Body() orgCreateDto: organizationCreateDto){
-
+    @Post('/signupOrg')
+    signUpOrganization(@Body() orgCreateDto: organizationCreateDto){
+        console.log('hi');
         return this.orgService.createO(orgCreateDto);
     }
 

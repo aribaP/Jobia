@@ -21,6 +21,8 @@ export class OrganizationService {
     }
 
     createO(orgCreateDto: organizationCreateDto) {
+        console.log("hi ggg");
+        console.log(orgCreateDto);
         return this.organizationRepository.save(orgCreateDto);
     }
 

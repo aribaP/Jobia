@@ -13,7 +13,7 @@ export class organizationCreateDto{
     @IsString()
     orgPassword: string
     
-    @IsString()
-    orgContactNumber: string
+    // @IsString()
+    // orgContactNumber: string
 
 }
