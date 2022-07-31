@@ -147,8 +147,11 @@
   background-color: #ffffff;
   padding: 1%;
   width: 30%;
-  height: 45%;
+  height: 55%;
   border-radius: 5%;
+}
+.error{
+  color: red;
 }
 
 .body-form-register2 {
