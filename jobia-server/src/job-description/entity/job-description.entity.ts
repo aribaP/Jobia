@@ -23,7 +23,9 @@ export class jobDescription{
     jdCity: string
 
    // foreign key : orgID
-    @ManyToOne(() => organization, (orgFK) => orgFK.jdFK) // specify inverse side as a second parameter
+    @ManyToOne(() => organization, (orgFK) => orgFK.jdFK,{
+        onDelete: 'CASCADE'
+    } )// specify inverse side as a second parameter
     @JoinColumn()
     orgFK: organization
 

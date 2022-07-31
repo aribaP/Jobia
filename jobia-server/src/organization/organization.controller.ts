@@ -26,15 +26,15 @@ export class OrganizationController {
 
     constructor(private orgService: OrganizationService) {}
 
-    // @Get()
-    // getorganizations() {
-    //     return this.orgService.getO();
-    //     // return "I am from organization controller"
-    // }
+    @Get('/onlyorg')
+    getorganizations() {
+        return this.orgService.getO();
+        // return "I am from organization controller"
+    }
 
-    @Post()
-    store(@Body() orgCreateDto: organizationCreateDto){
-
+    @Post('/signupOrg')
+    signUpOrganization(@Body() orgCreateDto: organizationCreateDto){
+        console.log('hi');
         return this.orgService.createO(orgCreateDto);
     }
 
@@ -62,7 +62,6 @@ export class OrganizationController {
 
     @Get()
     showJobDescriptionUnderOrganization(){
-
         return this.orgService.showAllJDOrg();
     }
 
