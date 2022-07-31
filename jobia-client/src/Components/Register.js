@@ -9,6 +9,7 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
+import Organization from './Organization';
 
 const Register = () => {
     const initialvalues = {
@@ -23,18 +24,17 @@ const Register = () => {
 
     let name, value;
     const handleChange = (e) => {
-      name = e.target.name; //name attribute after input
-      value = e.target.value; //the value entered by the user
+      const { name, value } = e.target;
       setFormValues({ ...formValues, [name]: value }); //...=>spread operator
       console.log("form values", formValues);
         
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-      setIsSubmit(true);
       setFormErrors(validate(formValues));
+      setIsSubmit(true);
       console.log(formValues);
-    }
+    };
     const postData = async()=>{
        
       const body = {
@@ -61,18 +61,35 @@ const Register = () => {
     
     useEffect(() => {                     
       console.log(formErrors);
-      if (Object.keys(formErrors).length === 0 && isSubmit === true) {
+      if (Object.keys(formErrors).length === 0 && isSubmit) {
             
             postData(formValues);
             console.log(formValues);  //Rectified values after validation
       }
-    },[postData]);
+    },[formErrors]);
 
 
 
-    const validate = (value) => {
+    const validate = (values) => {
  
       const errors = {};
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+      if (!values.orgName) {
+        errors.orgName = "Username is required!";
+      }
+      if (!values.orgEmail) {
+        errors.email = "Email is required!";
+      } else if (!regex.test(values.orgEmail)) {
+        errors.email = "This is not a valid email format!";
+      }
+      if (!values.orgPassword) {
+        errors.orgPassword = "Password is required";
+      } else if (values.orgPassword.length < 4) {
+        errors.orgPassword = "Password must be more than 4 characters";
+      } else if (values.orgPassword.length > 10) {
+        errors.orgPassword = "Password cannot exceed more than 10 characters";
+      }
+      
       if (!validator.isStrongPassword(value, {
           minLength: 8, minLowercase: 1,
           minUppercase: 1, minNumbers: 1, minSymbols: 1
@@ -88,24 +105,25 @@ const Register = () => {
       <div className='body'>
         <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
         <div className='body-form-register'>
+        <form onSubmit={handleSubmit}>
           <h5 className='mb-revert text-center'>Sign up for a free account</h5>
 
           <div class="mb-3">
             <input type="text"  name= "orgName" class="form-control input-Fields" id="OrganizationName" required placeholder="Organization name" 
                 value={formValues.orgName}
                 onChange={handleChange}/>
-                {/* <div className="formErrors text-danger"> */}
+                <div className="formErrors text-danger">
                     <p>{formErrors.orgName}</p>
-                {/* </div> */}
+                </div>
           </div>
 
           <div class="mb-3">
             <input type="email" name="orgEmail" class="form-control input-Fields" id="EmailAddress" required placeholder="Email address"  
                 value={formValues.orgEmail}
                 onChange ={handleChange}/>
-                {/* <div className="formErrors text-danger"> */}
+                <div className="formErrors text-danger">
                     <p>{formErrors.orgEmail}</p>
-                {/* </div> */}
+                </div>
 
           </div>
 
@@ -113,12 +131,15 @@ const Register = () => {
             <input type="password" name ="orgPassword" class="form-control input-Fields" id="Password" required placeholder="Create password" 
                 value={formValues.orgPassword} 
                 onChange={handleChange}/>
-                {/* <div className="formErrors text-danger"> */}
+                <div className="formErrors text-danger">
                     <p>{formErrors.orgPassword}</p>
-                {/* </div> */}
+                </div>
           </div>
 
-         <Link to='/organization'><button className="btn body-button-style11" type="submit" onClick={handleSubmit}>Register</button></Link>
+         {/* <Link to='/organization'> */}
+         <button className="btn body-button-style11" type="submit" onSubmit={Organization}>Register</button>
+         {/* </Link> */}
+        </form>
         </div>
         <img className='polygon' src={polygon} alt="" />
       </div><footer>
