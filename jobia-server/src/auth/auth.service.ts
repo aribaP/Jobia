@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CandidateService } from 'src/candidate/candidate.service';
-import { loginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
-import { candidate } from 'src/candidate/entity/candidate.entity';
+import { OrganizationService } from 'src/organization/organization.service';
 
 @Injectable()
 export class AuthService {
     constructor(
         private candService: CandidateService, 
+        private orgService: OrganizationService,
         private jwtService: JwtService) { }
 
     async validateCandidate(candEmail: string, candPassword: string) {
@@ -20,8 +20,25 @@ export class AuthService {
         return null;
     }
 
-    async login( candidate: any ){
+    async loginCandidate( candidate: any ){
         const payload = { candEmail: candidate.candEmail, sub: candidate.candId};  
+        return{
+            access_token: this.jwtService.sign(payload),
+        }
+    }
+
+    async validateOrganization(orgEmail: string, orgPassword: string) {
+        const org = await this.orgService.showOByEmail(orgEmail);
+        console.log(org);
+        
+        if (org && org.orgPassword === orgPassword) {
+            return org;    
+        }
+        return null;
+    }
+
+    async loginOrganization( organization: any ){
+        const payload = { orgEmail: organization.orgEmail, sub: organization.orgId};  
         return{
             access_token: this.jwtService.sign(payload),
         }

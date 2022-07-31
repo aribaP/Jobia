@@ -34,6 +34,7 @@
     "class-validator": "^0.13.2",
     "cors": "^2.8.5",
     "mysql2": "^2.3.3",
+    "natural": "^5.2.3",
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",

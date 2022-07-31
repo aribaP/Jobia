@@ -11,9 +11,16 @@ export class AuthController {
    constructor(private authService: AuthService) {  }
 
     @UseGuards(AuthGuard('local'))
-    @Post('/login')
-    async login(@Request() req: any){
-        return this.authService.login(req.user);
+    @Post('/loginCand')
+    async loginC(@Request() req: any){
+        return this.authService.loginCandidate(req.user);
+
+    }
+
+    @UseGuards(AuthGuard('local'))
+    @Post('/loginOrg')
+    async loginO(@Request() req: any){
+        return this.authService.loginOrganization(req.user);
 
     }
 

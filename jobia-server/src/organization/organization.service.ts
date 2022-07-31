@@ -30,8 +30,8 @@ export class OrganizationService {
         return this.organizationRepository.update(orgId, orgUpdateDto);
     }
 
-    showCByName(orgName: string): Promise<organization> {
-        return this.organizationRepository.findOne({ where:{orgName} }); 
+    showOByEmail(orgEmail: string): Promise<organization> {
+        return this.organizationRepository.findOne({ where:{orgEmail} }); 
     }
 
     showOById(orgId: number) {

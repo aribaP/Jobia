@@ -50,9 +50,9 @@ export class OrganizationController {
         return this.orgService.showOById(orgId);
     }
 
-    @Get('/:orgName')
-    getorganizationByName(@Param('orgName') orgName: string) {
-      return this.orgService.showCByName(orgName);
+    @Get('/:orgEmail')
+    getorganizationByName(@Param('orgEmail') orgEmail: string) {
+      return this.orgService.showOByEmail(orgEmail);
     }
 
     @Delete('/:orgId') 
