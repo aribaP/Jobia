@@ -1,5 +1,8 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe, UseGuards} from '@nestjs/common';
+import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe, UseGuards, ExecutionContext} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 import { CandidateService } from './candidate.service';
 import { candidateCreateDto } from './dto/candidate-create.dto';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
@@ -9,9 +12,12 @@ export class CandidateController {
 
     constructor(private candService: CandidateService) {}
 
-    //  @UseGuards(AuthGuard('jwt'))
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @Get()
-    getcandidates() {
+    getcandidates(context: ExecutionContext) {
+      const req = context.switchToHttp().getRequest();
+      console.log(req.user);
       return this.candService.getC();
       // return "I am from candidate controller"
     }

@@ -32,6 +32,7 @@ export class candidate{
 
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter
     resFK: resume
+    
 }
 
 

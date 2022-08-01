@@ -1,13 +1,13 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete, ParseIntPipe, Body, UseInterceptors, UploadedFile, Request} from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { Controller, Get, Req, Post, Patch, Param, Delete, ParseIntPipe, Body, UseInterceptors, UploadedFile, Request, HttpException, HttpStatus, UseFilters, UseGuards } from '@nestjs/common';
 import { diskStorage } from 'multer';
-import { map, of, tap, Observable } from 'rxjs';
 import { organizationCreateDto } from './dto/organization-create.dto';
 import { organizationUpdateDto } from './dto/organization-update.dto';
 import { OrganizationService } from './organization.service';
-import path  = require('path');
-import { organization } from './entity/organization.entity';
-import { format } from 'path';
+import path = require('path');
+import { organizationLoginDto } from './dto/organization-login.dts';
+import { HttpExceptionFilter } from 'src/exception-filters/http-exception.filter';
+import { ValidationPipe } from 'src/pipes/validation.pipe';
+import { AuthGuard } from '@nestjs/passport';
 
 export const storage = {
     storage: diskStorage({
@@ -24,27 +24,61 @@ export const storage = {
 @Controller('organization')
 export class OrganizationController {
 
-    constructor(private orgService: OrganizationService) {}
+    constructor(private orgService: OrganizationService) { }
 
-    @Get('/onlyorg')
-    getorganizations() {
-        return this.orgService.getO();
-        // return "I am from organization controller"
-    }
 
     @Post('/signupOrg')
-    signUpOrganization(@Body() orgCreateDto: organizationCreateDto){
+    async signUpOrganization(@Body(ValidationPipe) orgCreateDto: organizationCreateDto) {
         console.log('hi');
-        return this.orgService.createO(orgCreateDto);
+        const response = await this.orgService.signUpOrg(orgCreateDto);
+        console.log(response);
+        if(response === undefined) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Email already exists or password is not strong',
+            }, HttpStatus.FORBIDDEN);
+        }
+        else{
+            console.log("Yes",response);
+            return response;
+        }
+    }
+
+    @Post('/loginOrg')
+    @UseFilters(HttpExceptionFilter)
+    async LoginOrganization(@Body() orgLoginDto: organizationLoginDto) {
+        console.log('hi');
+        const response = await this.orgService.loginOrg(orgLoginDto);
+        console.log(response);
+        if(response === undefined) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Email already exists or password is not strong',
+            }, HttpStatus.FORBIDDEN);
+        }
+        else{
+            console.log("Yes",response);
+            return response;
+        }
     }
 
     @Patch('/:orgId')
     update(
         @Body() orgUpdateDto: organizationUpdateDto,
         @Param('orgId', ParseIntPipe) orgId: number) {
-    
-        return this.orgService.updateO(orgUpdateDto, orgId);
+
+        return this.orgService.updateOrg(orgUpdateDto, orgId);
     }
+
+
+    // @UseGuards(AuthGuard('jwt'))
+    // @Get()
+    // getorganizations() {
+    //     return this.orgService.getO();
+    //     // return "I am from organization controller"
+    // }
+
+    
     @Get('/:orgId')
     getorganizationById(@Param('orgId') orgId: number) {
         return this.orgService.showOById(orgId);
@@ -52,16 +86,16 @@ export class OrganizationController {
 
     @Get('/:orgEmail')
     getorganizationByName(@Param('orgEmail') orgEmail: string) {
-      return this.orgService.showOByEmail(orgEmail);
+        return this.orgService.showOByEmail(orgEmail);
     }
 
-    @Delete('/:orgId') 
+    @Delete('/:orgId')
     deleteorganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return this.orgService.deleteO(orgId);
     }
 
     @Get()
-    showJobDescriptionUnderOrganization(){
+    showJobDescriptionUnderOrganization() {
         return this.orgService.showAllJDOrg();
     }
 
@@ -89,7 +123,7 @@ export class OrganizationController {
     //     const org: organization = req.org;
     //     console.log(file.filename);
     //     // return this.orgService.updateO(org.orgId, file.filename);
-        
+
     // }
 
     // @Post('upload')
