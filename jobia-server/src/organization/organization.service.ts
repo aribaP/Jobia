@@ -21,25 +21,11 @@ export class OrganizationService {
 
     async signUpOrg(orgCreateDto: organizationCreateDto): Promise<organization> {
 
-        let pass = false;
-
-        console.log(orgCreateDto);
-
-        // password validation
-        if (validator.isStrongPassword(orgCreateDto.orgPassword, {
-            minLength: 8, minLowercase: 1,
-            minUppercase: 1, minNumbers: 1           //, minSymbols: 1
-        })) {  pass = true; }
-        
-        console.log(pass);
         const exist = await this.organizationRepository.findOne({where: {orgEmail: orgCreateDto.orgEmail}});
-        if(!exist && pass){
+        if(!exist){
             return this.organizationRepository.save(orgCreateDto);
         }
-        else if(exist || !pass){
-            console.log("exist");
-            return;          // will be changed later
-        }    
+           
     }
 
 
@@ -62,20 +48,10 @@ export class OrganizationService {
     }
 
 
-    updateOrg(orgUpdateDto: organizationUpdateDto, orgId: number ){
-        return this.organizationRepository.update(orgId, orgUpdateDto);
+    async updateOrg(orgUpdateDto: organizationUpdateDto, orgId: number ){
+        return await this.organizationRepository.update(orgId, orgUpdateDto);
     }
 
-    
-    getO(): Promise<organization[]> {
-        return this.organizationRepository.find();
-    }
-
-    
-
-    showOByEmail(orgEmail: string): Promise<organization> {
-        return this.organizationRepository.findOne({ where:{orgEmail} }); 
-    }
 
     showOById(orgId: number) {
         return this.organizationRepository.findOne({where :{orgId}});
@@ -85,17 +61,23 @@ export class OrganizationService {
         return this.organizationRepository.delete(orgId);
     }
 
-    async showAllJDOrg(): Promise<organization[]> {
+    async showAllJDOrg(orgFK: number): Promise<organization[]> {
         return await this.organizationRepository.find({
-            relations: ['jdFK']
-        });
-          
+            relations: ['jdFK'], 
+            where: {orgId: orgFK }
+        });      
     }
     
 
     // updateO(orgId: number, orgLogo: string ){
     //     return this.organizationRepository.update(orgId, );
     // }
+    // getO(): Promise<organization[]> {
+    //     return this.organizationRepository.find();
+    // }
+    showOByEmail(orgEmail: string): Promise<organization> {
+        return this.organizationRepository.findOne({ where:{orgEmail} }); 
+    }
 }
 
 

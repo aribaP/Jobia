@@ -7,10 +7,10 @@ export class resumeProjects{
     @PrimaryGeneratedColumn()
     projId: number
 
-    @Column()
+    @Column({nullable: true})
     projTitle: String
 
-    @Column()
+    @Column({nullable: true})
     projDescription: String
 
     // resumeID foriegn key

@@ -15,7 +15,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         statusCode: status,
         timestamp: new Date().toISOString(),
         path: request.url,
-        description: 'Http Error',
+        description: 'Account doesnt exist.',
       });
   }
 } 

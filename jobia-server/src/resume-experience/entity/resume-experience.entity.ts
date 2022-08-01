@@ -7,13 +7,13 @@ export class resumeExperience{
     @PrimaryGeneratedColumn()
     expId: number
 
-    @Column()
+    @Column({nullable: true})
     expYear: number
 
-    @Column()
+    @Column({nullable: true})
     expCompanyName: String
 
-    @Column()
+    @Column({nullable: true})
     expDescription: String
 
 

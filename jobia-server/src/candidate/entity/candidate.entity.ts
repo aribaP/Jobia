@@ -6,28 +6,28 @@ export class candidate{
     @PrimaryGeneratedColumn('increment')
     candId: number
 
-    @Column()
+    @Column({nullable: false})
     candName: string
 
-    @Column()
+    @Column({nullable: false})
     candEmail: string
 
-    @Column()
+    @Column({nullable: false})
     candPassword: string
 
-    @Column()
+    @Column({nullable: true})
     candContactNumber: string
 
-    @Column()
+    @Column({nullable: true})
     candCity: string
 
-    @Column()
+    @Column({nullable: true})
     candAddress: string
 
-    @Column()
+    @Column({nullable: true})
     candCNIC: string
 
-    @Column()
+    @Column({nullable: true})
     candPhoto: string
 
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter

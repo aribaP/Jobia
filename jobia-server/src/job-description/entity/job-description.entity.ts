@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { organization } from "src/organization/entity/organization.entity";
 import { score } from "src/score/entity/score.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -7,27 +8,30 @@ export class jobDescription{
     @PrimaryGeneratedColumn()
     jdId: number
 
-    @Column()
+    @Column({nullable: false})
     jdPosition: string
 
-    @Column()
+    @Column({nullable: false})
     jdMinimumExperience: number
 
-    @Column()
+    @Column({nullable: false})
     jdRequiredSkills: string
 
-    @Column()
+    @Column({nullable: false})
     jdLocation: string
 
-    @Column()
+    @Column({nullable: false})
     jdCity: string
 
    // foreign key : orgID
+    @IsNotEmpty()
     @ManyToOne(() => organization, (orgFK) => orgFK.jdFK,{
         onDelete: 'CASCADE'
     } )// specify inverse side as a second parameter
+    
+    @IsNotEmpty()
     @JoinColumn()
-    orgFK: organization
+    orgFK: organization 
 
     @OneToMany(() => score, scores => scores.jdFK)
     public scores!: score[];

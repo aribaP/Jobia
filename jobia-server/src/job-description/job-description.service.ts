@@ -14,27 +14,25 @@ export class JobDescriptionService {
 
     ) { }
 
-    getJD(): Promise<jobDescription[]> {
-        return this.jobDescriptionRepository.find();
+    async createJD(jdCreateDto: jobDescriptionCreateDto): Promise<jobDescription> {
+        console.log(jdCreateDto)
+        return await this.jobDescriptionRepository.save(jdCreateDto);
     }
 
-    createJD(jdCreateDto: jobDescriptionCreateDto) {
-        return this.jobDescriptionRepository.save(jdCreateDto);
+    async updateJD(jdUpdateDto: jobDescriptionUpdateDto, jdId: number ){
+        return await this.jobDescriptionRepository.update(jdId, jdUpdateDto);
     }
 
-    updateJD(jdUpdateDto: jobDescriptionUpdateDto, jdId: number ){
-        return this.jobDescriptionRepository.update(jdId, jdUpdateDto);
+
+    async showJDById(jdId: number): Promise<jobDescription>{
+        return await this.jobDescriptionRepository.findOne({where :{jdId}});
     }
 
-    // showCByName(jdName: string): Promise<jobDescription> {
-    //     return this.jobDescriptionRepository.findOne({ where:{jdName} }); 
+    async deleteJD( jdId: number ) {
+        return await this.jobDescriptionRepository.delete(jdId);
+    }
+
+    // async getJD(): Promise<jobDescription[]> {
+    //     return await this.jobDescriptionRepository.find();
     // }
-
-    showJDById(jdId: number) {
-        return this.jobDescriptionRepository.findOne({where :{jdId}});
-    }
-
-    deleteJD( jdId: number ) {
-        return this.jobDescriptionRepository.delete(jdId);
-    }
 }

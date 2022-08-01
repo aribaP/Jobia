@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { jobDescription } from "src/job-description/entity/job-description.entity";
 import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -19,11 +20,11 @@ export class organization{
     @Column({nullable: true})
     orgContactNumber: string
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     orgLogo: string
 
+    @IsNotEmpty()
     @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter
     jdFK: jobDescription[]
 
-    //
 }

@@ -7,13 +7,13 @@ export class resumeEducation{
     @PrimaryGeneratedColumn()
     eduId: number
 
-    @Column()
+    @Column({nullable: false})
     eduEndYear: number
 
-    @Column()
+    @Column({nullable: false})
     eduInstituteName: String
 
-    @Column()
+    @Column({nullable: false})
     eduDegree: String
 
     // resumeID foriegn key

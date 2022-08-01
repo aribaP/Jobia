@@ -10,22 +10,22 @@ export class resume{
     @PrimaryGeneratedColumn()
     resumeId: number
 
-    @Column()
+    @Column({nullable: false})
     careerObjective: String
 
-    @Column()
+    @Column({nullable: false})
     position: String
 
-    @Column()
+    @Column({nullable: false})
     skills: String
 
-    @Column()
+    @Column({nullable: true})
     linkedIn: String
 
-    @Column()
+    @Column({nullable: true})
     gitHub: String
 
-    @Column()
+    @Column({nullable: true})
     hobbiesInterest: String
 
     @OneToOne(() => candidate, (candFK) => candFK.resFK) // specify inverse side as a second parameter
