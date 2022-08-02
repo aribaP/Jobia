@@ -7,6 +7,7 @@ import { organizationUpdateDto } from './dto/organization-update.dto';
 import { organization } from './entity/organization.entity';
 import validator from 'validator';
 import { organizationLoginDto } from './dto/organization-login.dts';
+import { from, Observable, switchMap } from 'rxjs';
 
 @Injectable()
 export class OrganizationService {
@@ -57,6 +58,11 @@ export class OrganizationService {
         return this.organizationRepository.findOne({where :{orgId}});
     }
 
+
+    updateLogo(orgUpdateDto: organizationUpdateDto, orgId: number){
+        return this.organizationRepository.update(orgId, orgUpdateDto);
+    }
+
     deleteO( orgId: number ) {
         return this.organizationRepository.delete(orgId);
     }
@@ -67,6 +73,8 @@ export class OrganizationService {
             where: {orgId: orgFK }
         });      
     }
+
+
     
 
     // updateO(orgId: number, orgLogo: string ){

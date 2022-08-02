@@ -43,6 +43,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.7",
+    "uuidv4": "^6.2.13",
     "validator": "^13.7.0"
   },
   "devDependencies": {

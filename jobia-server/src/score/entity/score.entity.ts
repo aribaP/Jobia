@@ -13,10 +13,14 @@ export class score{
     score: number
 
 
-    @ManyToOne(() => jobDescription, (jdFK) => jdFK.scores)
+    @ManyToOne(() => jobDescription, (jdFK) => jdFK.scores,{
+        onDelete: 'CASCADE'
+    })
     public jdFK: jobDescription
 
-    @ManyToOne(() => resume, (resFK) => resFK.scores)
+    @ManyToOne(() => resume, (resFK) => resFK.scores,{
+        onDelete: 'CASCADE'
+    })
     public resFK: resume
 
 }

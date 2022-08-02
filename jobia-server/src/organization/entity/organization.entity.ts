@@ -8,13 +8,13 @@ export class organization{
     @PrimaryGeneratedColumn()
     orgId: number
 
-    @Column({nullable: false})
+    @Column({nullable:  true})
     orgName: string
 
-    @Column({nullable: false})
+    @Column({nullable:  true})
     orgEmail: string
 
-    @Column({nullable: false})
+    @Column({nullable:  true})
     orgPassword: string
 
     @Column({nullable: true})

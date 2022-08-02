@@ -67,6 +67,9 @@ export class CandidateService {
     }
 
 
+    
+
+
 
     // Extra for auth
     showCByEmail(cndEmail: string): Promise<candidate> {

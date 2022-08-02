@@ -7,17 +7,19 @@ export class resumeEducation{
     @PrimaryGeneratedColumn()
     eduId: number
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     eduEndYear: number
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     eduInstituteName: String
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     eduDegree: String
 
     // resumeID foriegn key
-    @ManyToOne(() => resume, (resFK) => resFK.eduFK) // specify inverse side as a second parameter
+    @ManyToOne(() => resume, (resFK) => resFK.eduFK,{
+        onDelete: 'CASCADE'
+    }) // specify inverse side as a second parameter
     @JoinColumn()
     resFK: resume
 }   

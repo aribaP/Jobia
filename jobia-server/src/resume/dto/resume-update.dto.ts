@@ -2,21 +2,21 @@ import { IsString } from 'class-validator';
 
 export class resumeUpdateDto{
     @IsString()
-    careerObjective: String
+    careerObjective: string
     
     @IsString()
-    position: String
+    position: string
     
     @IsString()
-    skills: String
+    skills: string
     
     @IsString()
-    linkedIn: String
+    linkedIn: string
     
     @IsString()
-    gitHub: String
+    gitHub: string
     
     @IsString()
-    hobbiesInterest: String
+    hobbiesInterest: string
     // education, experience, project
 }

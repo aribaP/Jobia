@@ -1,4 +1,4 @@
-import { ValidationPipe, Controller, Get, Req, Post, Patch, Param, Delete, ParseIntPipe, Body, UseFilters, UseGuards, UsePipes } from '@nestjs/common';
+import { ValidationPipe, Controller, Get, Req, Post, Patch, Param, Delete, ParseIntPipe, Body, UseFilters, UseGuards, UsePipes, UseInterceptors, UploadedFile, Request } from '@nestjs/common';
 import { diskStorage } from 'multer';
 import { organizationCreateDto } from './dto/organization-create.dto';
 import { organizationUpdateDto } from './dto/organization-update.dto';
@@ -8,21 +8,26 @@ import { organizationLoginDto } from './dto/organization-login.dts';
 import { HttpExceptionFilter } from 'src/exception-filters/http-exception.filter';
 // import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { AuthGuard } from '@nestjs/passport';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Observable, of } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+import { organization } from './entity/organization.entity';
+
 
 export const storage = {
     storage: diskStorage({
-        destination: '/uploads/',
+        destination: './uploads/orgimages',
         filename: (req, file, cb) => {
-            const filename: string = path.parse(file.originalname).name.replace(/\s/g, '');
+            const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
             const extension: string = path.parse(file.originalname).ext;
 
-            cb(null, filename + extension)
+            cb(null, `${filename}${extension}`)
         }
     })
 }
 
 @Controller('organization')
-export   class OrganizationController {
+export class OrganizationController {
 
     constructor(private orgService: OrganizationService) { }
 
@@ -30,7 +35,7 @@ export   class OrganizationController {
     // @UsePipes(ValidationPipe)
     async signUpOrganization(@Body(ValidationPipe) orgCreateDto: organizationCreateDto) {
         return await this.orgService.signUpOrg(orgCreateDto);
-        
+
     }
 
     @Post('/login')
@@ -58,23 +63,26 @@ export   class OrganizationController {
         return await this.orgService.showOById(orgId);
     }
 
-   
+
     @Delete('/:orgId')
     async deleteorganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return await this.orgService.deleteO(orgId);
     }
 
-     // @Get('/:orgEmail')
+    // @Get('/:orgEmail')
     // async getorganizationByName(@Param('orgEmail') orgEmail: string) {
     //     return await this.orgService.showOByEmail(orgEmail);
     // }
 
-    // @Post('/upload')
-    // @UseInterceptors(FileInterceptor('file', storage))
-    // uploadOrgLogo(@UploadedFile() file){
-    //     console.log(file);
-    //     return of({ filename: file.filename})
-    // }
+    @Post('/upload/:orgId')
+    @UseInterceptors(FileInterceptor('file', storage))
+    uploadOrgLogo(@UploadedFile() file, 
+        @Param('orgId', ParseIntPipe) orgId: number) {
+  
+        console.log(file);
+        return this.orgService.updateLogo(file.filename, orgId);
+    
+    }
 
     // @Post('upload')
     // @UseInterceptors(FileInterceptor('file', storage))

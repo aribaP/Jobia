@@ -35,3 +35,11 @@ export class ResumeEducationController {
         return this.ResEduService.deleteResEdu(eduId);
     }
 }
+
+
+// {
+//     "eduEndYear": 2001,
+//     "eduInstituteName": "My education institute",
+//     "eduDegree": "Bachelors",
+//     "resFK": 2
+// }

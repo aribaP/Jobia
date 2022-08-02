@@ -37,3 +37,10 @@ export class ResumeProjectsController {
       return this.ResProjService.deleteResProj(projId);
     }
 }
+
+
+// {
+//   "projTitle": "My Project title",
+//   "projDescription": "My project description",
+//   "resFK": 2
+// }

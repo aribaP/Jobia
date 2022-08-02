@@ -8,39 +8,47 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn
 @Entity()
 export class resume{
     @PrimaryGeneratedColumn()
-    resumeId: number
-
-    @Column({nullable: false})
-    careerObjective: String
-
-    @Column({nullable: false})
-    position: String
-
-    @Column({nullable: false})
-    skills: String
+    resId: number
 
     @Column({nullable: true})
-    linkedIn: String
+    careerObjective: string
 
     @Column({nullable: true})
-    gitHub: String
+    position: string
 
     @Column({nullable: true})
-    hobbiesInterest: String
+    skills: string
 
-    @OneToOne(() => candidate, (candFK) => candFK.resFK) // specify inverse side as a second parameter
+    @Column({nullable: true})
+    linkedIn: string
+
+    @Column({nullable: true})
+    gitHub: string
+
+    @Column({nullable: true})
+    hobbiesInterest: string
+
+    @OneToOne(() => candidate, (candFK) => candFK.resFK, {
+        onDelete: 'CASCADE'
+    }) // specify inverse side as a second parameter
     @JoinColumn()
     candFK: candidate
     // education, experience, project
 
-    @OneToMany(() => resumeEducation, (eduFK) => eduFK.resFK) // specify inverse side as a second parameter
-    eduFK: resumeEducation
+    @OneToMany(() => resumeEducation, (eduFK) => eduFK.resFK, {
+        cascade: ['insert', 'update'],
+    }) // specify inverse side as a second parameter
+    eduFK: resumeEducation[]
 
-    @OneToMany(() => resumeExperience, (expFK) => expFK.resFK) // specify inverse side as a second parameter
-    expFK: resumeExperience
+    @OneToMany(() => resumeExperience, (expFK) => expFK.resFK, {
+        cascade: ['insert', 'update'],
+    }) // specify inverse side as a second parameter
+    expFK: resumeExperience[]
 
-    @OneToMany(() => resumeProjects, (projFK) => projFK.resFK) // specify inverse side as a second parameter
-    projFK: resumeProjects
+    @OneToMany(() => resumeProjects, (projFK) => projFK.resFK,  {
+        cascade: ['insert', 'update'],
+    }) // specify inverse side as a second parameter
+    projFK: resumeProjects[]
 
     @OneToMany(() => score, scores => scores.resFK)
     public scores!: score[];

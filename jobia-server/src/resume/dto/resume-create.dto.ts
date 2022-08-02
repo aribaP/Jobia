@@ -4,22 +4,22 @@ export class resumeCreateDto{
     resumeId: number
 
     @IsString()
-    careerObjective: String
+    careerObjective: string
     
     @IsString()
-    position: String
+    position: string
     
     @IsString()
-    skills: String
+    skills: string
     
     @IsString()
-    linkedIn: String
+    linkedIn: string
     
     @IsString()
-    gitHub: String
+    gitHub: string
     
     @IsString()
-    hobbiesInterest: String
+    hobbiesInterest: string
     
     //candId
     // education, experience, project

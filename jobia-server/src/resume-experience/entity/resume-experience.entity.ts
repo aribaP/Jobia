@@ -18,7 +18,9 @@ export class resumeExperience{
 
 
     // resumeID foriegn key
-    @ManyToOne(() => resume, (resFK) => resFK.expFK) // specify inverse side as a second parameter
+    @ManyToOne(() => resume, (resFK) => resFK.expFK,{
+        onDelete: 'CASCADE'
+    }) // specify inverse side as a second parameter
     @JoinColumn()
     resFK: resume
 }   

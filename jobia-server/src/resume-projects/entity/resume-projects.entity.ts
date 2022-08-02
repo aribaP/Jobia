@@ -14,7 +14,9 @@ export class resumeProjects{
     projDescription: String
 
     // resumeID foriegn key
-    @ManyToOne(() => resume, (resFK) => resFK.projFK) // specify inverse side as a second parameter
+    @ManyToOne(() => resume, (resFK) => resFK.projFK,{
+        onDelete: 'CASCADE'
+    }) // specify inverse side as a second parameter
     @JoinColumn()
     resFK: resume
 }   

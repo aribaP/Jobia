@@ -13,4 +13,7 @@ export class organizationUpdateDto {
 
     @IsString()
     orgContactNumber: string
+
+    @IsString()
+    orgLogo: string
 }
