@@ -82,11 +82,12 @@ export class ResumeService {
     async createWholeResume(resCreateDto: resumeCreateDto) {
         console.log( resCreateDto);
         const saved = await this.resumeRepository.save(resCreateDto);
-        const getAllResumes = await this.jobDescriptionRepository.find({});
+        const getAllJD = await this.jobDescriptionRepository.find({});
 
 
-        for (let index = 0; index < getAllResumes.length; index++) {
-            const element = getAllResumes[index];
+        for (let index = 0; index < getAllJD.length; index++) {
+            const element = getAllJD[index];
+            console.log(resCreateDto.position, element.jdPosition);
 
             const acc1 = this.textCosineSimilarity(resCreateDto.position, element.jdPosition);
             const acc2 = this.textCosineSimilarity(resCreateDto.careerObjective + resCreateDto.skills,  element.jdRequiredSkills);
@@ -123,6 +124,11 @@ export class ResumeService {
     deleteWholeResume( resId: number ) {
         return this.resumeRepository.delete(resId);
     }
+
+   
+
+
+
 
     // async showResumeExperienceByResumeId(resFK: number): Promise<resume[]> {
     //     return await this.resumeRepository.find({

@@ -13,7 +13,7 @@ export class resumeExperience{
     @Column({nullable: true})
     expCompanyName: String
 
-    @Column({nullable: true})
+    @Column("longtext")
     expDescription: String
 
 

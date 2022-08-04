@@ -1,9 +1,16 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { jobDescriptionCreateDto } from './dto/jobDescription-create.dto';
 import { jobDescriptionUpdateDto } from './dto/jobDescription-update.dto';
 import { scoreCreateDto } from '../score/dto/score-create.dto';
 import { JobDescriptionService } from './job-description.service';
+import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
+
+@Roles(Role.Organization)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('job-description')
 export class JobDescriptionController {
     constructor(private jdService: JobDescriptionService) { }

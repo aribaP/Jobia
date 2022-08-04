@@ -24,7 +24,9 @@ export class organization{
     orgLogo: string
 
     @IsNotEmpty()
-    @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK) // specify inverse side as a second parameter
+    @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK,{
+        cascade: ['insert', 'update']
+    }) // specify inverse side as a second parameter
     jdFK: jobDescription[]
 
 }

@@ -10,7 +10,7 @@ export class resume{
     @PrimaryGeneratedColumn()
     resId: number
 
-    @Column({nullable: true})
+    @Column("longtext")
     careerObjective: string
 
     @Column({nullable: true})

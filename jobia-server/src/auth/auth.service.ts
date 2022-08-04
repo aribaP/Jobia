@@ -22,9 +22,12 @@ export class AuthService {
  
 
     // error is here
-    async login( candidate: any ){
-        const payload = { candEmail: candidate.candEmail, sub: candidate.candId, Rolename: candidate.Rolename};
-        console.log(candidate.Rolename);  
+    async login( details: any ){
+        if(details.details.candEmail != '')
+            var payload = { email: details.details.candEmail, sub: details.details.candId, Rolename: details.Rolename};
+        else
+            var payload = { email: details.details.orgEmail, sub: details.details.orgId, Rolename: details.Rolename};
+        
         return{
             access_token: this.jwtService.sign(payload),
         }

@@ -14,7 +14,7 @@ export class jobDescription{
     @Column({nullable: false})
     jdMinimumExperience: number
 
-    @Column({nullable: false})
+    @Column("longtext")
     jdRequiredSkills: string
 
     @Column({nullable: false})
@@ -28,8 +28,6 @@ export class jobDescription{
     @ManyToOne(() => organization, (orgFK) => orgFK.jdFK,{
         onDelete: 'CASCADE'
     } )// specify inverse side as a second parameter
-    
-    @IsNotEmpty()
     @JoinColumn()
     orgFK: organization 
 

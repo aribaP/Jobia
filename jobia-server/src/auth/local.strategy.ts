@@ -18,14 +18,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         const cand = await this.authService.validateCandidate(email, password);
         if (!cand) {
             const org = await this.authService.validateOrganization(email, password);
-            console.log("Ariba", org.Rolename);
             if(!org)
                 throw new UnauthorizedException();
             else
                 return org;   
         }
         else
-        console.log("Ariba123", cand.Rolename);
             return cand;
     }
 }

@@ -10,7 +10,7 @@ export class resumeProjects{
     @Column({nullable: true})
     projTitle: String
 
-    @Column({nullable: true})
+    @Column("longtext")
     projDescription: String
 
     // resumeID foriegn key

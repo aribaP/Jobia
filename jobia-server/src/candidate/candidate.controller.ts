@@ -9,13 +9,14 @@ import { candidateCreateDto } from './dto/candidate-create.dto';
 import { candidateLoginDto } from './dto/candidate-login.dts';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
 
+
+@Roles(Role.Candidate)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('candidate')
 export class CandidateController {
 
     constructor(private candService: CandidateService) {}
 
-
-    // @UseGuards(AuthGuard('jwt'))
     @Post('/signupCand')
     // @UsePipes(ValidationPipe)
     async signUpCandidate(@Body(ValidationPipe) candCreateDto: candidateCreateDto) {
@@ -36,16 +37,17 @@ export class CandidateController {
         return this.candService.showResumeByCandidateId(candId);
     }
 
+    @Get('/notification/:candId')
+    showNotificationUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
+        return this.candService.getNotification(candId);
+    }
 
-
-    // @Roles(Role.Organization)
-    // // @UseGuards(AuthGuard('jwt'),RolesGuard)
-    // @Get()
-    // getcandidates(context: ExecutionContext) {
-    //   const req = context.switchToHttp().getRequest();
-    //   console.log(req.user);
-    //   return this.candService.getC();
-    // }
+    @Get()
+    getcandidates(context: ExecutionContext) {
+      // const req = context.switchToHttp().getRequest();
+      // console.log(req.user);
+      return "I am here";
+    }
 
 
 

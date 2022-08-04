@@ -7,12 +7,14 @@ import path = require('path');
 import { organizationLoginDto } from './dto/organization-login.dts';
 import { HttpExceptionFilter } from 'src/exception-filters/http-exception.filter';
 // import { ValidationPipe } from 'src/pipes/validation.pipe';
-import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Observable, of } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { organization } from './entity/organization.entity';
-
+import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 export const storage = {
     storage: diskStorage({
@@ -26,6 +28,9 @@ export const storage = {
     })
 }
 
+
+@Roles(Role.Organization)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('organization')
 export class OrganizationController {
 

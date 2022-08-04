@@ -1,8 +1,14 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { resumeProjectCreateDto } from './dto/resumeProject-create.dto';
 import { resumeProjectUpdateDto } from './dto/resumeProject-update.dto';
 import { ResumeProjectsService } from './resume-projects.service';
+import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
+@Roles(Role.Candidate)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('resume-projects')
 export class ResumeProjectsController {
     constructor(private ResProjService: ResumeProjectsService) {}
