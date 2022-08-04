@@ -1,7 +1,7 @@
 import { IsString } from 'class-validator';
 
 export class resumeCreateDto{
-    resumeId: number
+    resId: number
 
     @IsString()
     careerObjective: string

@@ -1,26 +1,33 @@
 import { jobDescription } from "src/job-description/entity/job-description.entity";
 import { resume } from "src/resume/entity/resume.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
 export class score{
 
     @PrimaryGeneratedColumn()
-    scoreId: String
+    scoreId: number
 
     @Column({ type: 'numeric', precision: 65, scale: 2 })
     score: number
 
+    @Column()
+    jdId: number
+
+    @Column()
+    resId: number
 
     @ManyToOne(() => jobDescription, (jdFK) => jdFK.scores,{
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
     })
-    public jdFK: jobDescription
+    @JoinTable()
+    jdFK!: jobDescription
 
     @ManyToOne(() => resume, (resFK) => resFK.scores,{
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
     })
-    public resFK: resume
+    @JoinTable()
+    resFK!: resume
 
 }

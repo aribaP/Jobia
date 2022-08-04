@@ -33,7 +33,9 @@ export class jobDescription{
     @JoinColumn()
     orgFK: organization 
 
-    @OneToMany(() => score, scores => scores.jdFK)
+    @OneToMany(() => score, scores => scores.jdFK,{
+        cascade: ['insert', 'update'],
+    })
     public scores!: score[];
 
 }

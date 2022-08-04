@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from '@nestjs/common';
 import { jobDescriptionCreateDto } from './dto/jobDescription-create.dto';
 import { jobDescriptionUpdateDto } from './dto/jobDescription-update.dto';
+import { scoreCreateDto } from '../score/dto/score-create.dto';
 import { JobDescriptionService } from './job-description.service';
 
 @Controller('job-description')
@@ -9,8 +10,8 @@ export class JobDescriptionController {
 
 
     @Post('/addjobdescription')
-    storeJobDescription(@Body(ValidationPipe) jdCreateDto: jobDescriptionCreateDto) {
-        return this.jdService.createJD(jdCreateDto);
+    storeJobDescription(@Body(ValidationPipe) jdCreateDto: jobDescriptionCreateDto, scoreDto: scoreCreateDto) {
+        return this.jdService.createJD(jdCreateDto, scoreDto);
     }
 
     @Get('/:jdId')
@@ -20,8 +21,8 @@ export class JobDescriptionController {
 
     @Patch('/:jdId')
     updateJobDescription(
-      @Body(ValidationPipe) jdUpdateDto: jobDescriptionUpdateDto,
-      @Param('jdId', ParseIntPipe) jdId: number) {
+        @Body(ValidationPipe) jdUpdateDto: jobDescriptionUpdateDto,
+        @Param('jdId', ParseIntPipe) jdId: number) {
 
         return this.jdService.updateJD(jdUpdateDto, jdId);
     }

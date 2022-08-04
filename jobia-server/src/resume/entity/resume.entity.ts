@@ -50,6 +50,8 @@ export class resume{
     }) // specify inverse side as a second parameter
     projFK: resumeProjects[]
 
-    @OneToMany(() => score, scores => scores.resFK)
+    @OneToMany(() => score, scores => scores.resFK,{
+        cascade: ['insert', 'update'],
+    })
     public scores!: score[];
 }   
