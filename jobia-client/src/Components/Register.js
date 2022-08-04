@@ -136,9 +136,9 @@ const Register = () => {
                 </div>
           </div>
 
-         {/* <Link to='/organization'> */}
-         <button className="btn body-button-style11" type="submit" onSubmit={Organization}>Register</button>
-         {/* </Link> */}
+         <Link to='/organization'>
+         <button className="btn body-button-style11" type="submit">Register</button>
+         </Link>
         </form>
         </div>
         <img className='polygon' src={polygon} alt="" />
