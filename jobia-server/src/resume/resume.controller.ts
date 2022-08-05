@@ -8,8 +8,8 @@ import { resumeUpdateDto } from './dto/resume-update.dto';
 import { ResumeService } from './resume.service';
 
 
-@Roles(Role.Candidate)
-@UseGuards(AuthGuard('jwt'),RolesGuard)
+// @Roles(Role.Candidate)
+// @UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('resume')
 export class ResumeController {
     constructor(private resService: ResumeService) { }

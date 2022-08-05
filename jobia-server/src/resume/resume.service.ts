@@ -82,29 +82,29 @@ export class ResumeService {
     async createWholeResume(resCreateDto: resumeCreateDto) {
         console.log( resCreateDto);
         const saved = await this.resumeRepository.save(resCreateDto);
-        const getAllJD = await this.jobDescriptionRepository.find({});
+        // const getAllJD = await this.jobDescriptionRepository.find({});
 
 
-        for (let index = 0; index < getAllJD.length; index++) {
-            const element = getAllJD[index];
-            console.log(resCreateDto.position, element.jdPosition);
+        // for (let index = 0; index < getAllJD.length; index++) {
+        //     const element = getAllJD[index];
+        //     console.log(resCreateDto.position, element.jdPosition);
 
-            const acc1 = this.textCosineSimilarity(resCreateDto.position, element.jdPosition);
-            const acc2 = this.textCosineSimilarity(resCreateDto.careerObjective + resCreateDto.skills,  element.jdRequiredSkills);
+        //     const acc1 = this.textCosineSimilarity(resCreateDto.position, element.jdPosition);
+        //     const acc2 = this.textCosineSimilarity(resCreateDto.careerObjective + resCreateDto.skills,  element.jdRequiredSkills);
 
-            var accuracy = ((acc1 * 0.6) + (acc2 * 0.4)) * 100;
-            console.log(accuracy);
-            const scoreDto: scoreCreateDto = {
-                score: accuracy,
-                jdId:  element.jdId,
-                resId: resCreateDto.resId
-            };
-            if (accuracy >= 50) {
-                const whatever = this.scoreRepository.save(scoreDto);
-            }
+        //     var accuracy = ((acc1 * 0.6) + (acc2 * 0.4)) * 100;
+        //     console.log(accuracy);
+        //     const scoreDto: scoreCreateDto = {
+        //         score: accuracy,
+        //         jdId:  element.jdId,
+        //         resId: resCreateDto.resId
+        //     };
+        //     if (accuracy >= 50) {
+        //         const whatever = this.scoreRepository.save(scoreDto);
+        //     }
 
-        }
-        return await this.resumeRepository.find();
+        // }
+        // return await this.resumeRepository.find();
 
     }
 
@@ -117,7 +117,6 @@ export class ResumeService {
 
     updateWholeResume(resUpdateDto: resumeUpdateDto, resId: number ){
         const answer = Object.values(JSON.parse(JSON.stringify(resUpdateDto)));
-        console.log(answer[0], answer[0]['eduFK'], answer[0]['projFK'], answer[0]['expFK']);
         return this.resumeRepository.update(resId, resUpdateDto);
     }
 

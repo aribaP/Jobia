@@ -28,9 +28,9 @@ export class AuthService {
         else
             var payload = { email: details.details.orgEmail, sub: details.details.orgId, Rolename: details.Rolename};
         
-        return{
-            access_token: this.jwtService.sign(payload),
-        }
+        return[{
+            access_token: this.jwtService.sign(payload), role: details.Rolename
+        }]
     }
 
     async validateOrganization(orgEmail: string, orgPassword: string) {

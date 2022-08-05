@@ -13,7 +13,7 @@ export class candidateCreateDto {
 
     @IsString()
     @IsNotEmpty({ message: 'Password is mandatory.'})
-    @Length(8,30)
+    // @Length(8,30)
     candPassword: string;
 
     // @IsString()

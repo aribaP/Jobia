@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe, UseGuards, ExecutionContext, ValidationPipe, UseFilters} from '@nestjs/common';
+import { Controller, Get, Req, Post, Patch, Param, Delete, Body, ParseIntPipe, UseGuards, ExecutionContext, ValidationPipe, UseFilters } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Role } from 'src/auth/role.enum';
 import { Roles } from 'src/auth/roles.decorator';
@@ -10,38 +10,45 @@ import { candidateLoginDto } from './dto/candidate-login.dts';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
 
 
-@Roles(Role.Candidate)
-@UseGuards(AuthGuard('jwt'),RolesGuard)
+
 @Controller('candidate')
 export class CandidateController {
 
-    constructor(private candService: CandidateService) {}
+    constructor(private candService: CandidateService) { }
 
     @Post('/signupCand')
     // @UsePipes(ValidationPipe)
     async signUpCandidate(@Body(ValidationPipe) candCreateDto: candidateCreateDto) {
-        return await this.candService.signUpCand(candCreateDto);
-        
+      return await this.candService.signUpCand(candCreateDto);
+
     }
 
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Post('/login')
     @UseFilters(HttpExceptionFilter)
     async LoginOrganization(@Body() candLoginDto: candidateLoginDto) {
-        console.log('hi');
-        return await this.candService.loginCand(candLoginDto);
-       
+      console.log('hi');
+      return await this.candService.loginCand(candLoginDto);
+
     }
 
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showresume/:candId')
     showResumeUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
-        return this.candService.showResumeByCandidateId(candId);
+      return this.candService.showResumeByCandidateId(candId);
     }
 
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/notification/:candId')
     showNotificationUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
-        return this.candService.getNotification(candId);
+      return this.candService.getNotification(candId);
     }
 
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get()
     getcandidates(context: ExecutionContext) {
       // const req = context.switchToHttp().getRequest();
@@ -71,7 +78,7 @@ export class CandidateController {
     update(
       @Body() candUpdateDto: candidateUpdateDto,
       @Param('candId', ParseIntPipe) candId: number) {
-    
+
       return this.candService.updateC(candUpdateDto, candId);
     }
 

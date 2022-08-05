@@ -2,7 +2,7 @@ import { IsEmail, IsNotEmpty, IsString, Length, Matches } from 'class-validator'
 
 
 export class organizationCreateDto{
-    orgId: number
+    // orgId: number
 
     @IsNotEmpty({ message: 'Organization name is mandatory.'})
     @IsString()
@@ -14,7 +14,7 @@ export class organizationCreateDto{
 
     @IsString()
     @IsNotEmpty({ message: 'Password is mandatory.'})
-    @Length(8,30)
+    // @Length(8,30)
     // @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {message: 'password too weak'},)
     orgPassword: string
 

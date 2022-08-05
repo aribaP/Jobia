@@ -9,8 +9,8 @@ import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
 
-@Roles(Role.Organization)
-@UseGuards(AuthGuard('jwt'),RolesGuard)
+// @Roles(Role.Organization)
+// @UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('job-description')
 export class JobDescriptionController {
     constructor(private jdService: JobDescriptionService) { }

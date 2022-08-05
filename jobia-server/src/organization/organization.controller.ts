@@ -29,8 +29,6 @@ export const storage = {
 }
 
 
-@Roles(Role.Organization)
-@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('organization')
 export class OrganizationController {
 
@@ -39,10 +37,13 @@ export class OrganizationController {
     @Post('/signupOrg')
     // @UsePipes(ValidationPipe)
     async signUpOrganization(@Body(ValidationPipe) orgCreateDto: organizationCreateDto) {
+        console.log(orgCreateDto, "999");
         return await this.orgService.signUpOrg(orgCreateDto);
 
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Post('/login')
     @UseFilters(HttpExceptionFilter)
     async LoginOrganization(@Body() orgLoginDto: organizationLoginDto) {
@@ -50,6 +51,8 @@ export class OrganizationController {
         return await this.orgService.loginOrg(orgLoginDto);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Patch('/:orgId')
     async update(
         @Body(ValidationPipe) orgUpdateDto: organizationUpdateDto,
@@ -58,17 +61,22 @@ export class OrganizationController {
         return await this.orgService.updateOrg(orgUpdateDto, orgId);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showjobdescription/:orgId')
     showJobDescriptionUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return this.orgService.showAllJDOrg(orgId);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/:orgId')
     async getorganizationById(@Param('orgId') orgId: number) {
         return await this.orgService.showOById(orgId);
     }
 
-
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Delete('/:orgId')
     async deleteorganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return await this.orgService.deleteO(orgId);
@@ -81,12 +89,12 @@ export class OrganizationController {
 
     @Post('/upload/:orgId')
     @UseInterceptors(FileInterceptor('file', storage))
-    uploadOrgLogo(@UploadedFile() file, 
+    uploadOrgLogo(@UploadedFile() file,
         @Param('orgId', ParseIntPipe) orgId: number) {
-  
+
         console.log(file);
         return this.orgService.updateLogo(file.filename, orgId);
-    
+
     }
 
     // @Post('upload')
