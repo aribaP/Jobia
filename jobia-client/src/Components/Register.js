@@ -82,12 +82,19 @@ const Register = () => {
       } else if (!regex.test(values.orgEmail)) {
         errors.email = "This is not a valid email format!";
       }
+      if (!values.orgPhone) {
+        errors.orgPhone = "Phone Number is required";
+      } else if (values.orgPhone.length < 9) {
+        errors.orgPhone = "Enter Valid Phone Number";
+      } else if (values.orgPhone.length > 14) {
+        errors.orgPhone = "Enter Valid Phone Number";
+      }
       if (!values.orgPassword) {
         errors.orgPassword = "Password is required";
-      } else if (values.orgPassword.length < 4) {
-        errors.orgPassword = "Password must be more than 4 characters";
-      } else if (values.orgPassword.length > 10) {
-        errors.orgPassword = "Password cannot exceed more than 10 characters";
+      } else if (values.orgPassword.length < 8) {
+        errors.orgPassword = "Password must be more than 8 characters";
+      } else if (values.orgPassword.length > 20) {
+        errors.orgPassword = "Password cannot exceed more than 20 characters";
       }
       
       if (!validator.isStrongPassword(value, {
@@ -123,6 +130,17 @@ const Register = () => {
                 onChange ={handleChange}/>
                 <div className="formErrors text-danger">
                     <p>{formErrors.orgEmail}</p>
+                </div>
+
+          </div>
+
+          
+          <div class="mb-3">
+            <input type="phone" name="orgPhone" class="form-control input-Fields" id="PhoneNumber" required placeholder="Phone Number"  
+                value={formValues.orgPhone}
+                onChange ={handleChange}/>
+                <div className="formErrors text-danger">
+                    <p>{formErrors.orgPhone}</p>
                 </div>
 
           </div>

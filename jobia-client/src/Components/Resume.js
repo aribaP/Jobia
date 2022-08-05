@@ -8,6 +8,16 @@ const Resume = ({handleOnSave, onChangeTabs}) => {
       <div class='row'>
         <div class='col-12 profile-body-right'>
           <div style={{ padding: '30px' }}>
+          <label className='mb-3 mt-15'>Email Address</label>
+            <div>
+              <input
+                type="text"
+                class="form-control mb-3 input-Fields"
+                id="emailaddress"
+                placeholder="Enter Email Address"
+                style={{width: 965}}
+              />
+            </div>
             <label className='mb-3'>Career Objective</label>
             <textarea
               class="form-control mb-3 input-Fields"

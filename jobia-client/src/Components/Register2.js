@@ -53,8 +53,17 @@ const Register2 = () => {
 						</div>
 					</div>
 					<div class="mb-3">
+						<input type="text" name='cnic' class="form-control input-Fields" id="CNIC" placeholder="Enter CNIC" />
+					</div>
+					<div class="mb-3">
 						<input type="text" name='email' onChange={handleChange} class="form-control input-Fields" id="EmailAddress" placeholder="Email address" />
 						{error && <h6 style={{color: 'red'}}>{error}</h6>}
+					</div>
+					<div class="mb-3">
+						<input type="text" name='phone' class="form-control input-Fields" id="PhoneNumber" placeholder="Phone Number" />
+					</div>
+					<div class="mb-3">
+						<input type="text" name='address' class="form-control input-Fields" id="Address" placeholder="Resedential Address" />
 					</div>
 					<div class="mb-3">
 						<input type="password" onChange={(e) => validate(e.target.value)} class="form-control input-Fields" id="Password" placeholder="Create password" />
