@@ -25,9 +25,6 @@ export class resume{
     @Column({nullable: true})
     gitHub: string
 
-    @Column({nullable: true})
-    hobbiesInterest: string
-
     @OneToOne(() => candidate, (candFK) => candFK.resFK, {
         onDelete: 'CASCADE'
     }) // specify inverse side as a second parameter

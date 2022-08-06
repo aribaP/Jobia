@@ -15,8 +15,6 @@ export class resumeUpdateDto{
     
     @IsString()
     gitHub: string
-    
-    @IsString()
-    hobbiesInterest: string
+
     // education, experience, project
 }

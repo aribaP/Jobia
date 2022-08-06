@@ -20,9 +20,6 @@ export class organization{
     @Column({nullable: true})
     orgContactNumber: string
 
-    @Column({nullable: true})
-    orgLogo: string
-
     @IsNotEmpty()
     @OneToMany(() => jobDescription, (jdFK) => jdFK.orgFK,{
         cascade: ['insert', 'update']

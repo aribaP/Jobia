@@ -11,8 +11,11 @@ const Profile2 = () => {
     candName: "",
     candEmail: "",
     candContactNumber: "",
-    candCity: ""
-
+    candCity: "",
+    candCNIC: "",
+    candAddress: "",
+    candPassword: "",
+    candCPassword: ""
   };
 
   // const [formValues, setFormValues] = useState(setCand);
@@ -35,26 +38,46 @@ const Profile2 = () => {
     setIsSubmit(true);
     setFormErrors(validate(formValues));
 
-    console.log("Done", formValues.candEmail);
-    if (isSubmit && Object.keys(formErrors).length === 0) {
-      console.log("useeffect", setCand);
-      postData(formValues);
-      console.log(formValues);  //Rectified values after validation
-    }
+    if (formValues.candName === "")
+      formValues.candName = setCand.candName;
+
+    if (formValues.candEmail === "")
+      formValues.candEmail = setCand.candEmail;
+
+    if (formValues.candContactNumber === "")
+      formValues.candContactNumber = setCand.candContactNumber;
+
+    if (formValues.candCity === "")
+      formValues.candCity = setCand.candCity;
+
+    if (formValues.candCNIC === "")
+      formValues.candCNIC = setCand.candCNIC;
+
+    if (formValues.candAddress === "")
+      formValues.candAddress = setCand.candAddress;
+
+
     console.log(formValues);
   };
 
 
   const postData = async (body) => {
-    console.log("Body", body);
+    const data = {
+      candName: body.candName,
+      candEmail: body.candEmail,
+      candContactNumber: body.candContactNumber,
+      candCity: body.candCity,
+      candCNIC: body.candCNIC,
+      candAddress: body.candAddress,
+      candPassword: body.candPassword
+    };
     try {
-      await axios.patch("http://localhost:5000/candidate/2", body)
+      await axios.patch("http://localhost:5000/candidate/2", data)
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);
-          const results = response.data;
-          console.log("Oyeee", response.data);
-          // navigate('/profile2', { replace: true });
+          alert("Information saved.");
+          window.location.reload();
         })
 
     } catch (err) {
@@ -70,9 +93,8 @@ const Profile2 = () => {
         .then((response) => {
           console.log("Data recieved");
           setCandDetails(response.data);
-          console.log("orgSet", setCand);
+          console.log("CandSet", setCand);
 
-          // result = response.data;
         })
 
     } catch (err) {
@@ -84,6 +106,11 @@ const Profile2 = () => {
   useEffect(() => {
     getData();
     console.log(formErrors);
+    if (isSubmit && Object.keys(formErrors).length === 0) {
+      console.log("useeffect", setCand);
+      postData(formValues);
+      console.log(formValues);
+    }
 
   }, [formErrors]);
 
@@ -96,26 +123,29 @@ const Profile2 = () => {
     const regexCNIC = /^[0-9]{5}-[0-9]{7}-[0-9]$/gm;
 
     console.log("I am in validation");
-    if (!values.candName) { errors.candName = "Username is required!"; }
 
-    if (!values.candCity) { errors.candCity = "Username is required!"; }
-
-    if (!values.candAddress) { errors.candAddress = "Address is required!"; }
-
-    if (!values.candEmail) { errors.candEmail = "Email is required!"; }
+    if (!values.candName) { }
     else if (!regex.test(values.candEmail)) { errors.candEmail = "This is not a valid email format!"; }
 
-    if (!values.candContactNumber) { errors.candContactNumber = "Phone number is required!"; }
+    if (!values.candContactNumber) { }
     else if (!regexphoneno.test(values.candContactNumber)) { errors.candContactNumber = "Invalid phonenumber!"; }
 
-    if (!values.candCNIC) { errors.candCNIC = "CNIC is required!"; } 
+    if (!values.candCNIC) { }
     else if (!regexCNIC.test(values.candCNIC)) { errors.candCNIC = "CNIC must follow the XXXXX-XXXXXXX-X format!"; }
+
     
+    if (!values.candPassword && !values.candCPassword) {  }
+    else if(values.candCPassword != values.candPassword) { errors.candCPassword = "Password must be same as above."; }
+    else if(!values.candCPassword && values.candPassword) { errors.candCPassword = "Please reenter the password for confirmation."; }
+    else if(values.candCPassword && !values.candPassword) { errors.candPassword = "Enter the password before confirmation."; }
+    else if (values.candPassword.length < 7) { errors.candPassword = "Password must be more than 7 characters"; }
+    else if (values.candPassword.length > 15) { errors.candPassword = "Password cannot exceed more than 15 characters"; }
+
     // if (!validator.isStrongPassword(value, {
     //   minLength: 8, minLowercase: 1,
     //   minUppercase: 1, minNumbers: 1, minSymbols: 1
     // })) {
-    //   errors.orgPassword = "Password must be strong";
+    //   errors.CandPassword = "Password must be strong";
     // }
     console.log('Errors', errors)
     return errors;
@@ -124,30 +154,10 @@ const Profile2 = () => {
 
   return (
 
-    <div style={{ padding: "30px" }}>
+    <div style={{ paddingRight: "40px", marginLeft:"100px" }}>
       <div class="row">
-        <div class="col-3 profile-body-left">
-          <div className="profile-body-left-header">
-            <img src={Profilee} width="150px" height="150px" />
-            <Link to="/login">
-              <button
-                className="btn btn-outline-secondary mt-15 padding-l-15 padding-r-15"
-                type="submit"
-              >
-                Change Avatar
-              </button>
-            </Link>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <Link to="/register2">
-              <h6>Change Password</h6>
-            </Link>
-            <Link to="/contact-us">
-              <h6>Delete Account</h6>
-            </Link>
-          </div>
-        </div>
-        <div class="col-9 profile-body-right">
+        
+        <div class="col-10 profile-body-right">
           <div style={{ padding: "30px" }}>
             <label className="mb-3"> Candidate Name</label>
             <div className='orgIcon'>
@@ -172,7 +182,7 @@ const Profile2 = () => {
                 class="form-control input-Fields"
                 id="candName"
                 name="candName"
-                placeholder="Edit First Name here"
+                placeholder="Add candidate name"
                 value={formValues.candName}
                 onChange={handleChange}
               />
@@ -184,7 +194,7 @@ const Profile2 = () => {
             <label className="mb-3"> Email Address</label>
             <div className='orgIcon'>
               <input
-                type="text"
+                type="email"
                 class="form-control input-Fields"
                 id="candEmail"
                 name="candEmail"
@@ -196,6 +206,7 @@ const Profile2 = () => {
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
+
             <div className='mb-3'>
               <input
                 type="email"
@@ -204,7 +215,6 @@ const Profile2 = () => {
                 name="candEmail"
                 placeholder="Edit your email here"
                 value={formValues.candEmail}
-
                 onChange={handleChange}
               />
               <div className="formErrors text-danger">
@@ -213,12 +223,12 @@ const Profile2 = () => {
             </div>
 
 
-            <label className="mb-3">Phone Number</label>
+            <label className="mb-3"> Phone Number</label>
             <div className='orgIcon'>
               <input
                 type="text"
                 name="candContactNumber"
-                class="form-control "
+                class="form-control input-Fields"
                 id="candContactNumber"
                 disabled="true"
                 value={setCand.candContactNumber}
@@ -248,7 +258,7 @@ const Profile2 = () => {
               <input
                 type="text"
                 name="candCity"
-                class="form-control "
+                class="form-control input-Fields"
                 id="candCity"
                 disabled="true"
                 value={setCand.candCity}
@@ -278,7 +288,7 @@ const Profile2 = () => {
               <input
                 type="text"
                 name="candCNIC"
-                class="form-control "
+                class="form-control input-Fields"
                 id="candCNIC"
                 disabled="true"
                 value={setCand.candCNIC}
@@ -308,7 +318,7 @@ const Profile2 = () => {
               <input
                 type="text"
                 name="candAddress"
-                class="form-control "
+                class="form-control input-Fields"
                 id="candAddress"
                 disabled="true"
                 value={setCand.candAddress}
@@ -333,8 +343,52 @@ const Profile2 = () => {
               </div>
             </div>
 
+            <label className="mb-3"> Change Password </label>
+            <div className='orgIcon'>
+              <input
+                type="password"
+                class="form-control input-Fields"
+                id="candPassword"
+                name="candPassword"
+                placeholder="Change Password"
+                value={formValues.candPassword}
+                onChange={handleChange}
+              />
+              <button className='btn btn-small btn-outline-secondary'>
+                <img src={Edit} alt="" width="30px" height="30px" />
+              </button>
+            </div>
+            <div className="formErrors text-danger">
+              <p>{formErrors.candPassword}</p>
+            </div>
+
+            <label className="mb-3"> Confirm Password </label>
+            <div className='orgIcon'>
+              <input
+                type="password"
+                class="form-control input-Fields"
+                id="candCPassword"
+                name="candCPassword"
+                placeholder="Confirm Password"
+                value={formValues.candCPassword}
+                onChange={handleChange}
+              />
+              <button className='btn btn-small btn-outline-secondary'>
+                <img src={Edit} alt="" width="30px" height="30px" />
+              </button>
+            </div>
+            <div className="formErrors text-danger">
+              <p>{formErrors.candCPassword}</p>
+            </div>
+
+
+
+
+
+
+
+
             <form className="d-flex justifyContent">
-              <Link to='/candidate'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
               <button className="btn body-button-style3 btn-sm" type="submit" onClick={handleSubmit}> Save </button>
             </form>
           </div>

@@ -17,10 +17,7 @@ export class resumeCreateDto{
     
     @IsString()
     gitHub: string
-    
-    @IsString()
-    hobbiesInterest: string
-    
+
     //candId
     // education, experience, project
 }

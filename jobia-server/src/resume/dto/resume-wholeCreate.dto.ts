@@ -17,9 +17,7 @@ export class resumeCompleteCreateDto{
     
     @IsString()
     gitHub: string
-    
-    @IsString()
-    hobbiesInterest: string
+
     
     // expId: number
     

@@ -28,6 +28,4 @@ export class candidateCreateDto {
     @IsString()
     candCNIC: string;
 
-    @IsString()
-    candPhoto: string
 }

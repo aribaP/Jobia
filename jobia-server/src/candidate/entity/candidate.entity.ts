@@ -27,9 +27,6 @@ export class candidate{
     @Column({nullable: true})
     candCNIC: string
 
-    @Column({nullable: true})
-    candPhoto: string
-
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter
     resFK: resume
     

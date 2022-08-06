@@ -10,7 +10,9 @@ const Profile2 = () => {
 	const initialvalues = {
 		orgName: "",
 		orgEmail: "",
-		orgContactNumber: ""
+		orgContactNumber: "",
+		orgPassword: "",
+		orgCPassword: ""
 
 	};
 
@@ -34,26 +36,36 @@ const Profile2 = () => {
 		setIsSubmit(true);
 		setFormErrors(validate(formValues));
 
+		if (formValues.orgName === "")
+			formValues.orgName = setOrg.orgName;
+
+		if (formValues.orgEmail === "")
+			formValues.orgEmail = setOrg.orgEmail;
+
+		if (formValues.orgContactNumber === "")
+			formValues.orgContactNumber = setOrg.orgContactNumber;
+
 		console.log("Done", formValues.orgEmail);
-		if (isSubmit && Object.keys(formErrors).length === 0) {
-			console.log("useeffect", setOrg);
-			postData(formValues);
-			console.log(formValues);  //Rectified values after validation
-		}
+
 		console.log(formValues);
 	};
 
 
 	const postData = async (body) => {
-		console.log("Body", body);
+		const data = {
+			orgName: body.orgName,
+			orgEmail: body.orgEmail,
+			orgContactNumber: body.orgContactNumber,
+			orgPassword: body.orgPassword
+		};
+
 		try {
-			await axios.patch("http://localhost:5000/organization/2", body)
+			await axios.patch("http://localhost:5000/organization/2", data)
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
-					const results = response.data;
-					console.log("Oyeee", response.data);
-					// navigate('/profile2', { replace: true });
+					alert("Information saved.");
+					window.location.reload();
 				})
 
 		} catch (err) {
@@ -70,8 +82,6 @@ const Profile2 = () => {
 					console.log("Data recieved");
 					setOrgDetails(response.data);
 					console.log("orgSet", setOrg);
-
-					// result = response.data;
 				})
 
 		} catch (err) {
@@ -83,6 +93,11 @@ const Profile2 = () => {
 	useEffect(() => {
 		getData();
 		console.log(formErrors);
+		if (isSubmit && Object.keys(formErrors).length === 0) {
+			console.log("useeffect", setOrg);
+			postData(formValues);
+			console.log(formValues);  //Rectified values after validation
+		}
 
 	}, [formErrors]);
 
@@ -94,13 +109,21 @@ const Profile2 = () => {
 		const regexphoneno = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm;
 
 		console.log("I am in validation");
-		if (!values.orgName) { errors.orgName = "Username is required!"; }
+		// if (!values.orgName) { errors.orgName = "Username is required!"; }
+		if (!values.orgName) { errors.orgName = "Full name is required"; }
 
 		if (!values.orgEmail) { errors.orgEmail = "Email is required!"; }
 		else if (!regex.test(values.orgEmail)) { errors.orgEmail = "This is not a valid email format!"; }
 
 		if (!values.orgContactNumber) { errors.orgContactNumber = "Phone number is required!"; }
 		else if (!regexphoneno.test(values.orgContactNumber)) { errors.orgContactNumber = "Invalid phonenumber!"; }
+
+		if (!values.orgPassword && !values.orgCPassword) { }
+		else if (values.orgCPassword != values.orgPassword) { errors.orgCPassword = "Password must be same as above."; }
+		else if (!values.orgCPassword && values.orgPassword) { errors.orgCPassword = "Please reenter the password for confirmation."; }
+		else if (values.orgCPassword && !values.orgPassword) { errors.orgPassword = "Enter the password before confirmation."; }
+		else if (values.orgPassword.length < 7) { errors.orgPassword = "Password must be more than 7 characters"; }
+		else if (values.orgPassword.length > 15) { errors.orgPassword = "Password cannot exceed more than 15 characters"; }
 
 		// if (!validator.isStrongPassword(value, {
 		//   minLength: 8, minLowercase: 1,
@@ -115,30 +138,10 @@ const Profile2 = () => {
 
 	return (
 
-		<div style={{ padding: "30px" }}>
+		<div style={{ paddingRight: "40px", marginLeft: "100px" }}>
 			<div class="row">
-				<div class="col-3 profile-body-left">
-					<div className="profile-body-left-header">
-						<img src={Profilee} width="150px" height="150px" />
-						<Link to="/login">
-							<button
-								className="btn btn-outline-secondary mt-15 padding-l-15 padding-r-15"
-								type="submit"
-							>
-								Change Avatar
-							</button>
-						</Link>
-					</div>
-					<div style={{ textAlign: "center" }}>
-						<Link to="/register2">
-							<h6>Change Password</h6>
-						</Link>
-						<Link to="/contact-us">
-							<h6>Delete Account</h6>
-						</Link>
-					</div>
-				</div>
-				<div class="col-9 profile-body-right">
+
+				<div class="col-10 profile-body-right">
 					<div style={{ padding: "30px" }}>
 						<label className="mb-3">Organization Name</label>
 						<div className='orgIcon'>
@@ -148,7 +151,7 @@ const Profile2 = () => {
 								disabled="true"
 								id="orgName"
 								name="orgName"
-								placeholder="First Name"
+								placeholder="Organization Name"
 								value={setOrg.orgName}
 							/>
 							<button className='btn btn-small btn-outline-secondary'>
@@ -209,7 +212,7 @@ const Profile2 = () => {
 							<input
 								type="text"
 								name="orgContactNumber"
-								class="form-control "
+								class="form-control input-Fields"
 								id="orgContactNumber"
 								disabled="true"
 								value={setOrg.orgContactNumber}
@@ -234,9 +237,47 @@ const Profile2 = () => {
 							</div>
 						</div>
 
-						<form className="d-flex justifyContent">
+						<label className="mb-3"> Change Password </label>
+						<div className='orgIcon'>
+							<input
+								type="password"
+								class="form-control input-Fields"
+								id="orgPassword"
+								name="orgPassword"
+								placeholder="Change Password"
+								value={formValues.orgPassword}
+								onChange={handleChange}
+							/>
+							<button className='btn btn-small btn-outline-secondary'>
+								<img src={Edit} alt="" width="30px" height="30px" />
+							</button>
+						</div>
+						<div className="formErrors text-danger">
+							<p>{formErrors.orgPassword}</p>
+						</div>
+
+						<label className="mb-3"> Confirm Password </label>
+						<div className='orgIcon'>
+							<input
+								type="password"
+								class="form-control input-Fields"
+								id="orgCPassword"
+								name="orgCPassword"
+								placeholder="Confirm Password"
+								value={formValues.orgCPassword}
+								onChange={handleChange}
+							/>
+							<button className='btn btn-small btn-outline-secondary'>
+								<img src={Edit} alt="" width="30px" height="30px" />
+							</button>
+						</div>
+						<div className="formErrors text-danger">
+							<p>{formErrors.orgCPassword}</p>
+						</div>
+
+						<form className="d-flex mt-5">
 							<Link to='/organization'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
-							<button className="btn body-button-style3 btn-sm" type="submit" onClick={handleSubmit}> Save </button>
+							<button className="btn body-button-style3 padding-l-10 padding-r-10" type="submit" onClick={handleSubmit}>Save</button>&nbsp;
 						</form>
 					</div>
 				</div>

@@ -24,6 +24,4 @@ export class candidateUpdateDto {
     @IsString()
     candAddress: string;
 
-    @IsString()
-    candPhoto: string
 }
