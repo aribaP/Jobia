@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Edit from '../assets/edit.png'
 import Profilee from '../assets/Profile.png'
 const Profile2 = () => {
 
@@ -114,32 +115,38 @@ const Profile2 = () => {
         <div class="col-9 profile-body-right">
           <div style={{ padding: "30px" }}>
             <label className="mb-3">Organization Name</label>
-            <input
-              type="text"
-              class="form-control mb-3 input-Fields"
-              id="orgName"
-              name="orgName"
-              placeholder="First Name"
-            />
-
+            <div className='orgIcon'>
+				<input
+				type="text"
+				class="form-control mb-3 input-Fields"
+				id="orgName"
+				name="orgName"
+				placeholder="First Name"
+				/>
+				<img onClick= {() => {}} src={Edit} alt="" width="20px" height="38px" />
+			</div>
             <label className="mb-3">Email Address</label>
-            <input
-              type="text"
-              class="form-control mb-3 input-Fields"
-              id="orgEmail"
-              name="orgEmail"
-              placeholder="Email Address"
-            />
-            
+            <div className='orgIcon'>
+				<input
+				type="text"
+				class="form-control mb-3 input-Fields"
+				id="orgEmail"
+				name="orgEmail"
+				placeholder="Email Address"
+				/>
+				<img onClick= {() => {}} src={Edit} alt="" width="20px" height="38px" />
+            </div>
             <label className="mb-3">Phone Number</label>
-            <input
-              type="text"
-              name="orgContactNumber"
-              class="form-control mb-3 input-Fields"
-              id="orgContactNumber"
-              placeholder="Phone Number"
-            />
-
+            <div className='orgIcon'>
+				<input
+				type="text"
+				name="orgContactNumber"
+				class="form-control mb-3 input-Fields"
+				id="orgContactNumber"
+				placeholder="Phone Number"
+				/>
+				<img onClick= {() => {}} src={Edit} alt="" width="20px" height="38px" />
+			</div>
             <form className="d-flex justifyContent">
               <Link to='/organization'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
               <Link to='/organization'><button className="btn body-button-style3 btn-sm" type="submit">Save</button></Link>
