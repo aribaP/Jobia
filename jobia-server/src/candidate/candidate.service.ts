@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Request } from 'express';
 import { Repository } from 'typeorm';
 import { candidate } from './entity/candidate.entity';
 import { candidateCreateDto } from './dto/candidate-create.dto';

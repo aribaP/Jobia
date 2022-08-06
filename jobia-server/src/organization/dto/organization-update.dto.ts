@@ -9,11 +9,7 @@ export class organizationUpdateDto {
     orgEmail: string
 
     @IsString()
-    orgPassword: string
-
-    @IsString()
     orgContactNumber: string
 
-    @IsString()
-    orgLogo: string
+  
 }

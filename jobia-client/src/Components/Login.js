@@ -41,12 +41,12 @@ const Login = () => {
           await axios.post("http://localhost:5000/auth/login",body)
           .then((response) => {
               console.log("Data recieved");   
-              console.log(response.data);
+              console.log("Oyeee",response.data);
               const results = response.data;
-              if(response.data[0].role == 'candidate') 
-                navigate('/account', { replace: true }); 
-              else if(response.data[0].role == 'organization')
-                navigate('/organization');
+              // if(response.data[0].role == 'candidate') 
+              //   navigate('/account', { replace: true }); 
+              // else if(response.data[0].role == 'organization')
+              //   navigate('/organization');
           })
 
       }catch(err){
@@ -99,9 +99,14 @@ const Login = () => {
               </div>
           </div>
           <div class="mb-3">
-            <input type="password" name= "password" class="form-control input-Fields" id="password" placeholder=" Password" 
-            value={formValues.password}
-            onChange ={handleChange}/>
+            <input 
+              type="password"
+              name= "password"
+              class="form-control input-Fields"
+              id="password" 
+              placeholder=" Password" 
+              value={formValues.password}
+              onChange ={handleChange}/>
             <div className="formErrors text-danger">
                 <p>{formErrors.password}</p>
             </div>

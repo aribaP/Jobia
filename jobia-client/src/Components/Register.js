@@ -102,7 +102,7 @@ const Register = () => {
 
             <div class="mb-3">
               <input type="text" name="orgName" class="form-control input-Fields" 
-              id="orgName" required placeholder="Organization name"
+              id="orgName" required placeholder="Organization name" 
                 value={formValues.orgName}
                 onChange={handleChange} />
               <div className="formErrors text-danger">

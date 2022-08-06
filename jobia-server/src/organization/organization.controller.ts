@@ -51,8 +51,8 @@ export class OrganizationController {
         return await this.orgService.loginOrg(orgLoginDto);
     }
 
-    @Roles(Role.Organization)
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Roles(Role.Organization)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Patch('/:orgId')
     async update(
         @Body(ValidationPipe) orgUpdateDto: organizationUpdateDto,
@@ -68,8 +68,8 @@ export class OrganizationController {
         return this.orgService.showAllJDOrg(orgId);
     }
 
-    @Roles(Role.Organization)
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Roles(Role.Organization)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/:orgId')
     async getorganizationById(@Param('orgId') orgId: number) {
         return await this.orgService.showOById(orgId);

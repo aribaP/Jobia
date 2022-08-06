@@ -16,18 +16,18 @@ export class candidateCreateDto {
     // @Length(8,30)
     candPassword: string;
 
-    // @IsString()
-    // candContactNumber: string;
+    @IsString()
+    candContactNumber: string;
 
-    // @IsString()
-    // candCity: string;
+    @IsString()
+    candCity: string;
 
-    // @IsString()
-    // candAddress: string;
+    @IsString()
+    candAddress: string;
 
-    // @IsString()
-    // candCNIC: string;
+    @IsString()
+    candCNIC: string;
 
-    // @IsString()
-    // candPhoto: string
+    @IsString()
+    candPhoto: string
 }

@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
-import Header from './Header'
-import Notifications from '../assets/Notification.png'
-import Settings from '../assets/Setting.png'
-import Resumee from '../assets/Resume.png'
-import Notification from '../Components/Notifications'
-import ResumeView from '../Components/ResumeView'
-import CreateResume from './CreateResume'
-import Profilee from '../assets/Profile.png'
-import Resume from './Resume'
-import Jobs from './Jobs'
-import AllJobs from './AllJobs'
-import Profile2 from './Profile2'
+import Header from './Header';
+import Notifications from '../assets/Notification.png';
+import Settings from '../assets/Setting.png';
+import Resumee from '../assets/Resume.png';
+import Notification from '../Components/Notifications';
+import Profilee from '../assets/Profile.png';
+import Jobs from './Jobs';
+import AllJobs from './AllJobs';
+import Profile2 from './Profile2';
 
 
 const Organization = (props) => {

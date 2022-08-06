@@ -20,18 +20,29 @@ export class CandidateController {
     // @UsePipes(ValidationPipe)
     async signUpCandidate(@Body(ValidationPipe) candCreateDto: candidateCreateDto) {
       return await this.candService.signUpCand(candCreateDto);
-
     }
+
+   
 
     @Roles(Role.Candidate)
     @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Post('/login')
     @UseFilters(HttpExceptionFilter)
-    async LoginOrganization(@Body() candLoginDto: candidateLoginDto) {
+    async loginCandidate(@Body() candLoginDto: candidateLoginDto) {
       console.log('hi');
       return await this.candService.loginCand(candLoginDto);
 
     }
+
+    //  @UseGuards(AuthGuard('jwt'))
+    @Patch('/:candId')
+    update(
+      @Body() candUpdateDto: candidateUpdateDto,
+      @Param('candId', ParseIntPipe) candId: number) {
+
+      return this.candService.updateC(candUpdateDto, candId);
+    }
+    
 
     @Roles(Role.Candidate)
     @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -73,14 +84,7 @@ export class CandidateController {
 
 
 
-    //  @UseGuards(AuthGuard('jwt'))
-    @Patch('/:candId')
-    update(
-      @Body() candUpdateDto: candidateUpdateDto,
-      @Param('candId', ParseIntPipe) candId: number) {
-
-      return this.candService.updateC(candUpdateDto, candId);
-    }
+    
 
     //  @UseGuards(AuthGuard('jwt'))
     @Get('/:candId')

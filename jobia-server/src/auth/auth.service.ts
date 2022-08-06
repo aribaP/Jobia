@@ -6,39 +6,44 @@ import { OrganizationService } from 'src/organization/organization.service';
 @Injectable()
 export class AuthService {
     constructor(
-        private candService: CandidateService, 
+        private candService: CandidateService,
         private orgService: OrganizationService,
         private jwtService: JwtService) { }
 
     async validateCandidate(candEmail: string, candPassword: string) {
         const details = await this.candService.showCByEmail(candEmail);
-        console.log(details);
-        
+        // console.log(details);
+
         if (details && details.candPassword === candPassword) {
-            return { details, Rolename: 'candidate'};    
+            return { details, Rolename: 'candidate' };
         }
         return null;
     }
- 
+
 
     // error is here
-    async login( details: any ){
-        if(details.details.candEmail != '')
-            var payload = { email: details.details.candEmail, sub: details.details.candId, Rolename: details.Rolename};
-        else
-            var payload = { email: details.details.orgEmail, sub: details.details.orgId, Rolename: details.Rolename};
-        
-        return[{
-            access_token: this.jwtService.sign(payload), role: details.Rolename
-        }]
+    async login(details: any) {
+        if (details.details.candEmail != null) {
+            var payload = { email: details.details.candEmail, sub: details.details.candId, Rolename: details.Rolename };
+            return [{
+                access_token: this.jwtService.sign(payload), role: details.Rolename, candId: payload.sub
+            }]
+        }
+        else {
+            var payload = { email: details.details.orgEmail, sub: details.details.orgId, Rolename: details.Rolename };
+            console.log("OrgId:", payload.sub);
+            return [{
+                access_token: this.jwtService.sign(payload), role: details.Rolename, orgId: payload.sub
+            }]
+        }
     }
 
     async validateOrganization(orgEmail: string, orgPassword: string) {
         const details = await this.orgService.showOByEmail(orgEmail);
         console.log(details);
-        
+
         if (details && details.orgPassword === orgPassword) {
-            return { details, Rolename: 'organization'};    
+            return { details, Rolename: 'organization' };
         }
         return null;
     }
