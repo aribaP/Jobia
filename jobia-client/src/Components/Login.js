@@ -9,7 +9,7 @@ import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Register2 = () => {
+const Login = () => {
   const navigate = useNavigate();
     const initialvalues = {
       email:"",
@@ -35,7 +35,7 @@ const Register2 = () => {
       console.log(formValues);
     };
     const postData = async(body)=>{
-      console.log("boduuuu", body);
+      console.log("body", body);
 
       try{
           await axios.post("http://localhost:5000/auth/login",body)
@@ -117,4 +117,4 @@ const Register2 = () => {
   )
 }
 
-export default Register2
+export default Login

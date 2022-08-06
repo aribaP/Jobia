@@ -3,13 +3,10 @@
 import React from 'react'
 import '../Styles/style.css'
 import { useState, useEffect } from 'react';
-import validator from 'validator';
 import polygon from '../assets/Polygon.png'
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
-import Organization from './Organization';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -56,48 +53,42 @@ const Register = () => {
     }
 
   };
-    
-    useEffect(() => {                     
-      console.log(formErrors);
-      if (Object.keys(formErrors).length === 0 && isSubmit) {
-            
-            postData(formValues);
-            console.log(formValues);  //Rectified values after validation
-      }
-    },[formErrors]);
+
+  useEffect(() => {
+    console.log(formErrors);
+    if (Object.keys(formErrors).length === 0 && isSubmit === true) {
+
+      postData(formValues);
+      console.log(formValues);  //Rectified values after validation
+    }
+  }, [formErrors]);
+
+
+
+  const validate = (values) => {
+
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    console.log("I am in validation");
+    if (!values.orgName) { errors.orgName = "Username is required!"; }
+
+    if (!values.orgEmail) { errors.orgEmail = "Email is required!"; }
+    else if (!regex.test(values.orgEmail)) { errors.orgEmail = "This is not a valid email format!"; }
 
     if (!values.orgPassword) { errors.orgPassword = "Password is required"; }
-    else if (values.orgPassword.length < 7) { errors.orgPassword = "Password must be more than 4 characters"; }
-    else if (values.orgPassword.length > 15) { errors.orgPassword = "Password cannot exceed more than 10 characters"; }
+    else if (values.orgPassword.length < 7) { errors.orgPassword = "Password must be more than 7 characters"; }
+    else if (values.orgPassword.length > 15) { errors.orgPassword = "Password cannot exceed more than 15 characters"; }
 
 
-    const validate = (values) => {
- 
-      const errors = {};
-      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-      if (!values.orgName) {
-        errors.orgName = "Username is required!";
-      }
-      if (!values.orgEmail) {
-        errors.email = "Email is required!";
-      } else if (!regex.test(values.orgEmail)) {
-        errors.email = "This is not a valid email format!";
-      }
-      if (!values.orgPassword) {
-        errors.orgPassword = "Password is required";
-      } else if (values.orgPassword.length < 4) {
-        errors.orgPassword = "Password must be more than 4 characters";
-      } else if (values.orgPassword.length > 10) {
-        errors.orgPassword = "Password cannot exceed more than 10 characters";
-      }
-      
-      if (!validator.isStrongPassword(value, {
-          minLength: 8, minLowercase: 1,
-          minUppercase: 1, minNumbers: 1, minSymbols: 1
-      })) {
-          errors.orgPassword = "Password must be strong";
-      } 
-      return errors;
+    // if (!validator.isStrongPassword(value, {
+    //   minLength: 8, minLowercase: 1,
+    //   minUppercase: 1, minNumbers: 1, minSymbols: 1
+    // })) {
+    //   errors.orgPassword = "Password must be strong";
+    // }
+    console.log('Errors', errors)
+    return errors;
   };
 
   return (
@@ -110,7 +101,8 @@ const Register = () => {
             <h5 className='mb-revert text-center'>Sign up for a free account</h5>
 
             <div class="mb-3">
-              <input type="text" name="orgName" class="form-control input-Fields" id="orgName" required placeholder="Organization name"
+              <input type="text" name="orgName" class="form-control input-Fields" 
+              id="orgName" required placeholder="Organization name"
                 value={formValues.orgName}
                 onChange={handleChange} />
               <div className="formErrors text-danger">
@@ -119,28 +111,31 @@ const Register = () => {
             </div>
 
             <div class="mb-3">
-              <input type="email" name="orgEmail" class="form-control input-Fields" id="orgEmail" required placeholder="Email address"
+              <input type="email" name="orgEmail" class="form-control input-Fields"
+               id="orgEmail" required placeholder="Email address"
                 value={formValues.orgEmail}
-                onChange ={handleChange}/>
-                <div className="formErrors text-danger">
-                    <p>{formErrors.orgEmail}</p>
-                </div>
+                onChange={handleChange} />
+              <div className="formErrors text-danger">
+                <p>{formErrors.orgEmail}</p>
+              </div>
+            </div>
 
-          </div>
+            <div class="mb-3">
+              <input type="password" name="orgPassword" class="form-control input-Fields"
+                id="orgPassword" required placeholder="Create password"
+                value={formValues.orgPassword}
+                onChange={handleChange} />
+              <div className="formErrors text-danger">
+                <p>{formErrors.orgPassword}</p>
+              </div>
+            </div>
+            
 
-          <div class="mb-3">
-            <input type="password" name ="orgPassword" class="form-control input-Fields" id="Password" required placeholder="Create password" 
-                value={formValues.orgPassword} 
-                onChange={handleChange}/>
-                <div className="formErrors text-danger">
-                    <p>{formErrors.orgPassword}</p>
-                </div>
-          </div>
-
-         <Link to='/organization'>
-         <button className="btn body-button-style11" type="submit">Register</button>
-         </Link>
-        </form>
+            {/* <Link to='/organization'> */}
+            <div>
+              <button className="btn body-button-style11" type="submit" onClick={handleSubmit}>Register</button>
+            </div>
+          </form>
         </div>
         <img className='polygon' src={polygon} alt="" />
       </div><footer>
