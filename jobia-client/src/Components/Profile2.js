@@ -30,6 +30,11 @@ const Profile2 = () => {
 		console.log("form values", formValues);
 
 	};
+	
+	const handleCancel = (e) => {
+		navigate('/organization', { replace: true });
+	};
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -45,7 +50,6 @@ const Profile2 = () => {
 		if (formValues.orgContactNumber === "")
 			formValues.orgContactNumber = setOrg.orgContactNumber;
 
-		console.log("Done", formValues.orgEmail);
 
 		console.log(formValues);
 	};
@@ -110,12 +114,12 @@ const Profile2 = () => {
 
 		console.log("I am in validation");
 		// if (!values.orgName) { errors.orgName = "Username is required!"; }
-		if (!values.orgName) { errors.orgName = "Full name is required"; }
+		if (!values.orgName) { }
 
-		if (!values.orgEmail) { errors.orgEmail = "Email is required!"; }
+		if (!values.orgEmail) { }
 		else if (!regex.test(values.orgEmail)) { errors.orgEmail = "This is not a valid email format!"; }
 
-		if (!values.orgContactNumber) { errors.orgContactNumber = "Phone number is required!"; }
+		if (!values.orgContactNumber) { }
 		else if (!regexphoneno.test(values.orgContactNumber)) { errors.orgContactNumber = "Invalid phonenumber!"; }
 
 		if (!values.orgPassword && !values.orgCPassword) { }
@@ -166,7 +170,7 @@ const Profile2 = () => {
 								class="form-control input-Fields"
 								id="orgName"
 								name="orgName"
-								placeholder="Edit First Name here"
+								placeholder="Edit Organization Name here"
 								value={formValues.orgName}
 								onChange={handleChange}
 							/>
@@ -275,9 +279,9 @@ const Profile2 = () => {
 							<p>{formErrors.orgCPassword}</p>
 						</div>
 
-						<form className="d-flex mt-5">
-							<Link to='/organization'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
-							<button className="btn body-button-style3 padding-l-10 padding-r-10" type="submit" onClick={handleSubmit}>Save</button>&nbsp;
+						<form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '800px' }}>
+							<button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={handleSubmit}>Save</button>
+							<button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={handleCancel}>Cancel</button>
 						</form>
 					</div>
 				</div>

@@ -97,6 +97,11 @@ export class OrganizationController {
 
     }
 
+    @Get('/notification/:orgId')
+    showNotificationUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
+      return this.orgService.getNotification(orgId);
+    }
+
     // @Post('upload')
     // @UseInterceptors(FileInterceptor('file', storage))
     // uploadFile(@UploadedFile() file, @Request() req, @Body() orgCreateDto: organizationCreateDto ) {

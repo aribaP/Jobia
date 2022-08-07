@@ -5,33 +5,56 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Resume = ({ handleOnSave, onChangeTabs }) => {
+
+  const initialvalues = {
+    careerObjective: "",
+    position: "",
+    skills: "",
+    linkedIn: "",
+    gitHub: "",
+    resProj: {
+      projeduDegree: "",
+      projDescription: ""
+    },
+    resEdu: {
+      eduEndYear: "",
+      eduInstituteName: "",
+      eduDegree: ""
+    },
+    resExp: { 
+      expCompanyName: "",
+      expYear: "",
+      expDescription: ""
+    }
+  };
   const [hideEdu, setShowEdu] = useState(false)
   const [hideExp, setShowExp] = useState(false)
 
   const [tasksData, setTasksData] = useState([])
-  const [task_object, setTaskObject] = useState({})
+  const [task_object, setTaskObject] = useState(initialvalues)
   const [renderUI, setRenderUI] = useState(0)
   const [date_value, setDateValue] = useState("")
   const [finalData, setFinalData] = useState({})
 
   const [experYear, setExperYear] = useState()
 
-  console.log('--------experYear----', experYear)
-  console.log('------taskData-------', tasksData.length)
+  // console.log('--------experYear----', experYear)
+  // console.log('------taskData-------', tasksData.length)
   // console.log('------task_object-------', Object.keys(task_object).length)
   // useEffect(() => { }, [tasksData])
 
   const onChangeValue = (value, type) => {
-   
     console.log(`${type}: ${value}`)
+    console.log(type, value);
     const taskobject = task_object
     taskobject[type] = value
     setTaskObject(taskobject)
     setRenderUI(prev => prev + 1)
   }
+  
 
-  console.log('-------task_object---------', task_object)
-  console.log('-------Task Object---------', task_object)
+  // console.log('-------task_object---------', task_object)
+  // console.log('-------Task Object---------', task_object)
   const handleOnAddMore = () => {
     const t_data = [...tasksData]
     console.log('----------t_data-------', t_data)
@@ -42,7 +65,7 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
     } else {
       const taksObject = {
         // id: task_index,
-        title: task_object.title,
+        eduDegree: task_object.eduDegree,
         Institute: task_object.Institute,
         Year: task_object.Year
       }
@@ -56,90 +79,15 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
     })
   }
   const handleOnSaveFinalData = () => {
+    console.log(task_object);
+    console.log(tasksData);
   }
-  console.log("===renderUI===", renderUI)
+  // console.log("===renderUI===", renderUI)
 
 
-  const navigate = useNavigate();
-  const initialvalues = {
-    careerObjective: "",
-    position: "",
-    skills: "",
-    linkedIn: "",
-    gitHub: "",
-    project: {
-      projTitle: "",
-      projDescription: ""
-    },
-    education: {
-      eduEndYear: "",
-      eduInstituteName: "",
-      eduDegree: ""
-    },
-    experience: {
-      expCompanyName: "",
-      expYear: "",
-      expDescription: ""
-    }
-  };
-
-  const [formValues, setFormValues] = useState(initialvalues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  let name, value;
-  const handleChange = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-    setFormValues({ ...formValues, [name]: value }); //...=>spread operator
-    console.log("form values", formValues);
-
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-    console.log(formValues);
-  };
-  const postData = async (body) => {
-
-    console.log("boduuuu", body);
-
-    try {
-      await axios.post("http://localhost:5000/resume/addwhole", body)
-        .then((response) => {
-          console.log("Data recieved");
-          console.log(response.data);
-          const results = response.data;
-          navigate('/organization', { replace: true });
-        })
-
-    } catch (err) {
-      console.log(err);
-    }
-
-  };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit === true) {
-
-      postData(formValues);
-      console.log(formValues);  //Rectified values after validation
-    }
-  }, [formErrors, tasksData]);
-
-
-
-  const validate = (values) => {
-
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-
-    console.log('Errors', errors)
-    return errors;
-  };
 
 
   return (
@@ -155,8 +103,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
               placeholder="Objective"
               rows="4"
               name='careerObjective'
-              value={formValues.careerObjective}
-              onChange={handleChange} />
+              value={task_object.careerObjective}
+              onChange={(event) => {
+                const eventTarget = event.target
+                onChangeValue(eventTarget.value, eventTarget.name, 1)
+              }} />
             <div className="formErrors text-danger">
               <p>{formErrors.careerObjective}</p>
             </div>
@@ -184,12 +135,12 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                           placeholder="Degree"
                           aria-label="Degree"
                           name='eduDegree'
-                          value={item?.title ?? ""}
+                          value={item?.education.eduDegree ?? ""}
                           // disabled
                           onChange={(event) => {
                             const eventTarget = event.target
                             onChangeValue(eventTarget.value, eventTarget.name, i)
-                            
+
                           }}
                         />
                       </div>
@@ -199,11 +150,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                           class="form-control input-Fields"
                           placeholder="Institute"
                           aria-label="Institute"
-                          name='eduInstituteName'
+                          name='Institute'
                           value={item?.Institute ?? ""}
                           // disabled
                           onChange={(event) => {
-                             const eventTarget = event.target
+                            const eventTarget = event.target
                             onChangeValue(eventTarget.value, eventTarget.name, i)
                           }}
                         />
@@ -214,11 +165,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                           class="form-control input-Fields"
                           placeholder="Year"
                           aria-label="Year"
-                          name='eduEndYear'
+                          name='Year'
                           value={item?.Year ?? ""}
                           // disabled
                           onChange={(event) => {
-                             const eventTarget = event.target
+                            const eventTarget = event.target
                             onChangeValue(eventTarget.value, eventTarget.name, i)
                           }}
                         />
@@ -234,7 +185,7 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                   )
                 })
               }
-              {hideEdu && (tasksData?.length < 10 || Object.keys(task_object).length > 0) &&
+              {hideEdu && (tasksData?.length < 3 || Object.keys(task_object).length > 0) &&
                 <div class="row mb-3">
                   <div class="col">
                     <input
@@ -242,10 +193,10 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                       class="form-control input-Fields"
                       placeholder="Degree"
                       name='eduDegree'
-                      value={task_object?.title ?? ""}
+                      value={task_object?.eduDegree ?? ""}
                       required
                       onChange={(event) => {
-                         const eventTarget = event.target
+                        const eventTarget = event.target
                         onChangeValue(eventTarget.value, eventTarget.name)
                       }}
                     />
@@ -256,11 +207,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                       class="form-control input-Fields"
                       placeholder="Institute"
                       aria-label="Institute"
-                      name='eduInstituteName'
+                      name='Institute'
                       value={task_object?.Institute ?? ""}
                       required
                       onChange={(event) => {
-                         const eventTarget = event.target
+                        const eventTarget = event.target
                         onChangeValue(eventTarget.value, eventTarget.name)
                       }}
                     />
@@ -271,11 +222,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                       class="form-control input-Fields"
                       placeholder="Year"
                       aria-label="Year"
-                      name='eduEndYear'
+                      name='Year'
                       value={task_object?.Year ?? ""}
                       required
                       onChange={(event) => {
-                         const eventTarget = event.target
+                        const eventTarget = event.target
                         onChangeValue(eventTarget.value, eventTarget.name)
                       }}
                     />
@@ -318,11 +269,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                       type="text"
                       class="form-control input-Fields"
                       placeholder="Year Of Experience"
-                      name='title'
+                      name='eduDegree'
                       value={experYear ?? ""}
                       required
                       onChange={(event) => {
-                         const eventTarget = event.target
+                        const eventTarget = event.target
                         setExperYear(eventTarget.value)
                       }}
                     />
@@ -348,8 +299,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
               placeholder="Add your technical and core skills here"
               rows="4"
               name='skills'
-              value={formValues.skills}
-              onChange={handleChange} />
+              value={task_object.skills}
+              onChange={(event) => {
+                const eventTarget = event.target
+                onChangeValue(eventTarget.value, eventTarget.name, 1)
+              }} />
             <div className="formErrors text-danger">
               <p>{formErrors.skills}</p>
             </div>
@@ -361,8 +315,11 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
               placeholder=""
               rows="1"
               name='linkedIn'
-              value={formValues.linkedIn}
-              onChange={handleChange} />
+              value={task_object.linkedIn}
+              onChange={(event) => {
+                const eventTarget = event.target
+                onChangeValue(eventTarget.value, eventTarget.name, 1)
+              }} />
             <div className="formErrors text-danger">
               <p>{formErrors.linkedIn}</p>
             </div>
@@ -374,17 +331,20 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
               placeholder=""
               rows="1"
               name='gitHub'
-              value={formValues.gitHub}
-              onChange={handleChange} />
+              value={task_object.gitHub}
+              onChange={(event) => {
+                const eventTarget = event.target
+                onChangeValue(eventTarget.value, eventTarget.name, 1)
+              }} />
             <div className="formErrors text-danger">
               <p>{formErrors.gitHub}</p>
             </div>
 
-            
+
 
             <form className="d-flex justifyContent width-100">
               <Link to='/account'><button className="btn body-button-style2 padding-l-15 padding-r-15" type="submit">Cancel</button></Link>&nbsp;
-              <Link to='/account'><button className="btn body-button-style3 btn-sm" type="submit" onClick={handleSubmit}>Save</button></Link>
+              <Link to='/account'><button className="btn body-button-style3 btn-sm" type="submit" onClick={handleOnSaveFinalData}>Save</button></Link>
             </form>
           </div>
         </div>

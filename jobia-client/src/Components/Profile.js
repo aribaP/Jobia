@@ -33,6 +33,12 @@ const Profile2 = () => {
 
   };
 
+
+  const handleCancel = (e) => {
+		navigate('/organization', { replace: true });
+	};
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -382,15 +388,11 @@ const Profile2 = () => {
             </div>
 
 
+            <form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '800px' }}>
+							<button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={handleSubmit}>Save</button>
+							<button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={handleCancel}>Cancel</button>
+						</form>
 
-
-
-
-
-
-            <form className="d-flex justifyContent">
-              <button className="btn body-button-style3 btn-sm" type="submit" onClick={handleSubmit}> Save </button>
-            </form>
           </div>
         </div>
       </div>

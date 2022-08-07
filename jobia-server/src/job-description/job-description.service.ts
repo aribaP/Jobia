@@ -26,10 +26,10 @@ export class JobDescriptionService {
     ) { }
 
     wordCountMap(str) {
-        console.log(typeof str); // 👉️ object
+        // console.log(typeof str); // 👉️ object
 
         const words = str.toString().split(' ');
-        console.log(words); // 👉️ ['Fri', 'Dec', ...]
+        // console.log(words); // 👉️ ['Fri', 'Dec', ...]
 
 
         let wordCount = {};
@@ -85,24 +85,49 @@ export class JobDescriptionService {
 
     }
 
-    async createJD(jdCreateDto: jobDescriptionCreateDto, scoreDto: scoreCreateDto): Promise<resume[]> {
-        console.log(jdCreateDto);
+    async createJD(jdCreateDto: jobDescriptionCreateDto): Promise<resume[]> {
+        // console.log(jdCreateDto);
         const saved = await this.jobDescriptionRepository.save(jdCreateDto);
+
         const getAllResumes = await this.resumeRepository.find({
             relations: ['eduFK', 'expFK', 'projFK']
         });
 
+        let expYears, countYears = 0, edubach, eduMast;
 
         for (let index = 0; index < getAllResumes.length; index++) {
             const element = getAllResumes[index];
-            const candId = element.candFK;
-            const answer = Object.values(JSON.parse(JSON.stringify(element)));
-            console.log(answer[0]['eduFK']);
+            for (let i = 0; i < element['eduFK'].length; i++) {
 
+                const bachlower = element['eduFK'][i]['eduDegree'].toLowerCase();
+                if (bachlower.includes("bach") || bachlower.includes("bachelors") ||bachlower.includes("bachelor") || bachlower.includes("bs"))
+                    edubach = element['eduFK'][i]['eduDegree'];
+
+                const masterslower = element['eduFK'][i]['eduDegree'].toLowerCase();
+                if (masterslower.includes("master" ) || masterslower.includes("ms") || masterslower.includes( "masters" ))
+                    eduMast = element['eduFK'][i]['eduDegree'];
+            }
+
+            for (let i = 0; i < element['expFK'].length; i++) {
+                expYears = element['expFK'][i]['expYear'];
+                countYears = expYears + countYears;
+            }
+
+            let acc2, acc3;
             const acc1 = this.textCosineSimilarity(element.position, jdCreateDto.jdPosition);
-            const acc2 = this.textCosineSimilarity(element.careerObjective + element.skills, jdCreateDto.jdRequiredSkills);
+            if (!eduMast)
+                acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + edubach, jdCreateDto.jdRequiredSkills);
+            else if (eduMast)
+                acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + edubach, jdCreateDto.jdRequiredSkills);
+            else
+                acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + element['eduFK'], jdCreateDto.jdRequiredSkills);
 
-            var accuracy = ((acc1 * 0.6) + (acc2 * 0.4)) * 100;
+            if (expYears && countYears >= jdCreateDto.jdMinimumExperience)
+                acc3 = 0.9;
+            else if (expYears > 0)
+                acc3 = 0.2;
+
+            var accuracy = ((acc1 * 0.3) + (acc2 * 0.3) + (acc3 * 0.4)) * 100;
             console.log(accuracy);
             const scoreDto: scoreCreateDto = {
                 score: accuracy,
@@ -112,16 +137,11 @@ export class JobDescriptionService {
             if (accuracy >= 50) {
                 const whatever = this.scoreRepository.save(scoreDto);
             }
-
         }
-
         return await this.resumeRepository.find();
-        // console.log(getAllResumes);
+
     }
 
-    // createScore(scoreDto: scoreCreateDto) {
-    //     return this.scoreRepository.save(scoreDto);
-    // }
 
     async updateJD(jdUpdateDto: jobDescriptionUpdateDto, jdId: number) {
         return await this.jobDescriptionRepository.update(jdId, jdUpdateDto);

@@ -17,8 +17,9 @@ export class JobDescriptionController {
 
 
     @Post('/addjobdescription')
-    storeJobDescription(@Body(ValidationPipe) jdCreateDto: jobDescriptionCreateDto, scoreDto: scoreCreateDto) {
-        return this.jdService.createJD(jdCreateDto, scoreDto);
+    storeJobDescription(@Body(ValidationPipe) jdCreateDto: jobDescriptionCreateDto) {
+        console.log("Here");
+        return this.jdService.createJD(jdCreateDto);
     }
 
     @Get('/:jdId')

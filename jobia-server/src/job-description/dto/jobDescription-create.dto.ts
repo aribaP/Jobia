@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class jobDescriptionCreateDto{
     jdId: number
@@ -8,7 +8,6 @@ export class jobDescriptionCreateDto{
     jdPosition: string
     
     @IsNotEmpty()
-    @IsInt()
     jdMinimumExperience: number
     
     @IsNotEmpty()
@@ -16,7 +15,7 @@ export class jobDescriptionCreateDto{
     jdRequiredSkills: string
     
     @IsNotEmpty()
-    @IsString()
+    // @IsString()
     jdLocation: string
     
     @IsNotEmpty()

@@ -17,9 +17,7 @@ export class CandidateService {
         @InjectRepository(candidate)
         private candidateRepository: Repository<candidate>,
         @InjectRepository(score)
-        private scoreRepository: Repository<score>,
-        @InjectRepository(resume)
-        private resumeRepository: Repository<resume>,
+        private scoreRepository: Repository<score>, 
         @InjectRepository(jobDescription)
         private jobDescriptionRepository: Repository<jobDescription>,
         @InjectRepository(organization)
