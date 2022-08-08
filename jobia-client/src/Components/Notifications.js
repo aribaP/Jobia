@@ -54,8 +54,7 @@ const  Notifications  = ({ onChangeStatus, onChangeTabs,setCheck }) => {
               </button>
               </div>
               {/* </form> */}
-        {/* </div> */}
-      </div>
+        {/* </div> */}     </div>
       {/* IT Manager */}
       <div className="resume-view padding-20 mt-20">
         <div className="width-100 padding-20">
