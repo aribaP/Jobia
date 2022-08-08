@@ -61,8 +61,8 @@ export class OrganizationController {
         return await this.orgService.updateOrg(orgUpdateDto, orgId);
     }
 
-    @Roles(Role.Organization)
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Roles(Role.Organization)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showjobdescription/:orgId')
     showJobDescriptionUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return this.orgService.showAllJDOrg(orgId);

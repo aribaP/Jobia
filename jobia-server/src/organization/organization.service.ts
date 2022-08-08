@@ -74,11 +74,17 @@ export class OrganizationService {
         return this.organizationRepository.delete(orgId);
     }
 
-    async showAllJDOrg(orgFK: number): Promise<organization[]> {
-        return await this.organizationRepository.find({
+    async showAllJDOrg(orgFK: number) {
+        const all =  await this.organizationRepository.find({
             relations: ['jdFK'],
             where: { orgId: orgFK }
         });
+
+        console.log(all[0]['jdFK']);
+        const returnJDs = all[0]['jdFK'];
+        return returnJDs;
+
+
     }
 
 
