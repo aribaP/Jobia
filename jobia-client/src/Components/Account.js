@@ -12,6 +12,7 @@ import Profilee from '../assets/Profile.png'
 import Resume from './Resume'
 import Jobs from './Jobs'
 import AllJobs from './AllJobs'
+import ResumeDisplay from './ResumeDisplay'
 
 
 const Account = (props) => {
@@ -109,6 +110,9 @@ const Account = (props) => {
           // onChangeAllJobsTabs={(val) => setTabs(val)} 
           />}
           {check === 'ResumePage' && <Resume 
+          handleOnSave={(val) => setCheck(val)}
+           />}
+          {check === 'ResumeDisplay' && <ResumeDisplay 
           handleOnSave={(val) => setCheck(val)}
            />}
           {check === 'Jobs' && <Jobs
