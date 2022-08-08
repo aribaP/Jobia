@@ -11,7 +11,6 @@ const CreateResume = ({onChangeStatus, onChangeTabs}) => {
       <div className="crud-resume">
           <button style={{marginLeft: 5, width:72}} className="btn btn-primary" type="submit" onClick={() => {
             onChangeStatus('ResumeDisplay')
-              onChangeTabs('ViewResume')
             }}>View</button>
         
           <button style={{marginLeft: 5}} className="btn btn-success" type="submit" onClick={() => {
@@ -20,8 +19,6 @@ const CreateResume = ({onChangeStatus, onChangeTabs}) => {
             }}>Create</button>
 
           <button style={{marginLeft: 5, color: 'white'}} className="btn btn-warning" type="submit" onClick={() => {
-            onChangeStatus('ResumePage')
-              onChangeTabs('UpdateResume')
             }}>Update</button>
 
 
