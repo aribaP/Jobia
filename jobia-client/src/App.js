@@ -39,7 +39,6 @@ function App() {
         <Route path='/profile2' element={<Profile2 />}/>
         <Route path='/jobs' element={<Jobs />}/>
         <Route path='/organization' element={<Organization />}/>
-        <Route path='/viewonejob' element={<ViewOneJob />}/>
         <Route path='/resume' element={<Resume />}/>
         <Route exact path='/onejob' element={<ViewOneJob />}/>
         {/* <Route path='/policy' element={<Policy />}/> */}

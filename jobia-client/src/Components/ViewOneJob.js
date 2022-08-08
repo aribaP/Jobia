@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Footer from './Footer'
+import Header from './Header';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -42,6 +43,8 @@ const ViewOneJob = () => {
 
   
   return (
+    <>
+    <Header/>
     <div style={{ padding: '30px', marginLeft: '40px' }}>
       <div class='row'>
         <div class='col-12 profile-body-right'>
@@ -104,7 +107,8 @@ const ViewOneJob = () => {
         </div>
       </div>
     </div>
-
+    <Footer/>
+    </>
   )
 }
 

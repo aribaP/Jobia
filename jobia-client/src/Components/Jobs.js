@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import Footer from './Footer'
+import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 
 const Jobs = ({ handleOnSave, onChangeTabs }) => {
@@ -91,6 +93,8 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
   };
 
   return (
+    <>
+    <Header/>
     <div style={{ padding: '30px', marginLeft: '40px' }}>
       <div class='row'>
         <div class='col-12 profile-body-right'>
@@ -183,7 +187,8 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
         </div>
       </div>
     </div>
-
+    <Footer/>
+    </>
   )
 }
 
