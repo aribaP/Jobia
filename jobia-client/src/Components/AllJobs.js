@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
-
   const navigate = useNavigate();
   const initialvalues = {
     jdId: "",
@@ -13,6 +12,17 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
     jdLocation: "",
     jdCity: ""
   };
+
+
+  const routeChange = () =>{ 
+    let path = `/onejob`; 
+    navigate(path);
+    }
+  const createJob=()=>{
+    let path = `/jobs`; 
+    navigate(path);
+  }
+  
 
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -70,26 +80,55 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
 
 formValues.map(details => (
   <div className="resume-view padding-20 mt-20">
-    <div className="width-100 padding-20">
-      <div key={details.jdId}>
-        <h3>{details.jdPosition}</h3>
+        <div className="width-100 padding-20">
+          <h3>Finance Manager</h3>
+          <h6>Due Date: dd/mm/yy</h6>
+        </div>
+        <div className='btn1'>
+          {/* <form> */}
+            <button
+              onClick={routeChange}
+              className="btn button-style-outline me-2 btn-sm"
+              type="submit"
+            >
+              View
+            </button>
+            <button
+              className="btn button-style-full me-2 btn-sm"
+              type="submit"
+            >
+              Update
+            </button>
+              <button
+                className="btn button-style-full btn-clr-brown btn-sm"
+                type="submit"
+              >
+                Delete
+              </button>
+              {/* </form> */}
+        </div>
       </div>
-      <div>
-        <form className="d-flex mt-20 justifyContent width-100">
+  // <div className="resume-view padding-20 mt-20">
+  //   <div className="width-100 padding-20">
+  //     <div key={details.jdId}>
+  //       <h3>{details.jdPosition}</h3>
+  //     </div>
+  //     <div>
+  //       <form className="d-flex mt-20 justifyContent width-100">
+  //       {/* <div> */}
+  //         <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={()=>{
+  //           onChangeStatus('ResumeDisplay')
+  //         }}> Viewq </button>
 
-          <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => {
-            onChangeStatus('ViewOneJob')
-            }}> View </button>
+  //         <button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button>
 
-          <button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button>
+  //         <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={handleDelete}> Delete </button>
 
-          <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={handleDelete}> Delete </button>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
+  //       </form>
+  //     </div>
+  //     {/* </div> */}
+  //   </div>
+  // </div>
 
 
 ))
@@ -100,10 +139,7 @@ formValues.map(details => (
 
       <form className="d-flex mt-20 justifyContent width-100">
         {/* <Link to="/"> */}
-        <button onClick={() => {
-
-          setCheck("Jobs");
-        }} className="btn button-style-full me-2 btn-sm" type="submit">
+        <button onClick={createJob} className="btn button-style-full me-2 btn-sm" type="submit">
           Create Job
         </button>
         {/* </Link> */}
