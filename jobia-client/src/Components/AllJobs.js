@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
+const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
   const navigate = useNavigate();
   const initialvalues = {
     jdId: "",
@@ -14,31 +14,26 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
   };
 
 
-  const routeChange = () =>{ 
-    let path = `/onejob`; 
-    navigate(path);
-    }
-  const createJob=()=>{
-    let path = `/jobs`; 
+  const routeChange = (jdId) => {
+    let path = `/onejob`;
+    navigate(path, {state:{jdId}});
+  }
+  const createJob = () => {
+    let path = `/jobs`;
     navigate(path);
   }
-  
 
-  const [isSubmit, setIsSubmit] = useState(false);
+  const handleUpdate = (jdId) => {
+    let path = `/editonejob`;
+    navigate(path, {state:{jdId}});
+  }
+
 
   const [formValues, setFormValues] = useState([initialvalues]);
 
-  let name, value;
-  const handleChange = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-    setFormValues({ ...formValues, [name]: value }); //...=>spread operator
-    console.log("form values", formValues);
-
-  };
   const handleDelete = (jdId) => {
-    
-    axios.delete("http://localhost:5000/job-description/"+jdId)
+
+    axios.delete("http://localhost:5000/job-description/" + jdId)
       .then(response => {
         console.log("Data recieved");
         console.log(response.data);
@@ -55,9 +50,10 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
 
     axios.get("http://localhost:5000/organization/showjobdescription/2")
       .then(response => {
+        setFormValues(response.data);
         console.log("Data recieved");
         console.log(response.data);
-        setFormValues(response.data);
+        
         console.log(formValues);
 
       }).catch(err => {
@@ -75,60 +71,28 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
           width: "100%",
         }}
       ></div>
-  {
+      {
 
-formValues.map(details => (
-  <div className="resume-view padding-20 mt-20">
-        <div className="width-100 padding-20">
-          <h3>Finance Manager</h3>
-          <h6>Due Date: dd/mm/yy</h6>
-        </div>
-        <div className='btn1'>
-          {/* <form> */}
-            <button
-              onClick={routeChange}
-              className="btn button-style-outline me-2 btn-sm"
-              type="submit"
-            >
-              View
-            </button>
-            <button
-              className="btn button-style-full me-2 btn-sm"
-              type="submit"
-            >
-              Update
-            </button>
-              <button
-                className="btn button-style-full btn-clr-brown btn-sm"
-                type="submit"
-              >
-                Delete
-              </button>
-              {/* </form> */}
-        </div>
-      </div>
-  // <div className="resume-view padding-20 mt-20">
-  //   <div className="width-100 padding-20">
-  //     <div key={details.jdId}>
-  //       <h3>{details.jdPosition}</h3>
-  //     </div>
-  //     <div>
-  //       <form className="d-flex mt-20 justifyContent width-100">
-  //       {/* <div> */}
-  //         <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={()=>{
-  //           onChangeStatus('ResumeDisplay')
-  //         }}> Viewq </button>
+        formValues.map(details => (
+          <div className="resume-view padding-20 mt-20">
+            <div className="width-100 padding-20">
+              <div key={details.jdId}>
+                <h3>{details.jdPosition}</h3>
+              </div>
+            </div>
+            <div className='btn1'>
+              <button  className="btn button-style-outline me-2 btn-sm" type="submit" onClick={()=>routeChange(details.jdId)}> View </button>
+              <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={()=>handleUpdate(details.jdId)}> Update </button>
+              <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={()=>handleDelete(details.jdId)}> Delete </button>
 
-  //         <button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button>
+            </div>
+          </div>
 
-  //         <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={handleDelete}> Delete </button>
+        ))
+
+      }
 
 
-))
-
-}
-
-    
 
       <form className="d-flex mt-20 justifyContent width-100">
         {/* <Link to="/"> */}

@@ -22,12 +22,12 @@ export class JobDescriptionController {
         return this.jdService.createJD(jdCreateDto);
     }
 
-    @Get('/:jdId')
+    @Get('getone/:jdId')
     getJobDescription(@Param('jdId', ParseIntPipe) jdId: number) {
         return this.jdService.showJDById(jdId);
     }
 
-    @Patch('/:jdId')
+    @Patch('update/:jdId')
     updateJobDescription(
         @Body(ValidationPipe) jdUpdateDto: jobDescriptionUpdateDto,
         @Param('jdId', ParseIntPipe) jdId: number) {

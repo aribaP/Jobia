@@ -14,10 +14,11 @@ export class ScoreService {
     ) { }
 
 
-    async newJobDescriptionIsAdded(jdId: number){
-        const jdObject = await this.jdRepository.findOne({where :{jdId}});
-        const answer = Object.values(JSON.parse(JSON.stringify(jdObject)));
-        console.log(answer); 
+    async deleteByResume(scoreId: number){
+        console.log(scoreId);
+
+        return await this.scoreRepository.delete(scoreId);
+       
 
     }
 }

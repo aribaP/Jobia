@@ -98,10 +98,13 @@ export class OrganizationService {
         console.log(getJD[0].jdFK.length);
         var scores = new Array();
         for (let index = 0; index < getJD[0].jdFK.length; index++) {
-            scores.push(await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }));
+            console.log( await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }))
+            if((await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } })).length != 0)
+                scores.push(await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }));
+
         }
 
-        // console.log(scores.length);
+        console.log(scores.length);
         let resumes;
         let resumeObject = new Array();
 
@@ -118,6 +121,7 @@ export class OrganizationService {
 
         for (let index = 0; index < scores.length; index++) {
             let element = scores[index];
+            console.log(scores[index][0].scoreId);
             let getEducation = await this.resumeRepository.find({
                 relations: ['eduFK'],
                 where: { resId: scores[index]['resId'] }
@@ -134,19 +138,21 @@ export class OrganizationService {
             });
 
             resumeObject[index] = {
-                careerObjective: resumeObject[index][0].careerObjective,
-                position: resumeObject[index][0].position,
-                skills: resumeObject[index][0].skills,
-                linkedIn: resumeObject[index][0].linkedIn,
-                gitHub: resumeObject[index][0].gitHub,
-
-                city: resumeObject[index][0].candFK['candCity'],
-                candEmail: resumeObject[index][0].candFK['candEmail'],
-                candContactNumber: resumeObject[index][0].candFK['candContactNumber'],
-                candName: resumeObject[index][0].candFK['candName'],
-                education: getEducation[0]['eduFK'],
-                experience: getExperience[0]['expFK'],
-                projects: getProject[0]['projFK'],
+                resId: resumeObject[index][index].resId,
+                careerObjective: resumeObject[index][index].careerObjective,
+                position: resumeObject[index][index].position,
+                skills: resumeObject[index][index].skills,
+                linkedIn: resumeObject[index][index].linkedIn,
+                gitHub: resumeObject[index][index].gitHub,
+                scoreId: scores[index][0].scoreId,
+                city: resumeObject[index][index].candFK['candCity'],
+                candId: resumeObject[index][index].candFK['candId'],
+                candEmail: resumeObject[index][index].candFK['candEmail'],
+                candContactNumber: resumeObject[index][index].candFK['candContactNumber'],
+                candName: resumeObject[index][index].candFK['candName'],
+                education: getEducation[index]['eduFK'],
+                experience: getExperience[index]['expFK'],
+                projects: getProject[index]['projFK'],
 
             };
 

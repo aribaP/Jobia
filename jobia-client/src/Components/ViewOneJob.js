@@ -8,37 +8,29 @@ const ViewOneJob = () => {
 
   const navigate = useNavigate();
   const initialvalues = {
+    jdId: "",
     jdPosition: "",
     jdMinimumExperience: "",
+    jdRequiredSkills: "",
     jdLocation: "",
-    jdCity: "",
-    jdRequiredSkills: ""
+    jdCity: ""
   };
 
-  const location = useLocation();
+
+ 
   const [formValues, setFormValues] = useState(initialvalues);
 
-
-  
-  const postData = async (body) => {
-    // console.log((location.state));
-    try {
-      await axios.get("http://localhost:5000/job-description/122",)
-        .then((response) => {
-          console.log("Data recieved");
-          console.log(response.data);
-          const results = response.data;
-          navigate('/organization', { replace: true });
-        })
-
-    } catch (err) {
-      console.log(err);
-    }
-
-  };
-
   useEffect(() => {
-    postData(); 
+    axios.get("http://localhost:5000/job-description/getone/124")
+      .then(response => {
+        console.log("Data recieved");
+        console.log(response.data);
+        setFormValues(response.data);
+        console.log(formValues);
+
+      }).catch(err => {
+        console.log(err);
+      })
   }, []);
 
   
@@ -79,13 +71,7 @@ const ViewOneJob = () => {
                 value={formValues.jdRequiredSkills} />
             </div>
 
-            <div class="mb-3">
-              <label className='mb-3 mt-15'>City</label>
-              <div>
-                
-              </div>
-           
-            </div>
+            
 
 
             <div className="mb-3">
