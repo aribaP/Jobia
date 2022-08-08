@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ViewOneJob = () => {
 
@@ -14,13 +14,15 @@ const ViewOneJob = () => {
     jdRequiredSkills: ""
   };
 
+  const location = useLocation();
   const [formValues, setFormValues] = useState(initialvalues);
 
 
   
   const postData = async (body) => {
+    // console.log((location.state));
     try {
-      await axios.get("http://localhost:5000/job-description/83",)
+      await axios.get("http://localhost:5000/job-description/122",)
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);
@@ -37,8 +39,6 @@ const ViewOneJob = () => {
   useEffect(() => {
     postData(); 
   }, []);
-
-
 
   
   return (

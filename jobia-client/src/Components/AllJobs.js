@@ -26,21 +26,20 @@ const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
     console.log("form values", formValues);
 
   };
-  const handleDelete = (e) => {
+  const handleDelete = (jdId) => {
     
-    console.log(1);// axios.delete("http://localhost:5000/job-description/${jdId}")
-    //   .then(response => {
-    //     console.log("Data recieved");
-    //     console.log(response.data);
-    //     setFormValues(response.data);
-    //     console.log(formValues);
+    axios.delete("http://localhost:5000/job-description/"+jdId)
+      .then(response => {
+        console.log("Data recieved");
+        console.log(response.data);
+        setFormValues(response.data);
+        console.log(formValues);
+        window.alert("Information deleted");
 
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
+      }).catch(err => {
+        console.log(err);
+      })
   }
-
-
 
   useEffect(() => {
 
@@ -83,7 +82,7 @@ formValues.map(details => (
 
           <button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button>
 
-          <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={handleDelete}> Delete </button>
+          <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={()=>handleDelete(details.jdId)}> Delete </button>
 
         </form>
       </div>
