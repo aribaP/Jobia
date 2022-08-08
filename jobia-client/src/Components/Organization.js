@@ -41,7 +41,7 @@ const Organization = (props) => {
             >
               <div className='Account-Tabs'>
                 <img src={Profilee} height='30px' width='30px' />
-                <p className='m-l-2'>profile2</p>
+                <p className='m-l-2'>Edir Organization Details</p>
               </div>
             </button>
             <button
@@ -53,7 +53,7 @@ const Organization = (props) => {
               >
                 <div className='Account-Tabs m-l-07'>
                   <img src={Resumee} height='20px' width='20px' />
-                  <p className='m-l-2'>Job</p>
+                  <p className='m-l-2'>Control Job</p>
                 </div>
               </button>
             

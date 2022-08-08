@@ -97,6 +97,7 @@ const Register2 = () => {
 
     if (!values.candCity) { errors.candCity = "City is required"; }
 
+    
     // if (!validator.isStrongPassword(value, {
     //   minLength: 8, minLowercase: 1,
     //   minUppercase: 1, minNumbers: 1, minSymbols: 1

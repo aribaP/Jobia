@@ -176,7 +176,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
 
           <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '800px' }}>
-          <button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={ handleSubmit}>Save</button>
+          <Link to= '/organization'> <button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={ handleSubmit}>Save</button></Link>
           <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={ handleCancel}>Cancel</button>
             
           </form>

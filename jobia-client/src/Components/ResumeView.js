@@ -22,6 +22,7 @@ const ResumeView = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJ
         onChangeStatus('ResumePage')
           onChangeTabs('Resume')
           }}>Update</button>
+          
       <button className="btn button-style-full btn-clr-brown btn-sm create-resume" type="submit" onClick={() => {
    
           onChangeTabs('CreateResume')

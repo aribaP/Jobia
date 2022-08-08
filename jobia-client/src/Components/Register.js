@@ -80,7 +80,6 @@ const Register = () => {
     else if (values.orgPassword.length < 7) { errors.orgPassword = "Password must be more than 7 characters"; }
     else if (values.orgPassword.length > 15) { errors.orgPassword = "Password cannot exceed more than 15 characters"; }
 
-
     // if (!validator.isStrongPassword(value, {
     //   minLength: 8, minLowercase: 1,
     //   minUppercase: 1, minNumbers: 1, minSymbols: 1

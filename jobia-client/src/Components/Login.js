@@ -98,6 +98,7 @@ const Login = () => {
                 <p>{formErrors.email}</p>
               </div>
           </div>
+          
           <div class="mb-3">
             <input 
               type="password"

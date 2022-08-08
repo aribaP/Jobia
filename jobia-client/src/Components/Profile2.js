@@ -90,6 +90,7 @@ const Profile2 = () => {
 
 		} catch (err) {
 			console.log(err);
+			
 		}
 
 	};

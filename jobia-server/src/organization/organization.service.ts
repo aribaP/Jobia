@@ -89,19 +89,26 @@ export class OrganizationService {
             where: { orgId: orgFK }
         });
 
-        const scores = await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[0].jdId } });
-        let resumes; 
-        let resumeObject = new Array();
-        for (let index = 0; index < scores.length; index++) {
-
-            resumes = await this.resumeRepository.find({
-                relations: ['candFK'],
-                where: { resId: scores[index]['resId'] }
-            });
-            resumeObject.push(resumes);
+        console.log(getJD[0].jdFK.length);
+        var scores = new Array();
+        for (let index = 0; index < getJD[0].jdFK.length; index++) {
+            scores.push(await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }));
         }
 
-        console.log("Ariba\n");
+        // console.log(scores.length);
+        let resumes;
+        let resumeObject = new Array();
+
+        for (let index = 0; index < scores.length; index++) {
+            for (let i = 0; i < scores[index].length; i++) {
+     
+                resumes = await this.resumeRepository.find({
+                    relations: ['candFK'],
+                    where: { resId: scores[index]['resId'] }
+                });
+                resumeObject.push(resumes);
+            }
+        }
 
         for (let index = 0; index < scores.length; index++) {
             let element = scores[index];
@@ -119,10 +126,8 @@ export class OrganizationService {
                 relations: ['projFK'],
                 where: { resId: scores[index]['resId'] }
             });
-            console.log("Here");
-            console.log(getExperience[0]['expFK']);
 
-            resumeObject[index] = [{
+            resumeObject[index] = {
                 careerObjective: resumeObject[index][0].careerObjective,
                 position: resumeObject[index][0].position,
                 skills: resumeObject[index][0].skills,
@@ -135,8 +140,9 @@ export class OrganizationService {
                 candName: resumeObject[index][0].candFK['candName'],
                 education: getEducation[0]['eduFK'],
                 experience: getExperience[0]['expFK'],
-                projects: getProject[0]['projFK']
-            }];
+                projects: getProject[0]['projFK'],
+
+            };
 
 
         }

@@ -36,6 +36,7 @@ const Profile2 = () => {
 
   const handleCancel = (e) => {
 		navigate('/organization', { replace: true });
+    
 	};
 
 

@@ -246,6 +246,7 @@ const Resume = ({ handleOnSave, onChangeTabs }) => {
                   > Save & Continue</button>
                 </div>
               }
+              
 
               <button className='btn-resume'
                 onClick={() => setShowEdu(!hideEdu)}
