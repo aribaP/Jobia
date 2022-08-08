@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const AllJobs = ({setCheck}) => {
+const AllJobs = ({setCheck,onChangeStatus,onChangeTabs}) => {
 
   const navigate = useNavigate();
   const initialvalues = {
@@ -77,7 +77,9 @@ formValues.map(details => (
       <div>
         <form className="d-flex mt-20 justifyContent width-100">
 
-          <button className="btn button-style-outline me-2 btn-sm" type="submit"> View </button>
+          <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => {
+            onChangeStatus('ViewOneJob')
+            }}> View </button>
 
           <button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button>
 
@@ -100,7 +102,7 @@ formValues.map(details => (
         {/* <Link to="/"> */}
         <button onClick={() => {
 
-          setCheck("Job");
+          setCheck("Jobs");
         }} className="btn button-style-full me-2 btn-sm" type="submit">
           Create Job
         </button>

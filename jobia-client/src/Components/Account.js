@@ -13,6 +13,7 @@ import Resume from './Resume'
 import Jobs from './Jobs'
 import AllJobs from './AllJobs'
 import ResumeDisplay from './ResumeDisplay'
+import ViewOneJob from './ViewOneJob'
 
 
 const Account = (props) => {
@@ -113,6 +114,9 @@ const Account = (props) => {
           handleOnSave={(val) => setCheck(val)}
            />}
           {check === 'ResumeDisplay' && <ResumeDisplay 
+          handleOnSave={(val) => setCheck(val)}
+           />}
+           {check === 'ViewOneJob' && <ViewOneJob
           handleOnSave={(val) => setCheck(val)}
            />}
           {check === 'Jobs' && <Jobs
