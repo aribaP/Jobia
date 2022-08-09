@@ -4,7 +4,7 @@ import Header from './Header'
 import Notifications from '../assets/Notification.png'
 import Settings from '../assets/Setting.png'
 import Resumee from '../assets/Resume.png'
-import Notification from '../Components/Notifications'
+import NotificationsCandidate from '../Components/NotificationsCandidate'
 import ResumeView from '../Components/ResumeView'
 import CreateResume from './CreateResume'
 import Profile from './Profile'
@@ -46,7 +46,7 @@ const Account = (props) => {
             >
               <div className='Account-Tabs'>
                 <img src={Profilee} height='30px' width='30px' />
-                <p className='m-l-2'>Profile</p>
+                <p className='m-l-2'>Edit your Profile</p>
               </div>
             </button>
             {
@@ -58,7 +58,7 @@ const Account = (props) => {
               >
                 <div className='Account-Tabs m-l-07'>
                   <img src={Resumee} height='20px' width='20px' />
-                  <p className='m-l-2'>Resume</p>
+                  <p className='m-l-2'>Control Resume</p>
                 </div>
               </button> : <button
                 className={tabs === 'Jobs' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
@@ -74,12 +74,12 @@ const Account = (props) => {
               </button>
             }
             <button
-              className={check === 'Notifications' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-              onClick={() => setCheck('Notifications')}
+              className={check === 'NotificationsCandidate' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
+              onClick={() => setCheck('NotificationsCandidate')}
             >
               <div className='Account-Tabs m-l-07'>
                 <img src={Notifications} height='20px' width='20px' />
-                <p className='m-l-2'>Notifications</p>
+                <p className='m-l-2'>NotificationsCandidate</p>
               </div>
             </button>
             <button
@@ -125,8 +125,8 @@ const Account = (props) => {
           {check === 'AllJobs' && <AllJobs />}
 
 
-          {check === 'Notifications' &&
-            <Notification />
+          {check === 'NotificationsCandidate' &&
+            <NotificationsCandidate />
           }
         </div>
       </div>
