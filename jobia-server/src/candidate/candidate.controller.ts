@@ -70,20 +70,6 @@ export class CandidateController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
     //  @UseGuards(AuthGuard('jwt'))
     @Get('/:candId')
     getCandidateById(@Param('candId') candId: number) {

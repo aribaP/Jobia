@@ -118,7 +118,7 @@ export class JobDescriptionService {
             if (!eduMast)
                 acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + edubach, jdCreateDto.jdRequiredSkills);
             else if (eduMast)
-                acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + edubach, jdCreateDto.jdRequiredSkills);
+                acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + edubach + eduMast, jdCreateDto.jdRequiredSkills);
             else
                 acc2 = this.textCosineSimilarity(element.careerObjective + element.skills + element['eduFK'], jdCreateDto.jdRequiredSkills);
 

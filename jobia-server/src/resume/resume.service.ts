@@ -20,10 +20,10 @@ export class ResumeService {
     ) { }
 
     wordCountMap(str) {
-        console.log(typeof str); 
+        // console.log(typeof str); // 👉️ object
 
         const words = str.toString().split(' ');
-        console.log(words); //  ['Fri', 'Dec', ...]
+        // console.log(words); // 👉️ ['Fri', 'Dec', ...]
 
 
         let wordCount = {};
@@ -80,51 +80,79 @@ export class ResumeService {
     }
 
     async createWholeResume(resCreateDto: resumeCreateDto) {
-        console.log( resCreateDto);
+        console.log(resCreateDto);
         const saved = await this.resumeRepository.save(resCreateDto);
-        // const getAllJD = await this.jobDescriptionRepository.find({});
+
+        const getAllJD = await this.jobDescriptionRepository.find({});
+
+        let expYears, countYears = 0, edubach, eduMast;
+        // 
+        for (let i = 0; i < resCreateDto[0]['eduFK'].length; i++) {
+            const bachlower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
+            if (bachlower.includes("bach") || bachlower.includes("bachelors") || bachlower.includes("bachelor") || bachlower.includes("bs"))
+                edubach = resCreateDto[0]['eduFK'][i].eduDegree;
+
+            const masterslower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
+            if (masterslower.includes("master") || masterslower.includes("ms") || masterslower.includes("masters"))
+                eduMast = resCreateDto[0]['eduFK'][i].eduDegree;
+        }
+
+        for (let i = 0; i < resCreateDto[0]['expFK'].length; i++) {
+            expYears = resCreateDto[0]['expFK'][i].expYear;
+            countYears = expYears + countYears;
+        }
 
 
-        // for (let index = 0; index < getAllJD.length; index++) {
-        //     const element = getAllJD[index];
-        //     console.log(resCreateDto.position, element.jdPosition);
+        for (let index = 0; index < getAllJD.length; index++) {
 
-        //     const acc1 = this.textCosineSimilarity(resCreateDto.position, element.jdPosition);
-        //     const acc2 = this.textCosineSimilarity(resCreateDto.careerObjective + resCreateDto.skills,  element.jdRequiredSkills);
 
-        //     var accuracy = ((acc1 * 0.6) + (acc2 * 0.4)) * 100;
-        //     console.log(accuracy);
-        //     const scoreDto: scoreCreateDto = {
-        //         score: accuracy,
-        //         jdId:  element.jdId,
-        //         resId: resCreateDto.resId
-        //     };
-        //     if (accuracy >= 50) {
-        //         const whatever = this.scoreRepository.save(scoreDto);
-        //     }
+            let acc2, acc3;
+            const acc1 = this.textCosineSimilarity(getAllJD[index].jdPosition, resCreateDto[0].position);
+            if (!eduMast)
+                acc2 = this.textCosineSimilarity(getAllJD[index].jdRequiredSkills, resCreateDto[0].skills + edubach + resCreateDto[0].careerObjective);
+            else if (eduMast)
+                acc2 = this.textCosineSimilarity(getAllJD[index].jdRequiredSkills, resCreateDto[0].skills + edubach + eduMast + resCreateDto[0].careerObjective);
+            else
+                acc2 = this.textCosineSimilarity(getAllJD[index].jdRequiredSkills, resCreateDto[0].skills + resCreateDto[0]['eduFK'] + resCreateDto[0].careerObjective);
 
-        // }
-        // return await this.resumeRepository.find();
+            if (expYears && countYears >= getAllJD[index].jdMinimumExperience)
+                acc3 = 0.9;
+            else if (expYears > 0)
+                acc3 = 0.1;
+            
+
+            const accuracy = ((acc1 * 0.3) + (acc2 * 0.3) + (acc3 * 0.4)) * 100;
+            console.log(getAllJD[index].jdId, ": ", accuracy);
+            const scoreDto: scoreCreateDto = {
+                score: accuracy,
+                jdId: getAllJD[index].jdId,
+                resId: resCreateDto.resId
+            };
+            if (accuracy >= 50) {
+                const whatever = this.scoreRepository.save(scoreDto);
+            }
+        }
+        return await this.resumeRepository.find();
 
     }
 
     async showWholeResume(resFK: number): Promise<resume[]> {
         return await this.resumeRepository.find({
-            relations: ['projFK', 'eduFK', 'expFK'], 
-            where: {resId: resFK}
+            relations: ['projFK', 'eduFK', 'expFK'],
+            where: { resId: resFK }
         });
     }
 
-    updateWholeResume(resUpdateDto: resumeUpdateDto, resId: number ){
+    updateWholeResume(resUpdateDto: resumeUpdateDto, resId: number) {
         const answer = Object.values(JSON.parse(JSON.stringify(resUpdateDto)));
         return this.resumeRepository.update(resId, resUpdateDto);
     }
 
-    deleteWholeResume( resId: number ) {
+    deleteWholeResume(resId: number) {
         return this.resumeRepository.delete(resId);
     }
 
-   
+
 
 
 
@@ -162,7 +190,7 @@ export class ResumeService {
     //     return this.resumeRepository.findOne({where :{resId}});
     // }
 
-    
+
 }
 
 
