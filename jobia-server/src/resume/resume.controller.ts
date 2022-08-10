@@ -16,6 +16,7 @@ export class ResumeController {
 
     @Post('/addwhole')
     storeAll(@Body() resCreateDto: resumeCreateDto) {
+      console.log(resCreateDto);
       return this.resService.createWholeResume(resCreateDto);
     }
 

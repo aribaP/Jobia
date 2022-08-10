@@ -17,11 +17,20 @@ const Profile2 = () => {
     candPassword: "",
     candCPassword: ""
   };
+  const initvalues = {
+    candName: "",
+    candEmail: "",
+    candContactNumber: "",
+    candCity: "",
+    candCNIC: "",
+    candAddress: "",
+    candPassword: "",
+  };
 
   // const [formValues, setFormValues] = useState(setCand);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [setCand, setCandDetails] = useState({});
+  const [setCand, setCandDetails] = useState(initvalues);
   const [formValues, setFormValues] = useState(initialvalues);
 
   let name, value;
@@ -98,10 +107,10 @@ const Profile2 = () => {
     try {
       await axios.get("http://localhost:5000/candidate/2")
         .then((response) => {
+          console.log(response.data);
           console.log("Data recieved");
           setCandDetails(response.data);
           console.log("CandSet", setCand);
-
         })
 
     } catch (err) {
