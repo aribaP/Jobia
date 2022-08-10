@@ -94,13 +94,12 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
   return (
     <>
-    <Header/>
-    <div style={{ padding: '30px', marginLeft: '40px' }}>
+    <h1 className='title_job'>Job Application</h1>
+    <form  className='alpha'>
+    <div>
       <div class='row'>
         <div class='col-12 profile-body-right'>
-          <div style={{ padding: '30px' }}>
-
-
+          <div>
             <div className="mb-3">
               <label className='mb-3 mt-15'>Job Position</label>
               <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
@@ -179,7 +178,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
 
 
-          <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '800px' }}>
+          <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '880px' }}>
           <Link to= '/organization'> <button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={ handleSubmit}>Save</button></Link>
           <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={ handleCancel}>Cancel</button>
             
@@ -187,7 +186,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
         </div>
       </div>
     </div>
-    <Footer/>
+    </form>
     </>
   )
 }
