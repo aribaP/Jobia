@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Rectangle from '../assets/Rectangle.png'
 import { Link } from 'react-router-dom'
 
-const ResumeDisplay = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJobsTabs}) => {
+const ResumeDisplay = ({id, onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJobsTabs}) => {
 
   const navigate = useNavigate();
 	const initialvalues = {
@@ -25,6 +25,7 @@ const ResumeDisplay = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeA
 
 
 	const postData = async (body) => {
+
 		const data = {
 			orgName: body.orgName,
 			orgEmail: body.orgEmail,
@@ -50,11 +51,11 @@ const ResumeDisplay = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeA
 	const getData = async () => {
 
 		try {
-			await axios.get("http://localhost:5000/organization/2")
+			await axios.get(`http://localhost:5000/resume/getwhole/${id}`)
 				.then((response) => {
 					console.log("Data recieved");
-					setOrgDetails(response.data);
-					console.log("orgSet", setOrg);
+					console.log(response.data);
+					// console.log("orgSet", setOrg);
 				})
 
 		} catch (err) {
@@ -65,6 +66,7 @@ const ResumeDisplay = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeA
 	};
 
 	useEffect(() => {
+		console.log(id);
 		getData();
 		console.log(formErrors);
 		if (isSubmit && Object.keys(formErrors).length === 0) {

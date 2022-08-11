@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CreateResume = ({onChangeStatus, onChangeTabs}) => {
+
   return (
     <div className='padding-20 resume-create-container'>
       <div style={{ border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}></div>
@@ -16,6 +17,7 @@ const CreateResume = ({onChangeStatus, onChangeTabs}) => {
           <button style={{marginLeft: 5}} className="btn btn-success" type="submit" onClick={() => {
             onChangeStatus('ResumePage')
               onChangeTabs('CreateResume')
+              
             }}>Create</button>
 
           <button style={{marginLeft: 5, color: 'white'}} className="btn btn-warning" type="submit" onClick={() => {

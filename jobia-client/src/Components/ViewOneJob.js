@@ -19,7 +19,7 @@ const ViewOneJob = () => {
 
  
   const [formValues, setFormValues] = useState(initialvalues);
-
+  // http://localhost:5000/company/${ID}
   useEffect(() => {
     axios.get("http://localhost:5000/job-description/getone/124")
       .then(response => {

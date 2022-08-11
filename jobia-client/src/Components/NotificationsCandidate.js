@@ -79,7 +79,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                                 <h5> <b><u>  Job Position:</u></b>  {details.jdPosition}</h5>
                             </div>
                             <div key={details.jdRequiredSkills}>
-                                <p> <b><u>  Requirements:</u></b>   {details.jdRequiredSkills}</p>
+                                <p> <b><u>  Requirements: dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</u></b>   {details.jdRequiredSkills}</p>
                             </div>
                             <div key={details.jdMinimumExperience}>
                                 <p> <b><u>  Minimum Experience:</u></b>   {details.jdMinimumExperience}</p>

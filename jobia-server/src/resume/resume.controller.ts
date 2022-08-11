@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Role } from 'src/auth/role.enum';
 import { Roles } from 'src/auth/roles.decorator';
@@ -20,12 +20,18 @@ export class ResumeController {
       return this.resService.createWholeResume(resCreateDto);
     }
 
+    @Post('/restore')
+    reStoreAll(@Body() resCreateDto: resumeCreateDto) {
+      console.log(resCreateDto);
+      return this.resService.createWholeResume(resCreateDto);
+    }
+
     @Get('/getwhole/:resId')
     getWholeResume(@Param('resId', ParseIntPipe) resId: number) {
       return this.resService.showWholeResume(resId);
     }
 
-    @Patch('updatewhole/:resId')
+    @Put('updatewhole/:resId')
     update(
       @Body() resUpdateDto: resumeUpdateDto,
       @Param('resId', ParseIntPipe) resId: number) {

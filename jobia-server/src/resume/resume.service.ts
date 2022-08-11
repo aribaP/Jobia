@@ -81,20 +81,24 @@ export class ResumeService {
 
     async createWholeResume(resCreateDto: resumeCreateDto) {
         console.log(resCreateDto);
+        console.log("2");
         const saved = await this.resumeRepository.save(resCreateDto);
-
+        console.log("1");
         const getAllJD = await this.jobDescriptionRepository.find({});
-
-        let expYears, countYears = 0, edubach, eduMast;
+        console.log("3");
+        let expYears, countYears = 0, edubach, eduMast, bachlower, masterslower;
         // 
         for (let i = 0; i < resCreateDto[0]['eduFK'].length; i++) {
-            const bachlower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
-            if (bachlower.includes("bach") || bachlower.includes("bachelors") || bachlower.includes("bachelor") || bachlower.includes("bs"))
-                edubach = resCreateDto[0]['eduFK'][i].eduDegree;
-
-            const masterslower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
-            if (masterslower.includes("master") || masterslower.includes("ms") || masterslower.includes("masters"))
-                eduMast = resCreateDto[0]['eduFK'][i].eduDegree;
+            if (resCreateDto[0]['eduFK'][i].eduDegree != "") {
+                bachlower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
+                if (bachlower.includes("bach") || bachlower.includes("bachelors") || bachlower.includes("bachelor") || bachlower.includes("bs"))
+                    edubach = resCreateDto[0]['eduFK'][i].eduDegree;
+            }
+            if (resCreateDto[0]['eduFK'][i].eduDegree != "") {
+                masterslower = resCreateDto[0]['eduFK'][i].eduDegree.toLowerCase();
+                if (masterslower.includes("master") || masterslower.includes("ms") || masterslower.includes("masters"))
+                    eduMast = resCreateDto[0]['eduFK'][i].eduDegree;
+            }
         }
 
         for (let i = 0; i < resCreateDto[0]['expFK'].length; i++) {
@@ -119,7 +123,7 @@ export class ResumeService {
                 acc3 = 0.9;
             else if (expYears > 0)
                 acc3 = 0.1;
-            
+
 
             const accuracy = ((acc1 * 0.3) + (acc2 * 0.3) + (acc3 * 0.4)) * 100;
             console.log(getAllJD[index].jdId, ": ", accuracy);
@@ -132,7 +136,7 @@ export class ResumeService {
                 const whatever = this.scoreRepository.save(scoreDto);
             }
         }
-        return await this.resumeRepository.find();
+        return await this.scoreRepository.find( );
 
     }
 

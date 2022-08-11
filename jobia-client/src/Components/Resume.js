@@ -297,9 +297,6 @@ function Resume() {
                 </div>
               </div>
               <div className='hello'>
-              <button type='button' className="btn btn-primary" >
-                Load saved data
-              </button>
               <button className="btn btn-secondary" type='reset'>Reset</button>
               <button
                 className="btn btn-success"

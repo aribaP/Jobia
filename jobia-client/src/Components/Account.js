@@ -105,8 +105,12 @@ const Account = (props) => {
             />
           }
           {check === 'ResumeView' && <ResumeView
+
+      
+
             onChangeStatus={(val) => setCheck(val)}
             onChangeTabs={(val) => setTabs(val)}
+          
           // onChangeAllJobs={(val) => setCheck(val)}
           // onChangeAllJobsTabs={(val) => setTabs(val)} 
           />}
@@ -115,6 +119,7 @@ const Account = (props) => {
            />}
           {check === 'ResumeDisplay' && <ResumeDisplay 
           handleOnSave={(val) => setCheck(val)}
+          id = {68}
            />}
            {check === 'ViewOneJob' && <ViewOneJob
           handleOnSave={(val) => setCheck(val)}

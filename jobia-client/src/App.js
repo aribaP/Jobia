@@ -18,6 +18,7 @@ import Resume from './Components/Resume';
 import ViewOneJob from './Components/ViewOneJob';
 import EditOneJob from './Components/EditOneJob';
 import ResumeDisplay from './Components/ResumeDisplay';
+import UpdateResume from './Components/UpdateResume';
 
 
 
@@ -45,6 +46,7 @@ function App() {
         <Route exact path='/onejob' element={<ViewOneJob />}/>
         <Route exact path= '/editonejob'element= {<EditOneJob/>}/>
         <Route exact path= '/displayresume'element= {<ResumeDisplay/>}/>
+        <Route exact path= '/update'element= {<UpdateResume/>}/>
         {/* <Route path='/policy' element={<Policy />}/> */}
 
 

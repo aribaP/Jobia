@@ -2,7 +2,9 @@ import React from 'react'
 import Rectangle from '../assets/Rectangle.png'
 import { Link } from 'react-router-dom'
 
-const ResumeView = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJobsTabs}) => {
+const ResumeView = ({onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChangeAllJobsTabs}) => {
+
+
   return (
     <div className='padding-20 resume-create-container'>
       <div style={{ border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}></div>
@@ -14,10 +16,12 @@ const ResumeView = ({onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJ
         </div>
       </div>
       <form className="d-flex justifyContent width-100">
+        
         <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => {
           onChangeStatus('ResumePage')
           onChangeTabs('Job')
           }}>View</button>
+
         <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => {
         onChangeStatus('ResumePage')
           onChangeTabs('Resume')
