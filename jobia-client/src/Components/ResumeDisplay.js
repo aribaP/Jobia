@@ -114,25 +114,147 @@ const ResumeDisplay = ({id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCha
 
 
   return (
-    
-    <div className='padding-20 resume-create-container'>
-    <div style={{ backgroundColor:'gray', border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}>
-    <div className='resume'>
-      <p style={{backgroundColor:'gray'}}>
-        <div  className='btn2'><h1>Name:&emsp;</h1><h1>{setOrg.orgName}</h1><br/></div>
-        <br></br> 
-        <h6>email address</h6>
-        <h6>LinkedIn: linkedin&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Github: github</h6><br/><br/>
-        <h4>Objective</h4>objective<br/><br/>
-        <h4>Work Experience</h4>work experience<br/><br/>
-        <h4>Education</h4>education<br/><br/>
-        <h4>Projects</h4>projects<br/><br/>
-        <h4>Skills</h4>skills<br/><br/>
-        <h4>Interests/Hobbies</h4>hobbies<br/><br/>
-      </p>
-    </div>
-    </div>
-  </div>
+    <div className='body-resume'>
+	<div className='resume-display'>
+		<div className='resume-display-left'>
+			<div className='profileText'>
+				<h2>Muhammad Sabir<br></br><span>Web Developer</span></h2>
+			</div>
+			<div className='contactInfo'>
+				<h3 className='resume-title'>Contact Info</h3>
+				<ul>
+					<li>
+						<span className='resume-icon'><i class="fa fa-phone" aria-hidden="true"></i></span>
+						<span className='resume-text'>+92 302 2079971</span>
+					</li>
+					<li>
+						<span className='resume-icon'><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+						<span className='resume-text'>muhammadsabir.1601139@gmail.com</span>
+					</li>
+					<li>
+						<span className='resume-icon'><i class="fa fa-globe" aria-hidden="true"></i></span>
+						<span className='resume-text'>www.sabir.com</span>
+					</li>
+					<li>
+						<span className='resume-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+						<span className='resume-text'>www.linked.com</span>
+					</li>
+					<li>
+						<span className='resume-icon'><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+						<span className='resume-text'>Karachi, Sindh, Pakistan</span>
+					</li>
+				</ul>
+			</div>
+
+			<div className='contactInfo education'>
+				<h3 className='resume-title'>Education</h3>
+				<ul>
+					<li>
+						<h5>2018 - 2022</h5>
+						<h4>Bachelors in Computer Science</h4>
+						<h4>National University of Computer and Emerging Sciences</h4>
+					</li>
+					<li>
+						<h5>2016 - 2018</h5>
+						<h4>Pre Engineering</h4>
+						<h4>The Citizens Foundation College</h4>
+					</li>
+					<li>
+						<h5>2014 - 2016</h5>
+						<h4>Matric</h4>
+						<h4>The Citizens Foundation School</h4>
+					</li>
+				</ul>
+			</div>
+
+			<div className='contactInfo language'>
+				<h3 className='resume-title'>Languages</h3>
+				<ul>
+					<li>
+						<span className='resume-text'>English</span>
+					</li>
+					<li>
+						<span className='resume-text'>Urdu</span>
+					</li>
+					<li>
+						<span className='resume-text'>Sindhi</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div className='resume-display-right'>
+			<div className='about'>
+				<h2 className='title2'>Objective</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+
+			<div className='about'>
+				<h2 className='title2'>Experience</h2>
+				<div className='box'>
+					<div className='yearCompany'>
+						<h5>Year of Experience</h5>
+						<h5>Company Name</h5>
+					</div>
+					<div className='resume-text'>
+						<h4>Description</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+					</div>
+				</div>
+
+				<div className='box'>
+					<div className='yearCompany'>
+						<h5>Year of Experience</h5>
+						<h5>Company Name</h5>
+					</div>
+					<div className='resume-text'>
+						<h4>Description</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+					</div>
+				</div>
+			</div>
+
+			<div className='about'>
+				<h2 className='title2'>Projects</h2>
+				<div className='box'>
+					<div className='yearCompany'>
+						<h5>Project Title</h5>
+					</div>
+					<div className='resume-text'>
+						<h4>Description</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+					</div>
+				</div>
+
+				<div className='box'>
+					<div className='yearCompany'>
+						<h5>Project Title</h5>
+					</div>
+					<div className='resume-text'>
+						<h4>Description</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+					</div>
+				</div>
+			</div>
+
+			<div className='about skills'>
+				<h2 className='title2'>Skills</h2>
+				<div className='box'>
+					<h4>HTML</h4>
+				</div>
+				<div className='box'>
+					<h4>CSS</h4>
+				</div>
+				<div className='box'>
+					<h4>JavaScript</h4>
+				</div>
+				<div className='box'>
+					<h4>React JS</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
   )
 }
 
