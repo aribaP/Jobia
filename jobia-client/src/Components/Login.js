@@ -8,6 +8,7 @@ import Header from "../Components/Header";
 import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,19 +39,24 @@ const Login = () => {
       console.log("body", body);
 
       try{
-          await axios.post("http://localhost:5000/auth/login",body)
+          await axiosApiService.coreApi.post("auth/login", body)
           .then((response) => {
+              
               console.log("Data recieved");   
-              console.log("Oyeee",response.data);
-              const results = response.data;
-              // if(response.data[0].role == 'candidate') 
-              //   navigate('/account', { replace: true }); 
-              // else if(response.data[0].role == 'organization')
-              //   navigate('/organization');
+              console.log(response);
+              localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, candId: response[0]?.candId, orgId: response[0]?.orgId})
+)
+              if(response[0].role == 'candidate') 
+                navigate('/account', { replace: true }); 
+              else if(response[0].role == 'organization')
+                navigate('/organization');
+
+          }).catch((err) => {
+            console.log(err);
           })
 
       }catch(err){
-          console.log(err);
+          console.log("dw",err);
           window.alert('Incorrect credentials');
           navigate('/login', { replace: true }); 
       }

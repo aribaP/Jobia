@@ -8,10 +8,11 @@ import { resumeExperience } from 'src/resume-experience/entity/resume-experience
 import { resumeProjects } from 'src/resume-projects/entity/resume-projects.entity';
 import { jobDescription } from 'src/job-description/entity/job-description.entity';
 import { score } from 'src/score/entity/score.entity';
+import { candidate } from 'src/candidate/entity/candidate.entity';
 
 @Module({
   controllers: [ResumeController],
   providers: [ResumeService],
-  imports: [TypeOrmModule.forFeature([resume, resumeEducation, resumeExperience, resumeProjects, jobDescription, score])],
+  imports: [TypeOrmModule.forFeature([resume, resumeEducation, resumeExperience, resumeProjects, jobDescription, score, candidate])],
 })
 export class ResumeModule {}

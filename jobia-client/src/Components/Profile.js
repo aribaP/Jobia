@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Profile2 = () => {
 
@@ -88,7 +89,8 @@ const Profile2 = () => {
       candPassword: body.candPassword
     };
     try {
-      await axios.patch("http://localhost:5000/candidate/2", data)
+      const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+      await axiosApiService.coreApi.patch(`candidate/${user.candId}`, data)
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);
@@ -105,7 +107,8 @@ const Profile2 = () => {
   const getData = async () => {
 
     try {
-      await axios.get("http://localhost:5000/candidate/2")
+      const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+      await axiosApiService.coreApi.get(`candidate/${user.candId}`)
         .then((response) => {
           console.log(response.data);
           console.log("Data recieved");
@@ -140,22 +143,22 @@ const Profile2 = () => {
 
     console.log("I am in validation");
 
-    if (!values.candName) { }
-    else if (!regex.test(values.candEmail)) { errors.candEmail = "This is not a valid email format!"; }
+    if (!values?.candName) { }
+    else if (!regex.test(values?.candEmail)) { errors.candEmail = "This is not a valid email format!"; }
 
-    if (!values.candContactNumber) { }
-    else if (!regexphoneno.test(values.candContactNumber)) { errors.candContactNumber = "Invalid phonenumber!"; }
+    if (!values?.candContactNumber) { }
+    else if (!regexphoneno.test(values?.candContactNumber)) { errors.candContactNumber = "Invalid phonenumber!"; }
 
-    if (!values.candCNIC) { }
-    else if (!regexCNIC.test(values.candCNIC)) { errors.candCNIC = "CNIC must follow the XXXXX-XXXXXXX-X format!"; }
+    if (!values?.candCNIC) { }
+    else if (!regexCNIC.test(values?.candCNIC)) { errors.candCNIC = "CNIC must follow the XXXXX-XXXXXXX-X format!"; }
 
     
-    if (!values.candPassword && !values.candCPassword) {  }
-    else if(values.candCPassword != values.candPassword) { errors.candCPassword = "Password must be same as above."; }
-    else if(!values.candCPassword && values.candPassword) { errors.candCPassword = "Please reenter the password for confirmation."; }
-    else if(values.candCPassword && !values.candPassword) { errors.candPassword = "Enter the password before confirmation."; }
-    else if (values.candPassword.length < 7) { errors.candPassword = "Password must be more than 7 characters"; }
-    else if (values.candPassword.length > 15) { errors.candPassword = "Password cannot exceed more than 15 characters"; }
+    if (!values?.candPassword && !values?.candCPassword) {  }
+    else if(values?.candCPassword != values?.candPassword) { errors.candCPassword = "Password must be same as above."; }
+    else if(!values?.candCPassword && values?.candPassword) { errors.candCPassword = "Please reenter the password for confirmation."; }
+    else if(values?.candCPassword && !values?.candPassword) { errors.candPassword = "Enter the password before confirmation."; }
+    else if (values?.candPassword.length < 7) { errors.candPassword = "Password must be more than 7 characters"; }
+    else if (values?.candPassword.length > 15) { errors.candPassword = "Password cannot exceed more than 15 characters"; }
 
     // if (!validator.isStrongPassword(value, {
     //   minLength: 8, minLowercase: 1,
@@ -184,7 +187,7 @@ const Profile2 = () => {
                 id="candName"
                 name="candName"
                 placeholder="First Name"
-                value={setCand.candName}
+                value={setCand?.candName}
               />
               <button className='btn btn-small btn-outline-secondary'>
                 <img src={Edit} alt="" width="30px" height="30px" />
@@ -215,7 +218,7 @@ const Profile2 = () => {
                 id="candEmail"
                 name="candEmail"
                 disabled="true"
-                value={setCand.candEmail}
+                value={setCand?.candEmail}
                 placeholder="Email Address"
               />
               <button className='btn btn-small btn-outline-secondary'>
@@ -247,7 +250,7 @@ const Profile2 = () => {
                 class="form-control input-Fields"
                 id="candContactNumber"
                 disabled="true"
-                value={setCand.candContactNumber}
+                value={setCand?.candContactNumber}
                 placeholder="Phone Number"
               />
               <button className='btn btn-small btn-outline-secondary'>
@@ -277,7 +280,7 @@ const Profile2 = () => {
                 class="form-control input-Fields"
                 id="candCity"
                 disabled="true"
-                value={setCand.candCity}
+                value={setCand?.candCity}
                 placeholder="Phone Number"
               />
               <button className='btn btn-small btn-outline-secondary'>
@@ -307,7 +310,7 @@ const Profile2 = () => {
                 class="form-control input-Fields"
                 id="candCNIC"
                 disabled="true"
-                value={setCand.candCNIC}
+                value={setCand?.candCNIC}
                 placeholder="Phone Number"
               />
               <button className='btn btn-small btn-outline-secondary'>
@@ -337,7 +340,7 @@ const Profile2 = () => {
                 class="form-control input-Fields"
                 id="candAddress"
                 disabled="true"
-                value={setCand.candAddress}
+                value={setCand?.candAddress}
                 placeholder="Phone Number"
               />
               <button className='btn btn-small btn-outline-secondary'>

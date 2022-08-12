@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { resumeCreateDto } from './dto/resume-create.dto';
 import { resumeUpdateDto } from './dto/resume-update.dto';
 import { resume } from './entity/resume.entity';
+import { candidate } from 'src/candidate/entity/candidate.entity';
 
 @Injectable()
 export class ResumeService {
@@ -17,6 +18,9 @@ export class ResumeService {
         private jobDescriptionRepository: Repository<jobDescription>,
         @InjectRepository(score)
         private scoreRepository: Repository<score>,
+        @InjectRepository(candidate)
+        private candidateRepository: Repository<candidate>,
+
     ) { }
 
     wordCountMap(str) {
@@ -136,15 +140,36 @@ export class ResumeService {
                 const whatever = this.scoreRepository.save(scoreDto);
             }
         }
-        return await this.scoreRepository.find( );
+        return await this.scoreRepository.find();
 
     }
 
-    async showWholeResume(resFK: number): Promise<resume[]> {
-        return await this.resumeRepository.find({
-            relations: ['projFK', 'eduFK', 'expFK'],
-            where: { resId: resFK }
+    async showWholeResume(resId: number) {
+        const getCand = await this.resumeRepository.findOne({
+            relations: ['candFK'],
+            where: { resId }
         });
+
+
+
+        const getResume = await this.resumeRepository.find({
+            relations: ['projFK', 'eduFK', 'expFK'],
+            where: { resId: resId }
+        });
+
+        console.log(getResume[0]);
+
+        return {
+            getResume: getResume[0],
+            getCand: {
+                candAddress: getCand.candFK.candAddress,
+                candCity: getCand.candFK.candCity,
+                candContactNumber: getCand.candFK.candContactNumber,
+                candEmail: getCand.candFK.candEmail,
+                candName: getCand.candFK.candName
+            },
+            
+        };
     }
 
     updateWholeResume(resUpdateDto: resumeUpdateDto, resId: number) {
