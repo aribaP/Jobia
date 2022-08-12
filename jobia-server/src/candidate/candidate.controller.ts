@@ -35,7 +35,7 @@ export class CandidateController {
     }
 
     //  @UseGuards(AuthGuard('jwt'))
-    @Patch('/:candId')
+    @Patch('update/:candId')
     update(
       @Body() candUpdateDto: candidateUpdateDto,
       @Param('candId', ParseIntPipe) candId: number) {

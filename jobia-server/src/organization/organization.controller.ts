@@ -28,7 +28,8 @@ export const storage = {
     })
 }
 
-
+@Roles(Role.Organization)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('organization')
 export class OrganizationController {
 

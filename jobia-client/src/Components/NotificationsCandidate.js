@@ -36,8 +36,8 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
     }
 
     useEffect(() => {
-
-        axios.get("http://localhost:5000/candidate/notification/27")
+        const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+        axios.get(`http://localhost:5000/candidate/notification/${user.candId}`)
             .then(response => {
                 setFormValues(response.data);
                 console.log("Data recieved");

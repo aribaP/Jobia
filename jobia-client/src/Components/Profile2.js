@@ -56,15 +56,10 @@ const Profile2 = () => {
 
 
 	const postData = async (body) => {
-		const data = {
-			orgName: body.orgName,
-			orgEmail: body.orgEmail,
-			orgContactNumber: body.orgContactNumber,
-			orgPassword: body.orgPassword
-		};
-
+	
 		try {
-			await axios.patch("http://localhost:5000/organization/2", data)
+			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+			await axios.patch(`organization/${user.orgId}`, body)
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
@@ -81,7 +76,8 @@ const Profile2 = () => {
 	const getData = async () => {
 
 		try {
-			await axios.get("http://localhost:5000/organization/2")
+			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+			await axios.get(`organization/${user.orgId}`)
 				.then((response) => {
 					console.log("Data recieved");
 					setOrgDetails(response.data);

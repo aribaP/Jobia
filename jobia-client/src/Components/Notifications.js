@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
@@ -48,9 +49,8 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
   const [formValues, setFormValues] = useState([initialvalues]);
 
   const handleDelete = (scoreId) => {
-
     console.log(scoreId);
-    axios.delete("http://localhost:5000/score/delete/" + scoreId)
+    axios.delete("score/delete/" + scoreId)
       .then(response => {
         console.log("Data recieved");
         console.log(response.data);
@@ -65,8 +65,8 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
   }
 
   useEffect(() => {
-
-    axios.get("http://localhost:5000/organization/notification/2")
+    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+    axiosApiService.coreApi.get(`organization/notification/${user.orgId}`)
       .then(response => {
         setFormValues(response.data);
         console.log("Data recieved");

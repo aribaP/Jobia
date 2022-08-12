@@ -90,10 +90,10 @@ const Profile2 = () => {
     };
     try {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-      await axiosApiService.coreApi.patch(`candidate/${user.candId}`, data)
+      await axiosApiService.coreApi.patch(`candidate/update/${user.candId}`, data)
         .then((response) => {
           console.log("Data recieved");
-          console.log(response.data);
+          console.log(response);
           alert("Information saved.");
           window.location.reload();
         })
@@ -110,9 +110,9 @@ const Profile2 = () => {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
       await axiosApiService.coreApi.get(`candidate/${user.candId}`)
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
           console.log("Data recieved");
-          setCandDetails(response.data);
+          setCandDetails(response);
           console.log("CandSet", setCand);
         })
 

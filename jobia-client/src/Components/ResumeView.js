@@ -2,7 +2,7 @@ import React from 'react'
 import Rectangle from '../assets/Rectangle.png'
 import { Link } from 'react-router-dom'
 
-const ResumeView = ({onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChangeAllJobsTabs}) => {
+const ResumeView = ({ onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChangeAllJobsTabs }) => {
 
 
   return (
@@ -16,19 +16,19 @@ const ResumeView = ({onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChange
         </div>
       </div>
       <form className="d-flex justifyContent width-100">
-        
+
         <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => {
           onChangeStatus('ResumePage')
           onChangeTabs('Job')
-          }}>View</button>
+        }}>View</button>
 
         <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => {
-        onChangeStatus('ResumePage')
+          onChangeStatus('ResumePage')
           onChangeTabs('Resume')
-          }}>Update</button>
-          
-      <button className="btn button-style-full btn-clr-brown btn-sm create-resume" type="submit" onClick={() => {
-   
+        }}>Update</button>
+
+        <button className="btn button-style-full btn-clr-brown btn-sm create-resume" type="submit" onClick={() => {
+
           onChangeTabs('CreateResume')
           onChangeStatus('ResumePage')
         }}>Delete</button>
