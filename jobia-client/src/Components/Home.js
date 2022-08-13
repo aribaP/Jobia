@@ -6,7 +6,6 @@ import NavBarComponent from "./NavBarComponent";
 export default function Home() {
   return (
     <>
-      {/* <Header /> */}
       <NavBarComponent/>
       
       <section className="home-container">
