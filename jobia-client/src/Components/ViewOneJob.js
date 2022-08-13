@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
-import Header from './Header';
+import Header from './Header1';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
