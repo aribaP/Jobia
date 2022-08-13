@@ -44,10 +44,10 @@ const Login = () => {
               
               console.log("Data recieved");   
               console.log(response);
-              localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, candId: response[0]?.candId, orgId: response[0]?.orgId}))
-              if(response[0].role == 'candidate') 
-                navigate('/account', { replace: true }); 
-              else if(response[0].role == 'organization')
+              localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, candId: response[0]?.candId, orgId: response[0]?.orgId, role: response[0]?.role}))
+              if(response[0].role === 'candidate') 
+                navigate('/account'); 
+              else if(response[0].role === 'organization')
                 navigate('/organization');
 
           }).catch((err) => {
