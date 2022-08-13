@@ -26,7 +26,14 @@ function NavBarComponent2() {
            
           </Nav>
           <Form className="d-flex" style={{ paddingRight:"20px" }}>
-        
+          <Link to="/login">
+                <button
+                  className="btn body-button-style1 padding-l-15 padding-r-15"
+                  type="submit"
+                >
+                  Logout
+                </button>
+              </Link>
              
           </Form>
         </Navbar.Collapse>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
 import Footer from './Footer'
-import NavBarComponent from "./NavBarComponent";
+import NavBarComponent2 from "./NavBarComponent2";
 
 const EditOneJob = () => {
 
@@ -127,7 +127,7 @@ const EditOneJob = () => {
         <>
             
  {/* <Header /> */}
- <NavBarComponent/>
+ <NavBarComponent2/>
          <section className="update">
           <div>
             <h2 className="contactUsHeading">Job Update</h2>

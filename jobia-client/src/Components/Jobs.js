@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom';
-import NavBarComponent from "./NavBarComponent";
+import NavBarComponent2 from "./NavBarComponent2";
 
 const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
@@ -96,7 +96,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
     <>
   
     {/* <Header /> */}
-    <NavBarComponent/>      <section className="JobHeader">
+    <NavBarComponent2/>      <section className="JobHeader">
         <div>
           <h2 className="contactUsHeading">Job Application</h2>
         </div>
