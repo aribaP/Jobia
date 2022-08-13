@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
+<<<<<<< HEAD
 import Header from './Header';
 import NavBarComponent from "./NavBarComponent";
 
+=======
+import Header from './Header1';
+>>>>>>> 3134ff8402d8b7ae1a69dc2afdbc99e78cc260b1
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 

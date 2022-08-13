@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
-import Header from './Header';
+import Header from './Header1';
 import Notifications from '../assets/Notification.png';
 import Settings from '../assets/Setting.png';
 import Resumee from '../assets/Resume.png';
