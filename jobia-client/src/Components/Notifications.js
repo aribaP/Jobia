@@ -81,16 +81,16 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
   }, []);
   return (
     <div className="padding-20 resume-create-container">
-      <div
-        style={{
-          border: "4px solid #1e957d",
-          borderRadius: "20px",
-          width: "100%",
-        }}
+    <div
+      style={{
+        border: "4px solid #1e957d",
+        borderRadius: "20px",
+        width: "100%",
+      }}
 
       ></div>
-      <div className='display-5 my-4 btn button-style-full text-black'>
-      <h4  style={{
+         <div className='display-5 my-4 btn button-style-full text-black'>
+        <h4  style={{
         color: "white",
           width: "100%",
      

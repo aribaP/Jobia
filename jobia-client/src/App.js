@@ -6,7 +6,6 @@ import Register2 from './Components/Register2';
 import Login from './Components/Login'
 import Account from './Components/Account'
 import RegistrationOption from './Components/RegistrationOption'
-import Header from './Components/Header'
 import Contact from './Components/Contact'
 import About from './Components/About'
 import Footer from './Components/Footer'
@@ -19,81 +18,45 @@ import ViewOneJob from './Components/ViewOneJob';
 import EditOneJob from './Components/EditOneJob';
 import ResumeDisplay from './Components/ResumeDisplay';
 import UpdateResume from './Components/UpdateResume';
-import { useEffect } from 'react';
-import { useState } from 'react';
+
+
+
 
 
 
 
 
 function App() {
-  const [role, setRole] = useState("");
-
-  useEffect(() => {
-
-    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-    console.log(user.role);
-    setRole(user.role);
-  })
-
-
-
-  if (role === 'candidate') {
-    return (
+  return (
+    <>
       <Routes>
-        <Route path="*" element={<Login />} />
-        <Route exact path='/' element={<Home />} />
-        <Route path='/account' element={<Account />} />
-        <Route path='/header' element={<Header />} />
-        <Route path='/footer' element={<Footer />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/resume' element={<Resume />} />
-        <Route exact path='/displayresume' element={<ResumeDisplay />} />
-        <Route exact path='/update' element={<UpdateResume />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/about' element={<About />} />
+      <Route exact path='/' element={<Home />}/>
+        <Route path='/register' element={<Register />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/register2' element={<Register2 />}/>
+        <Route path='/account' element={<Account />}/>
+        <Route path='/registrationOption' element={<RegistrationOption />}/>
+        <Route path='/footer' element={<Footer />}/>
+        
+        <Route path='/contact' element={<Contact />}/>
+        <Route path='/about' element={<About />}/>
+        <Route path='/profile' element={<Profile />}/>
+        <Route path='/profile2' element={<Profile2 />}/>
+        <Route path='/jobs' element={<Jobs />}/>
+        <Route path='/organization' element={<Organization />}/>
+        <Route path='/resume' element={<Resume />}/>
+        <Route exact path='/onejob' element={<ViewOneJob />}/>
+        <Route exact path= '/editonejob'element= {<EditOneJob/>}/>
+        <Route exact path= '/displayresume'element= {<ResumeDisplay/>}/>
+        <Route exact path= '/update'element= {<UpdateResume/>}/>
+        
+        
+        {/* <Route path='/policy' element={<Policy />}/> */}
+
+
       </Routes>
-    )
-  }
-  else if (role === "organization") {
-    return (
-      <>
-        <Routes>
-          <Route path="*" element={<Login />} />
-          <Route exact path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/header' element={<Header />} />
-          <Route path='/footer' element={<Footer />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/profile2' element={<Profile2 />} />
-          <Route path='/jobs' element={<Jobs />} />
-          <Route path='/organization' element={<Organization />} />
-          <Route exact path='/onejob' element={<ViewOneJob />} />
-          <Route exact path='/editonejob' element={<EditOneJob />} />
-
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/about' element={<About />} />
-          {/* <Route path='/policy' element={<Policy />}/> */}
-
-
-        </Routes>
-      </>
-    )
-  }
-  else {
-    return (
-      <Routes>
-        <Route path="*" element={<Login />} />
-        <Route exact path='/' element={<Home />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/registrationOption' element={<RegistrationOption />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register2' element={<Register2 />} />
-      </Routes>
-    )
-  }
+    </>
+  );
 }
 
 export default App;

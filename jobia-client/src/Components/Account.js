@@ -30,7 +30,7 @@ const Account = (props) => {
 
   return (
     <>
-      {/* <Header /> */}
+     {/* <Header /> */}
   <NavBarComponent2/>
       <div className='profileHeader'>
       <h2 style={{ fontWeight: 600 }}>Candidates </h2>

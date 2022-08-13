@@ -139,9 +139,9 @@ const EditOneJob = () => {
           
         }}>
 
-
-                <div class="col-10 profile-body-right">
-                <div style={{
+               
+            <div class="col-10 profile-body-right">
+                    <div style={{
           marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
           boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
           padding:"30px"
@@ -300,8 +300,8 @@ const EditOneJob = () => {
                         <form className="d-flex justifyContent width-100">
             <button className="btn button-style-outline me-2 btn-sm" type="submit"  onClick={handleCancel}>Cancel</button>
          <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={handleSubmit}>Save</button>
- 
-                        </form>
+          
+            </form>
 
                     </div>
                 </div>

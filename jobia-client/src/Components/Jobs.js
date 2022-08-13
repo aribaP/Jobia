@@ -94,7 +94,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
   return (
     <>
-
+  
     {/* <Header /> */}
     <NavBarComponent2/>      <section className="JobHeader">
         <div>
@@ -129,7 +129,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Minimum Years</label>
               <textarea type="number" name="jdMinimumExperience" class="form-control mb-3 input-Fields"
-                id="jdMinimumExperience" placeholder="In years" style={{ width: "100%" }}
+                id="jdMinimumExperience" placeholder="In years" style={{  width: "100%" }}
                 value={formValues.jdMinimumExperience}
                 rows='1' 
                 onChange={handleChange} />
@@ -142,7 +142,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
               <label className='mb-3 mt-15'>Requirements</label>
               <textarea
                 class="form-control mb-3 input-Fields"
-                id="jdRequiredSkills" style={{ width: "100%" }}
+                id="jdRequiredSkills" style={{  width: "100%" }}
                 placeholder="All the job requirements you demand"
                 rows="10"
                 name='jdRequiredSkills'
@@ -157,7 +157,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div class="mb-3">
               <label className='mb-3 mt-15'>City</label>
               <div>
-                <select className="form-control city" id="jdCity" name="jdCity" style={{ width: "100%" }} required
+                <select className="form-control city" id="jdCity" name="jdCity" style={{  width: "100%" }} required
                   value={formValues.jdCity}
                   onChange={handleChange}>
                   <option>--Select city--</option>
@@ -180,7 +180,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Location</label>
               <textarea type="text" name="jdLocation" class="form-control mb-3 input-Fields"
-                id="jdLocation" required placeholder="" style={{ width: "100%" }}
+                id="jdLocation" required placeholder="" style={{  width: "100%" }}
                 value={formValues.jdLocation} 
                 rows='1' 
                 onChange={handleChange} />
@@ -197,11 +197,11 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
           <form className="d-flex justifyContent width-100">
             <button className="btn button-style-outline me-2 btn-sm" type="submit"  onClick={handleCancel}>Cancel</button>
             <Link to='/organization'><button className="btn button-style-full me-2 btn-sm" type="submit" onClick={handleSubmit}>Save</button></Link>
-            
-          </form>
+          
+            </form>
         </div>
-
-      </div>      
+        
+      </div>
       <footer>
         <Footer dark={true} />
       </footer>

@@ -100,7 +100,7 @@ export default function Home() {
         {/* <!-- Category End --> */}
       <section className="good-company-lower-part"> 
       <div className="container">
-      <div className="d-md-flex align-items-center justify-content-between">
+        <div className="d-md-flex align-items-center justify-content-between">
           <div className="good-company-lower-part-rectangle_1"></div>
           <div>
             <h3>Jobia For Recruiters</h3>

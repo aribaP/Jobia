@@ -95,7 +95,7 @@ const Register = () => {
 
       {/* <Header /> */}
       <NavBarComponent/>
-      
+
       <div className='body'>
         <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
         <div className='body-form-register'>

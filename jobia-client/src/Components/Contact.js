@@ -9,13 +9,13 @@ const ContactUs = () => {
       <>
        {/* <Header /> */}
        <NavBarComponent/>
-        <section className="contactUsHeader">
+       <section className="contactUsHeader">
       <div>
         <h2 className="contactUsHeading">CONTACT US</h2>
       </div>
       </section>
         <div class="container contactUsContainer">
-        <div class="row g-2" style={{ marginTop:"20px"}}>
+          <div class="row g-2" style={{ marginTop:"20px"}}>
             <div class="col-6 " style={{marginBottom:"40px"}}  >
               <div class="contact_img">
                 <img  src={Contact} alt="" width="80%" />

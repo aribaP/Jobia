@@ -140,9 +140,9 @@ const Profile2 = () => {
 	return (
 
 		<div style={{ paddingRight: "40px", marginLeft: "100px" }}>
-			<div class="row">
+		<div class="row">
 
-				<div class="col-10 profile-body-right">
+			<div class="col-10 profile-body-right">
 				<div style={{
 					padding: "30px", border: "1px solid black", color: "white",
 					
