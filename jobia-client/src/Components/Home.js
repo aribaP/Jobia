@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import NavBarComponent from "./NavBarComponent";
 
 export default function Home() {

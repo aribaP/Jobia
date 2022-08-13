@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Footer from './Footer'
-import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import NavBarComponent from "./NavBarComponent";
 

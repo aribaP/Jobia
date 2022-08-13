@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
-import Header from './Header1';
 import Notifications from '../assets/Notification.png';
 import Settings from '../assets/Setting.png';
 import Resumee from '../assets/Resume.png';
@@ -11,6 +10,7 @@ import AllJobs from './AllJobs';
 import Profile2 from './Profile2';
 import Setting from './Setting';
 import NavBarComponent from "./NavBarComponent";
+import NavBarComponent2 from "./NavBarComponent2";
 
 
 
@@ -26,10 +26,9 @@ const Organization = (props) => {
 
   return (
     <>
-  {/* <Header /> */}
-  <NavBarComponent/>
+  <NavBarComponent2/>
         <div className='profileHeader'>
-      <h2 style={{ fontWeight: 500 }}>organization </h2>
+      <h2 style={{ fontWeight: 600 }}>organization </h2>
       </div>
       <div class='row'>
         <div class='col-2 bg-Gray'>

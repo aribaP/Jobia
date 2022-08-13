@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import JobiaLogo from "../assets/Jobia_Logo.png";
 
 
-function NavBarComponent() {
+function NavBarComponent2() {
   return (
     <Navbar bg="light" expand="lg" style={{ boxShadow: "2px 10px 4px rgb(0 0 0 / 25%)" }}>
       <Container fluid>
@@ -21,26 +21,13 @@ function NavBarComponent() {
          >
             <Nav.Link as={Link} to="/about">   About US</Nav.Link>
             <Nav.Link as={Link} to="/contact">  Contact Us</Nav.Link>
-            <Nav.Link as={Link} to="/register2">      Get a Job</Nav.Link>
-            <Nav.Link as={Link} to="/register">    Hire Employees</Nav.Link>
+    
             
            
           </Nav>
           <Form className="d-flex" style={{ paddingRight:"20px" }}>
-          <Link to="/login">
-                <button
-                  className="btn body-button-style1 padding-l-15 padding-r-15"
-                  type="submit"
-                >
-                  Log in
-                </button>
-              </Link>
-              &ensp;
-              <Link to="/registrationOption">
-                <button className="btn body-button-style" type="submit">
-                  Register
-                </button>
-              </Link>
+        
+             
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -48,4 +35,4 @@ function NavBarComponent() {
   );
 }
 
-export default NavBarComponent;
+export default NavBarComponent2;

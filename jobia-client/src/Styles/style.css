@@ -138,9 +138,9 @@
   background-color: #ffffff;
   padding: 3%;
   margin-right: 10%;
-  width: 33%;
+  width: 30%;
   height: 45%;
-  border-radius: 4%;
+  border-radius: 5%;
 }
 
 .body-form-register{
@@ -149,12 +149,12 @@
   width: 31%;
   background-color: white;
   border-radius: 22px;
-  margin-top: 42px;
-  margin-bottom: 106px;
+  margin-top: 150px;
+  margin-bottom: 160px;
   padding: 30px;
-
-
+  height: 505px;
 }
+
 .body-form{
 
   border-radius: 5%;
@@ -187,7 +187,7 @@
   top: 412px;
 }
 .profileHeader {
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/profile.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -311,7 +311,7 @@
 
 .aboutUsHeading
 {
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   font-weight: bolder;
@@ -320,7 +320,7 @@
 
 .contactUsHeading
 {
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   text-shadow: 0px 2px #000000;
@@ -416,7 +416,7 @@
 }
 
 .good-company-section-rectangle2 {
-  background: url("../assets/10pearls.png.opdownload");
+  background: url("../assets/folio3.png");
   background-position:bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -472,7 +472,7 @@
   margin: 80px 34px 74px 80px;
 }
 .contactUsHeader{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/contactus2.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -482,7 +482,7 @@
   background-image: cover;
 }
 .update{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/update.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -492,7 +492,7 @@
   background-image: cover;
 }
 .viewResume{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/viewResume.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -502,7 +502,7 @@
   background-image: cover;
 }
 .JobHeader{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/job.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -512,7 +512,7 @@
 }
 
 .aboutUsHeader{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/about.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -522,7 +522,7 @@
 }
 
 .profileHeader h2{
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   text-shadow: 0px 2px #000000;
@@ -694,6 +694,7 @@ text-decoration-line: none;
   border-radius: 5px;
   justify-content: end;
   margin-top: 15px;
+  
 }
 .btn1{
   display: flex;
@@ -847,6 +848,12 @@ footer {
 
 .updateHeader{
   background-image: url(../assets/about-4.jpg);
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-color: #21aa8f;
 }
 
 

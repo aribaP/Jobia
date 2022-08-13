@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
 import Footer from './Footer'
-import Header from './Header'
 import NavBarComponent from "./NavBarComponent";
 
 const EditOneJob = () => {

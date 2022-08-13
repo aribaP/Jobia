@@ -4,7 +4,6 @@ import validator from 'validator'
 import '../Styles/style.css'
 import PolygonRight from '../assets/PolygonRight.png'
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import NavBarComponent from "./NavBarComponent";
 
 import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';

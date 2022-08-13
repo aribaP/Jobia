@@ -6,7 +6,6 @@ import Register2 from './Components/Register2';
 import Login from './Components/Login'
 import Account from './Components/Account'
 import RegistrationOption from './Components/RegistrationOption'
-import Header from './Components/Header'
 import Contact from './Components/Contact'
 import About from './Components/About'
 import Footer from './Components/Footer'
@@ -24,6 +23,9 @@ import UpdateResume from './Components/UpdateResume';
 
 
 
+
+
+
 function App() {
   return (
     <>
@@ -34,8 +36,8 @@ function App() {
         <Route path='/register2' element={<Register2 />}/>
         <Route path='/account' element={<Account />}/>
         <Route path='/registrationOption' element={<RegistrationOption />}/>
-        <Route path='/header' element={<Header />}/>
         <Route path='/footer' element={<Footer />}/>
+        
         <Route path='/contact' element={<Contact />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/profile' element={<Profile />}/>
@@ -47,6 +49,8 @@ function App() {
         <Route exact path= '/editonejob'element= {<EditOneJob/>}/>
         <Route exact path= '/displayresume'element= {<ResumeDisplay/>}/>
         <Route exact path= '/update'element= {<UpdateResume/>}/>
+        
+        
         {/* <Route path='/policy' element={<Policy />}/> */}
 
 

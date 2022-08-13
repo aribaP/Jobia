@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import Contact from  "../assets/contact.jpg"
 import NavBarComponent from "./NavBarComponent";
 
@@ -10,7 +9,7 @@ const ContactUs = () => {
       <>
        {/* <Header /> */}
        <NavBarComponent/>
-        <section className="contactUsHeader">
+       <section className="contactUsHeader">
       <div>
         <h2 className="contactUsHeading">CONTACT US</h2>
       </div>

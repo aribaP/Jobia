@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
-<<<<<<< HEAD
-import Header from './Header';
-import NavBarComponent from "./NavBarComponent";
+import NavBarComponent2 from "./NavBarComponent2";
 
-=======
-import Header from './Header1';
->>>>>>> 3134ff8402d8b7ae1a69dc2afdbc99e78cc260b1
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -43,7 +38,7 @@ const ViewOneJob = () => {
   return (
     <>
     {/* <Header /> */}
-    <NavBarComponent/>    <div>
+    <NavBarComponent2/>    <div>
     <section className="viewResume">
         <div>
           <h2 className="contactUsHeading">View Job</h2>
