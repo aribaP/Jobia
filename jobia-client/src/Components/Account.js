@@ -15,6 +15,7 @@ import AllJobs from './AllJobs'
 import ResumeDisplay from './ResumeDisplay'
 import ViewOneJob from './ViewOneJob'
 
+import NavBarComponent from "./NavBarComponent";
 
 const Account = (props) => {
   const [check, setCheck] = useState('Profile')
@@ -30,10 +31,8 @@ const Account = (props) => {
 
   return (
     <>
-      <Header
-   
-
-      />
+     {/* <Header /> */}
+  <NavBarComponent/>
       <div className='profileHeader'>
         <h2 style={{ fontWeight: 400 }}></h2>
       </div>

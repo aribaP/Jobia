@@ -4,6 +4,7 @@ import axios from 'axios';
 import Footer from './Footer'
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import NavBarComponent from "./NavBarComponent";
 
 const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
@@ -94,16 +95,30 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
   return (
     <>
-    <h1 className='title_job'>Job Application</h1>
-    <form  className='alpha'>
-    <div>
-      <div class='row'>
-        <div class='col-12 profile-body-right'>
+  
+    {/* <Header /> */}
+    <NavBarComponent/>      <section className="JobHeader">
+        <div>
+          <h2 className="contactUsHeading">Job Application</h2>
+        </div>
+      </section>
+
+
+      <div class='row' style={{
+        margin: 0, display: "flex",
+        justifyContent: "center",
+      }}>
+
+        <div class='col-8 profile-body-right ' style={{
+          marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
+          boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
+          
+        }}> 
           <div>
             <div className="mb-3">
               <label className='mb-3 mt-15'>Job Position</label>
               <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
-                id="jdPosition" required placeholder="" style={{ width: 965 }}
+                id="jdPosition" required placeholder="" style={{ width: "100%" }}
                 value={formValues.jdPosition}
                 rows='1' 
                 onChange={handleChange} />
@@ -115,7 +130,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Minimum Years</label>
               <textarea type="number" name="jdMinimumExperience" class="form-control mb-3 input-Fields"
-                id="jdMinimumExperience" placeholder="In years" style={{ width: 965 }}
+                id="jdMinimumExperience" placeholder="In years" style={{  width: "100%" }}
                 value={formValues.jdMinimumExperience}
                 rows='1' 
                 onChange={handleChange} />
@@ -128,7 +143,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
               <label className='mb-3 mt-15'>Requirements</label>
               <textarea
                 class="form-control mb-3 input-Fields"
-                id="jdRequiredSkills" style={{ width: 965 }}
+                id="jdRequiredSkills" style={{  width: "100%" }}
                 placeholder="All the job requirements you demand"
                 rows="10"
                 name='jdRequiredSkills'
@@ -143,7 +158,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div class="mb-3">
               <label className='mb-3 mt-15'>City</label>
               <div>
-                <select className="form-control city" id="jdCity" name="jdCity" style={{ width: 965 }} required
+                <select className="form-control city" id="jdCity" name="jdCity" style={{  width: "100%" }} required
                   value={formValues.jdCity}
                   onChange={handleChange}>
                   <option>--Select city--</option>
@@ -166,7 +181,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Location</label>
               <textarea type="text" name="jdLocation" class="form-control mb-3 input-Fields"
-                id="jdLocation" required placeholder="" style={{ width: 965 }}
+                id="jdLocation" required placeholder="" style={{  width: "100%" }}
                 value={formValues.jdLocation} 
                 rows='1' 
                 onChange={handleChange} />
@@ -178,15 +193,19 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
 
 
-          <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '880px' }}>
-          <Link to= '/organization'> <button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={ handleSubmit}>Save</button></Link>
-          <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={ handleCancel}>Cancel</button>
-            
-          </form>
+     
+
+          <form className="d-flex justifyContent width-100">
+            <button className="btn button-style-outline me-2 btn-sm" type="submit"  onClick={handleCancel}>Cancel</button>
+            <Link to='/organization'><button className="btn button-style-full me-2 btn-sm" type="submit" onClick={handleSubmit}>Save</button></Link>
+          
+            </form>
         </div>
+        
       </div>
-    </div>
-    </form>
+      <footer>
+        <Footer dark={true} />
+      </footer>
     </>
   )
 }

@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import NavBarComponent from "./NavBarComponent";
 
 export default function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <NavBarComponent/>
       
       <section className="home-container">
       <div>
@@ -99,14 +101,14 @@ export default function Home() {
         {/* <!-- Category End --> */}
       <section className="good-company-lower-part"> 
       <div className="container">
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-md-flex align-items-center justify-content-between">
           <div className="good-company-lower-part-rectangle_1"></div>
           <div>
             <h3>Jobia For Recruiters</h3>
             <p>Jobia provides the best solution to job recruiters by filtering the job applicant resumes according to the job requirements</p>
           </div>
         </div>
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-md-flex align-items-center justify-content-center">
           <div>
             <h3>Jobia For Job Seekers</h3>
             <p>Jobia provides the best solution to job seekers by automatically sending their resumes to the perfect job vacancies that matches their protfolio</p>

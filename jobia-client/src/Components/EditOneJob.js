@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
+import Footer from './Footer'
+import Header from './Header'
+import NavBarComponent from "./NavBarComponent";
 
 const EditOneJob = () => {
 
@@ -122,12 +125,28 @@ const EditOneJob = () => {
 
 
     return (
+        <>
+            
+ {/* <Header /> */}
+ <NavBarComponent/>
+         <section className="update">
+          <div>
+            <h2 className="contactUsHeading">Job Update</h2>
+          </div>
+        </section>
+              <div class="row"  style={{
+          
+          justifyContent: "center",height:"40%"
+          
+        }}>
 
-        <div style={{ paddingRight: "40px", marginLeft: "100px" }}>
-            <div class="row">
-
-                <div class="col-10 profile-body-right">
-                    <div style={{ padding: "30px" }}>
+               
+            <div class="col-10 profile-body-right">
+                    <div style={{
+          marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
+          boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
+          padding:"30px"
+        }}>
                         <label className="mb-3"> Job Position</label>
                         <div className='orgIcon'>
                             <input
@@ -278,15 +297,21 @@ const EditOneJob = () => {
                         </div>
 
 
-                        <form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '800px' }}>
-                            <button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={handleSubmit}>Save</button>
-                            <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={handleCancel}>Cancel</button>
-                        </form>
+                       
+                        <form className="d-flex justifyContent width-100">
+            <button className="btn button-style-outline me-2 btn-sm" type="submit"  onClick={handleCancel}>Cancel</button>
+         <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={handleSubmit}>Save</button>
+          
+            </form>
 
                     </div>
                 </div>
             </div>
-        </div>
+            <footer>
+
+            <Footer dark={true} />
+      </footer>
+        </>
     )
 }
 

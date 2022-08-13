@@ -5,6 +5,8 @@ import '../Styles/style.css'
 import PolygonRight from '../assets/PolygonRight.png'
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import NavBarComponent from "./NavBarComponent";
+
 import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -88,7 +90,8 @@ const Login = () => {
 
   return (
     <>
-      <Header />
+       {/* <Header /> */}
+       <NavBarComponent/>
       <div className='body-Login'>
         <div className='width-30'>
           <h1 className='white-txt '>Welcome back to the best Job solution!</h1>

@@ -140,10 +140,15 @@ const Profile2 = () => {
 	return (
 
 		<div style={{ paddingRight: "40px", marginLeft: "100px" }}>
-			<div class="row">
+		<div class="row">
 
-				<div class="col-10 profile-body-right">
-					<div style={{ padding: "30px" }}>
+			<div class="col-10 profile-body-right">
+				<div style={{
+					padding: "30px", border: "1px solid black", color: "white",
+					
+					borderRadius: "5px",
+					boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)"
+				}}>
 						<label className="mb-3">Organization Name</label>
 						<div className='orgIcon'>
 							<input
@@ -276,7 +281,7 @@ const Profile2 = () => {
 							<p>{formErrors.orgCPassword}</p>
 						</div>
 
-						<form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '800px' }}>
+						<form className="d-flex justifyContent width-100" >
 							<button className="btn body-button-style3 padding-l-15 padding-r-15 px-3" type="submit" onClick={handleSubmit}>Save</button>
 							<button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" onClick={handleCancel}>Cancel</button>
 						</form>
