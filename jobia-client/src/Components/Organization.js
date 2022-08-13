@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
-import Header from './Header1';
 import Notifications from '../assets/Notification.png';
 import Settings from '../assets/Setting.png';
 import Resumee from '../assets/Resume.png';
@@ -9,6 +8,10 @@ import Profilee from '../assets/Profile.png';
 import Jobs from './Jobs';
 import AllJobs from './AllJobs';
 import Profile2 from './Profile2';
+import Setting from './Setting';
+import NavBarComponent from "./NavBarComponent";
+import NavBarComponent2 from "./NavBarComponent2";
+
 
 
 const Organization = (props) => {
@@ -23,9 +26,9 @@ const Organization = (props) => {
 
   return (
     <>
-      <Header/>
-      <div className='profileHeader'>
-        <h2 style={{ fontWeight: 400 }}>*organization title*</h2>
+  <NavBarComponent2/>
+        <div className='profileHeader'>
+      <h2 style={{ fontWeight: 600 }}>organization </h2>
       </div>
       <div class='row'>
         <div class='col-2 bg-Gray'>
@@ -68,8 +71,11 @@ const Organization = (props) => {
             </button>
 
             <button
-              className={check === 'Settings' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-              onClick={() => setCheck('Settings')}
+              className={check === 'Setting' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
+              onClick={() => {
+                setCheck('Setting')
+                setTabs('Setting')
+              }}
             >
               <div className='Account-Tabs m-l-07'>  
                 <img src={Settings} height='20px' width='20px' />
@@ -86,6 +92,8 @@ const Organization = (props) => {
           { check === 'Job' && <Jobs />}
           { check === 'AllJobs' && <AllJobs /> }
           {check === 'Notifications' && <Notification /> }
+          {check === 'Setting' && <Setting /> }
+
 
 
         </div>

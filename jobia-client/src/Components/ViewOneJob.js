@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
-import Header from './Header1';
+import NavBarComponent2 from "./NavBarComponent2";
+
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -36,17 +37,31 @@ const ViewOneJob = () => {
   
   return (
     <>
-    <Header/>
-    <div style={{ padding: '30px', marginLeft: '40px' }}>
-      <div class='row'>
-        <div class='col-12 profile-body-right'>
-          <div style={{ padding: '30px' }}>
+    {/* <Header /> */}
+    <NavBarComponent2/>    <div>
+    <section className="viewResume">
+        <div>
+          <h2 className="contactUsHeading">View Job</h2>
+        </div>
+      </section>
+            <div class="row"  style={{
+         margin: 0, display: "flex",
+         justifyContent: "center",
+         
+        
+      }}>
+        <div class='col-9 profile-body-right'>
+          <div style={{
+          marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
+          boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
+          padding:"20px"
+        }}>
 
 
             <div className="mb-3">
               <label className='mb-3 mt-15'>Job Position</label>
               <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
-                id="jdPosition" required placeholder="" style={{ width: 965 }}
+                id="jdPosition" required placeholder="" style={{width: "100%" }}
                 value={formValues.jdPosition}
                 disabled
                 rows='1'  />
@@ -55,7 +70,7 @@ const ViewOneJob = () => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Minimum Years</label>
               <textarea type="number" name="jdMinimumExperience" class="form-control mb-3 input-Fields"
-                id="jdMinimumExperience" placeholder="In years" style={{ width: 965 }}
+                id="jdMinimumExperience" placeholder="In years" style={{ width: "100%" }}
                 value={formValues.jdMinimumExperience}
                 rows='1' disabled  />
             </div>
@@ -64,7 +79,7 @@ const ViewOneJob = () => {
               <label className='mb-3 mt-15'>Requirements</label>
               <textarea
                 class="form-control mb-3 input-Fields"
-                id="jdRequiredSkills" style={{ width: 965 }}
+                id="jdRequiredSkills" style={{ width: "100%" }}
                 rows="10" disabled
                 name='jdRequiredSkills'
                 required
@@ -77,24 +92,22 @@ const ViewOneJob = () => {
             <div className="mb-3">
               <label className='mb-3 mt-15'>Location</label>
               <textarea type="text" name="jdLocation" class="form-control mb-3 input-Fields"
-                id="jdLocation" required placeholder="" style={{ width: 965 }}
+                id="jdLocation" required placeholder="" style={{ width: "100%" }}
                 value={formValues.jdLocation} 
                 rows='1' disabled />
               
             </div>
-          </div>
-
-
-
-          <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '800px' }}>
+            <form className="d-flex justifyContent width-100" style={{  width: 100, marginLeft: '700px' }}>
           <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" >Cancel</button>
-            
           </form>
+          </div>
+          </div>
         </div>
       </div>
-    </div>
-    <Footer/>
-    </>
+    
+    <footer>
+        <Footer dark={true} />
+      </footer>    </>
   )
 }
 

@@ -124,7 +124,7 @@
   height: 240px;
   position: absolute;
   left: 0;
-  top: 61.6%;
+  top: 392px;
 }
 .body-Login {
   background-color: #21aa8f;
@@ -149,6 +149,23 @@
   width: 30%;
   height: 55%;
   border-radius: 5%;
+  width: 31%;
+  border-radius: 22px;
+  margin-top: 150px;
+  margin-bottom: 160px;
+  padding: 30px;
+  height: 505px;
+}
+
+.body-form{
+
+  border-radius: 5%;
+  width: 35%;
+  background-color: white;
+  border-radius: 24px;
+  margin-top: 24px;
+  margin-bottom: 38px;
+  padding: 22px;
 }
 .error{
   color: red;
@@ -172,14 +189,14 @@
   width: 30%;
 }
 .polygonRight {
-  width: 240px;
-  height: 240px;
+  width: 220px;
+  height: 220px;
   position: absolute;
   right: 0;
-  top: 61.6%;
+  top: 412px;
 }
 .profileHeader {
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/profile.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -303,7 +320,7 @@
 
 .aboutUsHeading
 {
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   font-weight: bolder;
@@ -312,7 +329,7 @@
 
 .contactUsHeading
 {
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   text-shadow: 0px 2px #000000;
@@ -408,7 +425,7 @@
 }
 
 .good-company-section-rectangle2 {
-  background: url("../assets/10pearls.png.opdownload");
+  background: url("../assets/folio3.png");
   background-position:bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -464,8 +481,39 @@
   margin: 80px 34px 74px 80px;
 }
 .contactUsHeader{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/contactus2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-color: #21aa8f;
+  background-image: cover;
+}
+
+.update{
+  height: 150px;
+  background-image: url("../assets/update.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-color: #21aa8f;
+  background-image: cover;
+}
+.viewResume{
+  height: 150px;
+  background-image: url("../assets/viewResume.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-color: #21aa8f;
+  background-image: cover;
+}
+.JobHeader{
+  height: 150px;
+  background-image: url("../assets/job.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -474,7 +522,7 @@
 }
 
 .aboutUsHeader{
-  height: 200px;
+  height: 150px;
   background-image: url("../assets/about.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -484,7 +532,7 @@
 }
 
 .profileHeader h2{
-  padding-top: 130px;
+  padding-top: 98px;
   padding-left: 70px;
   color: #ffffff;
   text-shadow: 0px 2px #000000;
@@ -947,3 +995,29 @@ footer {
   right: 10px;   
   width: 100%;     
   }  
+  .updateHeader{
+    background-image: url(../assets/about-4.jpg);
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    background-color: #21aa8f;
+  }
+  
+  
+    
+    /* responsive */
+  
+    @media screen and (max-width: 992px) {
+      .good-company-lower-part-rectangle_1{
+      
+       min-width: 95%;
+      }
+   
+      .good-company-lower-part-rectangle{
+       min-width: 95%;
+       margin: 30px 5px;
+      }
+     }
+    

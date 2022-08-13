@@ -66,7 +66,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
     <div className="padding-20 resume-create-container">
       <div
         style={{
-          border: "4px solid #5B4F64",
+          border: "4px solid #1e957d",
           borderRadius: "20px",
           width: "100%",
         }}

@@ -5,7 +5,7 @@ import '../Styles/style.css'
 import { useState, useEffect } from 'react';
 import polygon from '../assets/Polygon.png'
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
+import NavBarComponent from "./NavBarComponent";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -92,7 +92,10 @@ const Register = () => {
 
   return (
     <>
-      <Header />
+
+      {/* <Header /> */}
+      <NavBarComponent/>
+      
       <div className='body'>
         <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
         <div className='body-form-register'>

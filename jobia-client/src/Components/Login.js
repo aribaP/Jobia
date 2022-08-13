@@ -4,7 +4,8 @@ import validator from 'validator'
 import '../Styles/style.css'
 import PolygonRight from '../assets/PolygonRight.png'
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
+import NavBarComponent from "./NavBarComponent";
+
 import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -44,10 +45,10 @@ const Login = () => {
               
               console.log("Data recieved");   
               console.log(response);
-              localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, candId: response[0]?.candId, orgId: response[0]?.orgId, role: response[0]?.role}))
-              if(response[0].role === 'candidate') 
-                navigate('/account'); 
-              else if(response[0].role === 'organization')
+              localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, candId: response[0]?.candId, orgId: response[0]?.orgId}))
+              if(response[0].role == 'candidate') 
+                navigate('/account', { replace: true }); 
+              else if(response[0].role == 'organization')
                 navigate('/organization');
 
           }).catch((err) => {
@@ -88,7 +89,8 @@ const Login = () => {
 
   return (
     <>
-      <Header />
+       {/* <Header /> */}
+       <NavBarComponent/>
       <div className='body-Login'>
         <div className='width-30'>
           <h1 className='white-txt '>Welcome back to the best Job solution!</h1>

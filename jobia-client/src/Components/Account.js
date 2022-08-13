@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
-import Header from './Header1'
 import Notifications from '../assets/Notification.png'
 import Settings from '../assets/Setting.png'
 import Resumee from '../assets/Resume.png'
@@ -15,6 +14,7 @@ import AllJobs from './AllJobs'
 import ResumeDisplay from './ResumeDisplay'
 import ViewOneJob from './ViewOneJob'
 
+import NavBarComponent2 from "./NavBarComponent2";
 
 const Account = (props) => {
   const [check, setCheck] = useState('Profile')
@@ -30,12 +30,10 @@ const Account = (props) => {
 
   return (
     <>
-      <Header
-   
-
-      />
+      {/* <Header /> */}
+  <NavBarComponent2/>
       <div className='profileHeader'>
-        <h2 style={{ fontWeight: 400 }}></h2>
+      <h2 style={{ fontWeight: 600 }}>Candidates </h2>
       </div>
       <div class='row'>
         <div class='col-2 bg-Gray'>
@@ -79,7 +77,7 @@ const Account = (props) => {
             >
               <div className='Account-Tabs m-l-07'>
                 <img src={Notifications} height='20px' width='20px' />
-                <p className='m-l-2'>NotificationsCandidate</p>
+                <p className='m-l-2'>Notifications</p>
               </div>
             </button>
             <button

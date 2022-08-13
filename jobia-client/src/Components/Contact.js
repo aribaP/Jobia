@@ -1,25 +1,27 @@
 import React from "react";
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import Contact from  "../assets/contact.jpg"
+import NavBarComponent from "./NavBarComponent";
+
 
 const ContactUs = () => {
     return (
       <>
-        <Header />
+       {/* <Header /> */}
+       <NavBarComponent/>
         <section className="contactUsHeader">
       <div>
         <h2 className="contactUsHeading">CONTACT US</h2>
       </div>
       </section>
         <div class="container contactUsContainer">
-          <div class="row g-2" style={{ marginTop: 100}}>
-            <div class="col-6 ">
+        <div class="row g-2" style={{ marginTop:"20px"}}>
+            <div class="col-6 " style={{marginBottom:"40px"}}  >
               <div class="contact_img">
-                <img  src={Contact} alt="" width="90%" />
+                <img  src={Contact} alt="" width="80%" />
               </div>
             </div>
-            <div class="col-6" >
+            <div class="col-6 "style={{ padding:"10px"}} >
               <div>
                 <h2 className='mb-revert'>Contact Us!</h2>
                 <div class="mb-4">

@@ -1,14 +1,15 @@
 import React from 'react'
 import '../Styles/style.css'
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import { Link } from 'react-router-dom'
+import NavBarComponent from "./NavBarComponent";
 
 
 const RegistrationOption = () => {
 	return (
 		<>
-			<Header />
+		   {/* <Header /> */}
+       <NavBarComponent/>
 
       <div class="row align-items-start">
 
@@ -25,7 +26,8 @@ const RegistrationOption = () => {
 
   <footer>
     <Footer dark={true} />
-  </footer></>
+  </footer>
+  </>
 	)
 }
 
