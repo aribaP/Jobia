@@ -92,13 +92,10 @@ const Register = () => {
 
   return (
     <>
-
-      {/* <Header /> */}
       <NavBarComponent/>
-
       <div className='body'>
-        <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
-        <div className='body-form-register'>
+      <h4 className='white-txt font-28 mb-revert '>Ready to join the best job solution?</h4>
+        <div className='body-form'>
           <form onSubmit={handleSubmit}>
             <h5 className='mb-revert text-center'>Sign up for a free account</h5>
 

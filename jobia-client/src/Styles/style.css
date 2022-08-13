@@ -26,12 +26,21 @@
 .body {
   background-color: #21aa8f;
   display: flex;
-  height: 100vh;
+  height: 90vh;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.tnform {
+.body_register{
+  background-color: #21aa8f;
+  display: flex;
+  height: 112vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.body-form {
   width: 30%;
   background-color: white;
   padding: 30px;
@@ -114,7 +123,9 @@
   font-size: 28px;
 }
 .mb-revert {
-  margin-bottom: revert;
+
+    margin-top: revert;
+    margin-top: 5%;
 }
 .text-center {
   text-align: center;
@@ -124,7 +135,7 @@
   height: 240px;
   position: absolute;
   left: 0;
-  top: 392px;
+  top: 461px;
 }
 .body-Login {
   background-color: #21aa8f;
@@ -135,35 +146,29 @@
   flex-direction: row;
 }
 .body-form-login {
-  background-color: #ffffff;
-  padding: 3%;
-  margin-right: 10%;
   width: 30%;
-  height: 45%;
-  border-radius: 5%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
 }
 
 .body-form-register{
 
-  border-radius: 5%;
-  width: 31%;
+ 
+  width: 33%;
   background-color: white;
-  border-radius: 22px;
-  margin-top: 150px;
-  margin-bottom: 160px;
-  padding: 30px;
-  height: 505px;
+  padding: 25px;
+  border-radius: 1px;
+  margin-bottom: 89px;
 }
+
 
 .body-form{
 
-  border-radius: 5%;
-  width: 35%;
+  width: 30%;
   background-color: white;
-  border-radius: 24px;
-  margin-top: 24px;
-  margin-bottom: 38px;
-  padding: 22px;
+  padding: 30px;
+  border-radius: 5px;
 }
 .error{
   color: red;
@@ -871,4 +876,3 @@ footer {
      margin: 30px 5px;
     }
    }
-  

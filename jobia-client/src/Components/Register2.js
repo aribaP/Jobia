@@ -110,10 +110,10 @@ const Register2 = () => {
 
   return (
     <>
-      {/* <Header /> */}
-      <NavBarComponent/>
-
-      <div className='body'>
+    {/* <Header /> */}
+    <NavBarComponent/>
+    
+      <div className='body_register'>
         <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
         <div className='body-form-register'>
           <form onSubmit={handleSubmit}>
