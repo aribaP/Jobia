@@ -22,6 +22,13 @@ const Profile2 = () => {
 	const [setOrg, setOrgDetails] = useState({});
 	const [formValues, setFormValues] = useState(initialvalues);
 
+	// Edit useState
+	const [orgHide, setOrgShow] = useState(false);
+	const [emailHide, setEmailShow] = useState(false);
+	const [phoneHide, setPhoneShow] = useState(false);
+	// const [passHide, setPassShow] = useState(false);
+	// const [confPassHide, setConfPassShow] = useState(false);
+
 	let name, value;
 	const handleChange = (e) => {
 		name = e.target.name;
@@ -30,7 +37,7 @@ const Profile2 = () => {
 		console.log("form values", formValues);
 
 	};
-	
+
 	const handleCancel = (e) => {
 		navigate('/organization', { replace: true });
 	};
@@ -56,10 +63,15 @@ const Profile2 = () => {
 
 
 	const postData = async (body) => {
-	
+		const data = {
+			orgName: body.orgName,
+			orgEmail: body.orgEmail,
+			orgContactNumber: body.orgContactNumber,
+			orgPassword: body.orgPassword
+		};
+
 		try {
-			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axios.patch(`organization/${user.orgId}`, body)
+			await axios.patch("http://localhost:5000/organization/2", data)
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
@@ -76,8 +88,7 @@ const Profile2 = () => {
 	const getData = async () => {
 
 		try {
-			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axios.get(`organization/${user.orgId}`)
+			await axios.get("http://localhost:5000/organization/2")
 				.then((response) => {
 					console.log("Data recieved");
 					setOrgDetails(response.data);
@@ -86,7 +97,7 @@ const Profile2 = () => {
 
 		} catch (err) {
 			console.log(err);
-			
+
 		}
 
 	};
@@ -140,42 +151,50 @@ const Profile2 = () => {
 	return (
 
 		<div style={{ paddingRight: "40px", marginLeft: "100px" }}>
-		<div class="row">
+			<div class="row">
 
-			<div class="col-10 profile-body-right">
-				<div style={{
-					padding: "30px", border: "1px solid black", color: "white",
-					
-					borderRadius: "5px",
-					boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)"
-				}}>
+				<div class="col-10 profile-body-right">
+					<div style={{
+						padding: "30px", border: "1px solid black", color: "white",
+
+						borderRadius: "5px",
+						boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)"
+					}}>
 						<label className="mb-3">Organization Name</label>
 						<div className='orgIcon'>
-							<input
-								type="text"
-								class="form-control input-Fields"
-								disabled="true"
-								id="orgName"
-								name="orgName"
-								placeholder="Organization Name"
-								value={setOrg.orgName}
-							/>
-							<button className='btn btn-small btn-outline-secondary'>
+								<input
+									type="text"
+									class="form-control input-Fields"
+									disabled="true"
+									id="orgName"
+									name="orgName"
+									placeholder="Organization Name"
+									value={setOrg.orgName}
+								/>
+								{/* Edit Button */}
+							<button className='btn btn-small btn-outline-secondary'
+							onClick={() => setOrgShow(!orgHide)}
+							>
 								<img src={Edit} alt="" width="30px" height="30px" />
 							</button>
 
 						</div>
 
 						<div className='mb-3'>
+						{/* Edit */}
+						{orgHide &&
 							<input
 								type="text"
 								class="form-control input-Fields"
 								id="orgName"
 								name="orgName"
 								placeholder="Edit Organization Name here"
+								width="30px"
+
 								value={formValues.orgName}
 								onChange={handleChange}
-							/>
+							/> 
+						}
 							<div className="formErrors text-danger">
 								<p>{formErrors.orgName}</p>
 							</div>
@@ -192,11 +211,16 @@ const Profile2 = () => {
 								value={setOrg.orgEmail}
 								placeholder="Email Address"
 							/>
-							<button className='btn btn-small btn-outline-secondary'>
+							<button className='btn btn-small btn-outline-secondary'
+							onClick={() => setEmailShow(!emailHide)}
+							
+							>
 								<img src={Edit} alt="" width="30px" height="30px" />
 							</button>
 						</div>
 						<div className='mb-3'>
+						{
+							emailHide && 
 							<input
 								type="email"
 								class="form-control input-Fields"
@@ -207,6 +231,8 @@ const Profile2 = () => {
 
 								onChange={handleChange}
 							/>
+						}
+						
 							<div className="formErrors text-danger">
 								<p>{formErrors.orgEmail}</p>
 							</div>
@@ -224,12 +250,15 @@ const Profile2 = () => {
 								value={setOrg.orgContactNumber}
 								placeholder="Phone Number"
 							/>
-							<button className='btn btn-small btn-outline-secondary'>
+							<button className='btn btn-small btn-outline-secondary'
+							onClick={() => setPhoneShow(!phoneHide)}
+							>
 								<img src={Edit} alt="" width="30px" height="30px" />
 							</button>
 						</div>
 						<div>
-							<input
+						{
+							phoneHide && <input
 								type="text"
 								class="form-control input-Fields"
 								id="orgContactNumber"
@@ -238,6 +267,8 @@ const Profile2 = () => {
 								value={formValues.orgContactNumber}
 								onChange={handleChange}
 							/>
+						}
+							
 							<div className="formErrors text-danger">
 								<p>{formErrors.orgContactNumber}</p>
 							</div>
