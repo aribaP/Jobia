@@ -78,7 +78,7 @@ export class OrganizationController {
 
     @Roles(Role.Organization)
     @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Delete('/:orgId')
+    @Delete('/delete/:orgId')
     async deleteorganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return await this.orgService.deleteO(orgId);
     }
