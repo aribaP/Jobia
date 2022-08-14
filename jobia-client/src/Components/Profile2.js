@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Profile2 = () => {
 
@@ -15,11 +16,18 @@ const Profile2 = () => {
 		orgCPassword: ""
 
 	};
+	const initValues = {
+		orgName: "",
+		orgEmail: "",
+		orgContactNumber: "",
+		orgPassword: "",
+
+	};
 
 	// const [formValues, setFormValues] = useState(setOrg);
 	const [formErrors, setFormErrors] = useState({});
 	const [isSubmit, setIsSubmit] = useState(false);
-	const [setOrg, setOrgDetails] = useState({});
+	const [setOrg, setOrgDetails] = useState(initValues);
 	const [formValues, setFormValues] = useState(initialvalues);
 
 	let name, value;
@@ -56,10 +64,16 @@ const Profile2 = () => {
 
 
 	const postData = async (body) => {
-	
+		const data = {
+			orgName: body.orgName,
+			orgEmail: body.orgEmail,
+			orgContactNumber: body.orgContactNumber,
+			orgPassword: body.orgPassword
+		  };
+
 		try {
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axios.patch(`organization/${user.orgId}`, body)
+			await axiosApiService.coreApi.patch(`organization/update/${user.orgId}`, data)
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
@@ -74,13 +88,14 @@ const Profile2 = () => {
 	};
 
 	const getData = async () => {
-
+		
 		try {
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axios.get(`organization/${user.orgId}`)
+			await axiosApiService.coreApi.get(`organization/getwhole/${user.orgId}`)
 				.then((response) => {
 					console.log("Data recieved");
-					setOrgDetails(response.data);
+					console.log(response);
+					setOrgDetails(response);
 					console.log("orgSet", setOrg);
 				})
 
@@ -116,8 +131,8 @@ const Profile2 = () => {
 		if (!values.orgEmail) { }
 		else if (!regex.test(values.orgEmail)) { errors.orgEmail = "This is not a valid email format!"; }
 
-		if (!values.orgContactNumber) { }
-		else if (!regexphoneno.test(values.orgContactNumber)) { errors.orgContactNumber = "Invalid phonenumber!"; }
+		if (!values.orgContactNumber) { errors.orgContactNumber = "Contact Number is required!"; }
+		else if (!regexphoneno.test(values.orgContactNumber)) { errors.orgContactNumber = "Invalid phonenumber! Format: 00000000000"; }
 
 		if (!values.orgPassword && !values.orgCPassword) { }
 		else if (values.orgCPassword != values.orgPassword) { errors.orgCPassword = "Password must be same as above."; }
@@ -158,7 +173,7 @@ const Profile2 = () => {
 								id="orgName"
 								name="orgName"
 								placeholder="Organization Name"
-								value={setOrg.orgName}
+								value={setOrg?.orgName}
 							/>
 							<button className='btn btn-small btn-outline-secondary'>
 								<img src={Edit} alt="" width="30px" height="30px" />
@@ -189,7 +204,7 @@ const Profile2 = () => {
 								id="orgEmail"
 								name="orgEmail"
 								disabled="true"
-								value={setOrg.orgEmail}
+								value={setOrg?.orgEmail}
 								placeholder="Email Address"
 							/>
 							<button className='btn btn-small btn-outline-secondary'>
@@ -221,7 +236,7 @@ const Profile2 = () => {
 								class="form-control input-Fields"
 								id="orgContactNumber"
 								disabled="true"
-								value={setOrg.orgContactNumber}
+								value={setOrg?.orgContactNumber}
 								placeholder="Phone Number"
 							/>
 							<button className='btn btn-small btn-outline-secondary'>
@@ -251,7 +266,7 @@ const Profile2 = () => {
 								id="orgPassword"
 								name="orgPassword"
 								placeholder="Change Password"
-								value={formValues.orgPassword}
+								value={formValues?.orgPassword}
 								onChange={handleChange}
 							/>
 							<button className='btn btn-small btn-outline-secondary'>
@@ -270,7 +285,7 @@ const Profile2 = () => {
 								id="orgCPassword"
 								name="orgCPassword"
 								placeholder="Confirm Password"
-								value={formValues.orgCPassword}
+								value={formValues?.orgCPassword}
 								onChange={handleChange}
 							/>
 							<button className='btn btn-small btn-outline-secondary'>

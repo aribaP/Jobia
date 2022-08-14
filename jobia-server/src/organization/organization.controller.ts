@@ -28,8 +28,8 @@ export const storage = {
     })
 }
 
-@Roles(Role.Organization)
-@UseGuards(AuthGuard('jwt'), RolesGuard)
+// @Roles(Role.Organization)
+// @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('organization')
 export class OrganizationController {
 
@@ -52,26 +52,20 @@ export class OrganizationController {
         return await this.orgService.loginOrg(orgLoginDto);
     }
 
-    // @Roles(Role.Organization)
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Patch('/:orgId')
+    @Patch('update/:orgId')
     async update(
         @Body(ValidationPipe) orgUpdateDto: organizationUpdateDto,
         @Param('orgId', ParseIntPipe) orgId: number) {
-
+            console.log(orgUpdateDto);
         return await this.orgService.updateOrg(orgUpdateDto, orgId);
     }
 
-    // @Roles(Role.Organization)
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showjobdescription/:orgId')
     showJobDescriptionUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return this.orgService.showAllJDOrg(orgId);
     }
 
-    // @Roles(Role.Organization)
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Get('/:orgId')
+    @Get('getwhole/:orgId')
     async getorganizationById(@Param('orgId') orgId: number) {
         return await this.orgService.showOById(orgId);
     }

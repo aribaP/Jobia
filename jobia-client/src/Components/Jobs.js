@@ -4,16 +4,20 @@ import axios from 'axios';
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom';
 import NavBarComponent2 from "./NavBarComponent2";
+import { useReducer } from 'react';
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
+  const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
   const navigate = useNavigate();
   const initialvalues = {
     jdPosition: "",
     jdMinimumExperience: "",
     jdLocation: "",
     jdCity: "",
-    jdRequiredSkills: ""
+    jdRequiredSkills: "",
+    orgFK: user.orgId
   };
 
   const [formValues, setFormValues] = useState(initialvalues);
@@ -40,14 +44,11 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
   
   const postData = async (body) => {
 
-    
-
     try {
-      await axios.post("http://localhost:5000/job-description/addjobdescription", body)
+      await axiosApiService.coreApi.post(`job-description/addjobdescription`, body)
         .then((response) => {
           console.log("Data recieved");
-          console.log(response.data);
-          const results = response.data;
+          console.log(response);
           navigate('/organization', { replace: true });
         })
 

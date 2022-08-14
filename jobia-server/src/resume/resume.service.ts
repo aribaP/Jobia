@@ -130,11 +130,13 @@ export class ResumeService {
 
 
             const accuracy = ((acc1 * 0.3) + (acc2 * 0.3) + (acc3 * 0.4)) * 100;
+
             console.log(getAllJD[index].jdId, ": ", accuracy);
+            console.log("saved", saved[0].resId);
             const scoreDto: scoreCreateDto = {
                 score: accuracy,
                 jdId: getAllJD[index].jdId,
-                resId: resCreateDto.resId
+                resId: saved[0].resId
             };
             if (accuracy >= 50) {
                 const whatever = this.scoreRepository.save(scoreDto);

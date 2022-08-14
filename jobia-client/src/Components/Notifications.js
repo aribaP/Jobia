@@ -42,6 +42,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
 
   const routeChange = (resId) => {
+    
     let path = `/displayresume`;
     navigate(path, { state: { resId } });
   }
@@ -79,30 +80,31 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
       })
 
   }, []);
+  
   return (
     <div className="padding-20 resume-create-container">
-    <div
-      style={{
-        border: "4px solid #1e957d",
-        borderRadius: "20px",
-        width: "100%",
-      }}
+      <div
+        style={{
+          border: "4px solid #1e957d",
+          borderRadius: "20px",
+          width: "100%",
+        }}
 
       ></div>
-         <div className='display-5 my-4 btn button-style-full text-black'>
-        <h4  style={{
-        color: "white",
+
+      <div className='display-5 my-4 btn button-style-full text-black'>
+        <h4 style={{
+          color: "white",
           width: "100%",
-     
+
         }}> We have found some best matches for you! </h4>
       </div>
+       
+       {
+        formValues && formValues?.map(details => (
 
-      {
-
-        formValues.map(details => (
           <div className="resume-view padding-20 mt-20">
             <div className="width-100 padding-20">
-
 
               <div key={details.position}>
                 <h3>{details.position}</h3>

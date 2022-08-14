@@ -61,8 +61,9 @@ export class OrganizationService {
     }
 
 
-    showOById(orgId: number) {
-        return this.organizationRepository.findOne({ where: { orgId } });
+    async showOById(orgId: number)  {
+        console.log(await this.organizationRepository.findOne({ where: { orgId } }));
+        return await this.organizationRepository.findOne({ where: { orgId } });
     }
 
 

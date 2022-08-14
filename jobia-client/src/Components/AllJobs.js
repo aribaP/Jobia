@@ -14,27 +14,11 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
     jdCity: ""
   };
 
-
-  const routeChange = (jdId) => {
-    let path = `/onejob`;
-    navigate(path, { state: { jdId } });
-  }
-  const createJob = () => {
-    let path = `/jobs`;
-    navigate(path);
-  }
-
-  const handleUpdate = (jdId) => {
-    let path = `/editonejob`;
-    navigate(path, { state: { jdId } });
-  }
-
-
   const [formValues, setFormValues] = useState([initialvalues]);
 
   const handleDelete = (jdId) => {
 
-    axios.delete("http://localhost:5000/job-description/" + jdId)
+    axiosApiService.coreApi.delete(`organization/showjobdescription/${jdId}`)
       .then(response => {
         console.log("Data recieved");
         console.log(response.data);
@@ -51,10 +35,10 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
     const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
     axiosApiService.coreApi.get(`organization/showjobdescription/${user.orgId}`)
       .then(response => {
-        setFormValues(response.data);
-        console.log("Data recieved");
-        console.log(response.data);
 
+        console.log("Data recieved");
+        console.log(response);
+        setFormValues(response);
         console.log(formValues);
 
       }).catch(err => {
@@ -74,7 +58,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
       ></div>
       {
 
-        formValues.map(details => (
+        formValues?.map(details => (
           <div className="resume-view padding-20 mt-20">
             <div className="width-100 padding-20">
               <div key={details.jdId}>
@@ -82,8 +66,8 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
               </div>
             </div>
             <div className='btn1'>
-              <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => routeChange(details.jdId)}> View </button>
-              <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => handleUpdate(details.jdId)}> Update </button>
+              <Link to= "/onejob" state={{jdId: details.jdId}}><button className="btn button-style-outline me-2 btn-sm" type="submit"> View </button></Link>
+              <Link to= "/editonejob" state={{jdId: details.jdId}}><button className="btn button-style-full me-2 btn-sm" type="submit"> Update </button></Link>
               <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={() => handleDelete(details.jdId)}> Delete </button>
 
             </div>
@@ -97,9 +81,9 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
       <form className="d-flex mt-20 justifyContent width-100">
         {/* <Link to="/"> */}
-        <button onClick={createJob} className="btn button-style-full me-2 btn-sm" type="submit">
+        <Link to= "/jobs" ><button className="btn button-style-full me-2 btn-sm" type="submit">
           Create Job
-        </button>
+        </button></Link>
         {/* </Link> */}
       </form>
     </div >

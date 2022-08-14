@@ -1,18 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
 import Footer from './Footer'
 import NavBarComponent2 from "./NavBarComponent2";
+import { axiosApiService } from '../services/axiosAPIs';
 
 const EditOneJob = () => {
-
+    const location = useLocation();
     const navigate = useNavigate();
     const initialvalues = {
-        jdId: "",
         jdPosition: "",
-        jdMinimumExperience: "",
+        jdMinimumExperience: null,
         jdRequiredSkills: "",
         jdLocation: "",
         jdCity: ""
@@ -31,7 +31,6 @@ const EditOneJob = () => {
         console.log("form values", formValues);
 
     };
-
 
     const handleCancel = (e) => {
         navigate('/organization', { replace: true });
@@ -72,7 +71,9 @@ const EditOneJob = () => {
             jdRequiredSkills: body.jdRequiredSkills,
         };
         try {
-            await axios.patch("http://localhost:5000/job-description/update/133", data)
+            console.log("JdId: ", location.state.jdId);
+    
+            axiosApiService.coreApi.patch(`job-description/update/${location.state.jdId}`, body)
                 .then((response) => {
                     console.log("Data recieved");
                     console.log(response.data);
@@ -89,10 +90,10 @@ const EditOneJob = () => {
     const getData = async () => {
 
         try {
-            await axios.get("http://localhost:5000/job-description/getone/133")
+            axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`)
                 .then((response) => {
                     console.log("Data recieved");
-                    setJDDetails(response.data);
+                    setJDDetails(response);
                     console.log("JDSET", setJD);
 
                 })
@@ -154,7 +155,7 @@ const EditOneJob = () => {
                                 disabled="true"
                                 id="jdPosition"
                                 name="jdPosition"
-                                value={setJD.jdPosition}
+                                value={setJD?.jdPosition}
                             />
                             <button className='btn btn-small btn-outline-secondary'>
                                 <img src={Edit} alt="" width="30px" height="30px" />
@@ -180,12 +181,12 @@ const EditOneJob = () => {
                         <label className="mb-3"> Minimum Experience </label>
                         <div className='orgIcon'>
                             <input
-                                type="number"
+                                type="integer"
                                 class="form-control input-Fields"
                                 id="jdMinimumExperience"
                                 name="jdMinimumExperience"
                                 disabled="true"
-                                value={setJD.jdMinimumExperience}
+                                value={setJD?.jdMinimumExperience}
                             />
                             <button className='btn btn-small btn-outline-secondary'>
                                 <img src={Edit} alt="" width="30px" height="30px" />
@@ -194,7 +195,7 @@ const EditOneJob = () => {
 
                         <div className='mb-3'>
                             <input
-                                type="number"
+                                type="integer"
                                 class="form-control input-Fields"
                                 id="jdMinimumExperience"
                                 name="jdMinimumExperience"
@@ -216,7 +217,7 @@ const EditOneJob = () => {
                                 class="form-control input-Fields"
                                 id="jdRequiredSkills"
                                 disabled="true"
-                                value={setJD.jdRequiredSkills}
+                                value={setJD?.jdRequiredSkills}
                             />
                             <button className='btn btn-small btn-outline-secondary'>
                                 <img src={Edit} alt="" width="30px" height="30px" />
