@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { axiosApiService } from '../services/axiosAPIs';
 
 const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
   const routeChange = (jdId) => {
     let path = `/onejob`;
-    navigate(path, {state:{jdId}});
+    navigate(path, { state: { jdId } });
   }
   const createJob = () => {
     let path = `/jobs`;
@@ -25,7 +26,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
   const handleUpdate = (jdId) => {
     let path = `/editonejob`;
-    navigate(path, {state:{jdId}});
+    navigate(path, { state: { jdId } });
   }
 
 
@@ -47,13 +48,13 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
   }
 
   useEffect(() => {
-
-    axios.get("http://localhost:5000/organization/showjobdescription/2")
+    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+    axiosApiService.coreApi.get(`organization/showjobdescription/${user.orgId}`)
       .then(response => {
         setFormValues(response.data);
         console.log("Data recieved");
         console.log(response.data);
-        
+
         console.log(formValues);
 
       }).catch(err => {
@@ -81,9 +82,9 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
               </div>
             </div>
             <div className='btn1'>
-              <button  className="btn button-style-outline me-2 btn-sm" type="submit" onClick={()=>routeChange(details.jdId)}> View </button>
-              <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={()=>handleUpdate(details.jdId)}> Update </button>
-              <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={()=>handleDelete(details.jdId)}> Delete </button>
+              <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => routeChange(details.jdId)}> View </button>
+              <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => handleUpdate(details.jdId)}> Update </button>
+              <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={() => handleDelete(details.jdId)}> Delete </button>
 
             </div>
           </div>
