@@ -22,6 +22,8 @@ export class CandidateService {
         private jobDescriptionRepository: Repository<jobDescription>,
         @InjectRepository(organization)
         private organizationRepository: Repository<organization>,
+        @InjectRepository(resume)
+        private resumeRepository: Repository<resume>,
     ) { }
 
     async signUpCand(candCreateDto: candidateCreateDto): Promise<candidate> {
@@ -56,7 +58,6 @@ export class CandidateService {
     async updateC(candUpdateDto: candidateUpdateDto, candId: number) {
         return await this.candidateRepository.update(candId, candUpdateDto);
     }
-
 
     showCById(candId: number) {
         return this.candidateRepository.findOne({ where: { candId } });

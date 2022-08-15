@@ -44,8 +44,8 @@ export class CandidateController {
     }
     
 
-    @Roles(Role.Candidate)
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Roles(Role.Candidate)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showresume/:candId')
     showResumeUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
       return this.candService.showResumeByCandidateId(candId);

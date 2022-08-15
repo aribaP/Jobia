@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
 import Footer from './Footer'
@@ -9,16 +9,6 @@ import { axiosApiService } from '../services/axiosAPIs';
 
 
 const EditOneJob = () => {
-<<<<<<< HEAD
-    const location = useLocation();
-    const navigate = useNavigate();
-    const initialvalues = {
-        jdPosition: "",
-        jdMinimumExperience: null,
-        jdRequiredSkills: "",
-        jdLocation: "",
-        jdCity: ""
-=======
 
   const navigate = useNavigate();
   const initialvalues = {
@@ -89,10 +79,9 @@ const EditOneJob = () => {
       jdLocation: body.jdLocation,
       jdMinimumExperience: body.jdMinimumExperience,
       jdRequiredSkills: body.jdRequiredSkills,
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
     };
     try {
-      await axios.patch("http://localhost:5000/job-description/update/133", data)
+      await axiosApiService.coreApi.patch(`job-description/update/${location.state.jdId}`, data)
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);
@@ -105,22 +94,17 @@ const EditOneJob = () => {
     }
 
   };
-
+  const location = useLocation();
   const getData = async () => {
 
-<<<<<<< HEAD
-    const handleCancel = (e) => {
-        navigate('/organization', { replace: true });
-=======
     try {
-      await axios.get("http://localhost:5000/job-description/getone/133")
+      await axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`)
         .then((response) => {
           console.log("Data recieved");
-          setJDDetails(response.data);
+          setJDDetails(response);
           console.log("JDSET", setJD);
 
         })
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 
     } catch (err) {
       console.log(err);
@@ -137,81 +121,7 @@ const EditOneJob = () => {
       console.log(formValues);
     }
 
-<<<<<<< HEAD
-        if (formValues.jdCity === "")
-            formValues.jdCity = setJD.jdCity;
-
-        if (formValues.jdLocation === "")
-            formValues.jdLocation = setJD.jdLocation;
-
-        if (formValues.jdPosition === "")
-            formValues.jdPosition = setJD.jdPosition;
-
-        if (formValues.jdMinimumExperience === null)
-            formValues.jdMinimumExperience = setJD.jdMinimumExperience;
-
-        if (formValues.jdRequiredSkills === "")
-            formValues.jdRequiredSkills = setJD.jdRequiredSkills;
-
-        console.log(formValues);
-    };
-
-
-    const postData = async (body) => {
-        const data = {
-            jdPosition: body.jdPosition,
-            jdCity: body.jdCity,
-            jdLocation: body.jdLocation,
-            jdMinimumExperience: body.jdMinimumExperience,
-            jdRequiredSkills: body.jdRequiredSkills,
-        };
-        try {
-            console.log("JdId: ", location.state.jdId);
-    
-            axiosApiService.coreApi.patch(`job-description/update/${location.state.jdId}`, body)
-                .then((response) => {
-                    console.log("Data recieved");
-                    console.log(response.data);
-                    alert("Information saved.");
-                    window.location.reload();
-                })
-
-        } catch (err) {
-            console.log(err);
-        }
-
-    };
-
-    const getData = async () => {
-
-        try {
-            axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`)
-                .then((response) => {
-                    console.log("Data recieved");
-                    setJDDetails(response);
-                    console.log("JDSET", setJD);
-
-                })
-
-        } catch (err) {
-            console.log(err);
-        }
-
-    };
-
-    useEffect(() => {
-        getData();
-        console.log(formErrors);
-        if (isSubmit && Object.keys(formErrors).length === 0) {
-            console.log("useeffect", setJD);
-            postData(formValues);
-            console.log(formValues);
-        }
-
-    }, [formErrors]);
-=======
   }, [formErrors]);
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 
 
 
@@ -222,126 +132,10 @@ const EditOneJob = () => {
   };
 
 
-<<<<<<< HEAD
-    return (
-        <>
-            
- {/* <Header /> */}
- <NavBarComponent2/>
-         <section className="update">
-          <div>
-            <h2 className="contactUsHeading">Job Update</h2>
-          </div>
-        </section>
-              <div class="row"  style={{
-          
-          justifyContent: "center",height:"40%"
-          
-        }}>
-
-               
-            <div class="col-10 profile-body-right">
-                    <div style={{
-          marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
-          boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
-          padding:"30px"
-        }}>
-                        <label className="mb-3"> Job Position</label>
-                        <div className='orgIcon'>
-                            <input
-                                type="text"
-                                class="form-control input-Fields"
-                                disabled="true"
-                                id="jdPosition"
-                                name="jdPosition"
-                                value={setJD?.jdPosition}
-                            />
-                            <button className='btn btn-small btn-outline-secondary'>
-                                <img src={Edit} alt="" width="30px" height="30px" />
-                            </button>
-
-                        </div>
-
-                        <div className='mb-3'>
-                            <input
-                                type="text"
-                                class="form-control input-Fields"
-                                id="jdPosition"
-                                name="jdPosition"
-                                placeholder="Edit here"
-                                value={formValues.jdPosition}
-                                onChange={handleChange}
-                            />
-                            <div className="formErrors text-danger">
-                                <p>{formErrors.jdPosition}</p>
-                            </div>
-                        </div>
-
-                        <label className="mb-3"> Minimum Experience </label>
-                        <div className='orgIcon'>
-                            <input
-                                type="integer"
-                                class="form-control input-Fields"
-                                id="jdMinimumExperience"
-                                name="jdMinimumExperience"
-                                disabled="true"
-                                value={setJD?.jdMinimumExperience}
-                            />
-                            <button className='btn btn-small btn-outline-secondary'>
-                                <img src={Edit} alt="" width="30px" height="30px" />
-                            </button>
-                        </div>
-
-                        <div className='mb-3'>
-                            <input
-                                type="integer"
-                                class="form-control input-Fields"
-                                id="jdMinimumExperience"
-                                name="jdMinimumExperience"
-                                placeholder="Edit here"
-                                value={formValues.jdMinimumExperience}
-                                onChange={handleChange}
-                            />
-                            <div className="formErrors text-danger">
-                                <p>{formErrors.jdMinimumExperience}</p>
-                            </div>
-                        </div>
-
-
-                        <label className="mb-3"> Required Skills</label>
-                        <div className='orgIcon'>
-                            <textarea
-                                type="text"
-                                name="jdRequiredSkills"
-                                class="form-control input-Fields"
-                                id="jdRequiredSkills"
-                                disabled="true"
-                                value={setJD?.jdRequiredSkills}
-                            />
-                            <button className='btn btn-small btn-outline-secondary'>
-                                <img src={Edit} alt="" width="30px" height="30px" />
-                            </button>
-                        </div>
-                        <div>
-                            <input
-                                type="text"
-                                class="form-control input-Fields"
-                                id="jdRequiredSkills"
-                                name="jdRequiredSkills"
-                                placeholder="Edit here"
-                                value={formValues.jdRequiredSkills}
-                                onChange={handleChange}
-                            />
-                            <div className="formErrors text-danger">
-                                <p>{formErrors.jdRequiredSkills}</p>
-                            </div>
-                        </div>
-=======
   return (
 
 
     <>
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 
 <NavBarComponent2/>
       <section className="update">
@@ -369,7 +163,7 @@ const EditOneJob = () => {
                 disabled="true"
                 id="jdPosition"
                 name="jdPosition"
-                value={setJD.jdPosition}
+                defaultValue={setJD?.jdPosition}
               />
               <button className='btn btn-small btn-outline-secondary'
               onClick={() => setPosShow(!posHide)}

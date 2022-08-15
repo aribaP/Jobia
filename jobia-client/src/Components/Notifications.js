@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
 
 const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
-  const navigate = useNavigate();
   const initialvalues = {
     scoreId: null,
     resId: null,
@@ -40,44 +39,46 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
   };
 
-
-  const routeChange = (resId) => {
-    
-    let path = `/displayresume`;
-    navigate(path, { state: { resId } });
-  }
-
   const [formValues, setFormValues] = useState([initialvalues]);
 
   const handleDelete = (scoreId) => {
     console.log(scoreId);
-    axios.delete("score/delete/" + scoreId)
+    axiosApiService.coreApi.delete(`score/delete/${scoreId}`)
       .then(response => {
         console.log("Data recieved");
-        console.log(response.data);
-        setFormValues(response.data);
+        console.log(response);
+        setFormValues(response);
         console.log(formValues);
         window.alert("Information deleted");
-
+        
 
       }).catch(err => {
         console.log(err);
       })
   }
 
+  const getData = async () => {
+
+    try {
+      const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+      await axiosApiService.coreApi.get(`organization/notification/${user.orgId}`)
+        .then((response) => {
+          setFormValues(response);
+          console.log("Data recieved");
+          console.log(response);
+
+          console.log(formValues);
+
+        })
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-    axiosApiService.coreApi.get(`organization/notification/${user.orgId}`)
-      .then(response => {
-        setFormValues(response.data);
-        console.log("Data recieved");
-        console.log(response.data);
-
-        console.log(formValues);
-
-      }).catch(err => {
-        console.log(err);
-      })
+    getData();
 
   }, []);
   
@@ -106,13 +107,13 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
           <div className="resume-view padding-20 mt-20">
             <div className="width-100 padding-20">
 
-              <div key={details.position}>
-                <h3>{details.position}</h3>
+              <div key={details?.position}>
+                <h3>{details?.position}</h3>
               </div>
             </div>
             <div className='btn1'>
-              <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => routeChange(details.jdId)}> View </button>
-              <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={() => handleDelete(details.scoreId)}> Delete </button>
+              <Link to='/displayresume' state={{resId: details?.resId}}><button className="btn button-style-outline me-2 btn-sm" type="submit"> View </button></Link>
+              <button className="btn button-style-full btn-clr-brown btn-sm" type="deleted" onClick={() => handleDelete(details?.scoreId)}> Delete </button>
 
             </div>
           </div>

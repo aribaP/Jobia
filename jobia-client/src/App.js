@@ -18,6 +18,7 @@ import ViewOneJob from './Components/ViewOneJob';
 import EditOneJob from './Components/EditOneJob';
 import ResumeDisplay from './Components/ResumeDisplay';
 import UpdateResume from './Components/UpdateResume';
+import AllJobs from './Components/AllJobs';
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path='/account' element={<Account />}/>
         <Route path='/registrationOption' element={<RegistrationOption />}/>
         <Route path='/footer' element={<Footer />}/>
+        
         
         <Route path='/contact' element={<Contact />}/>
         <Route path='/about' element={<About />}/>

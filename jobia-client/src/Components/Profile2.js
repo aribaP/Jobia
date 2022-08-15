@@ -7,6 +7,15 @@ import { axiosApiService } from '../services/axiosAPIs';
 
 const Profile2 = () => {
 
+	
+	// Edit useState
+	const [orgHide, setOrgShow] = useState(false);
+	const [emailHide, setEmailShow] = useState(false);
+	const [phoneHide, setPhoneShow] = useState(false);
+	// const [passHide, setPassShow] = useState(false);
+	// const [confPassHide, setConfPassShow] = useState(false);
+
+
 	const navigate = useNavigate();
 	const initialvalues = {
 		orgName: "",
@@ -30,13 +39,6 @@ const Profile2 = () => {
 	const [setOrg, setOrgDetails] = useState(initValues);
 	const [formValues, setFormValues] = useState(initialvalues);
 
-	// Edit useState
-	const [orgHide, setOrgShow] = useState(false);
-	const [emailHide, setEmailShow] = useState(false);
-	const [phoneHide, setPhoneShow] = useState(false);
-	// const [passHide, setPassShow] = useState(false);
-	// const [confPassHide, setConfPassShow] = useState(false);
-
 	let name, value;
 	const handleChange = (e) => {
 		name = e.target.name;
@@ -45,7 +47,7 @@ const Profile2 = () => {
 		console.log("form values", formValues);
 
 	};
-
+	
 	const handleCancel = (e) => {
 		navigate('/organization', { replace: true });
 	};
@@ -62,8 +64,11 @@ const Profile2 = () => {
 		if (formValues.orgEmail === "")
 			formValues.orgEmail = setOrg.orgEmail;
 
-		if (formValues.orgContactNumber === "")
+		if (formValues.orgContactNumber === null)
 			formValues.orgContactNumber = setOrg.orgContactNumber;
+
+		if (formValues.orgPassword=== "")
+			formValues.orgPassword = setOrg.orgPassword;
 
 
 		console.log(formValues);
@@ -76,18 +81,11 @@ const Profile2 = () => {
 			orgEmail: body.orgEmail,
 			orgContactNumber: body.orgContactNumber,
 			orgPassword: body.orgPassword
-<<<<<<< HEAD
 		  };
 
 		try {
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
 			await axiosApiService.coreApi.patch(`organization/update/${user.orgId}`, data)
-=======
-		};
-
-		try {
-			await axios.patch("http://localhost:5000/organization/2", data)
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
@@ -104,12 +102,8 @@ const Profile2 = () => {
 	const getData = async () => {
 		
 		try {
-<<<<<<< HEAD
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
 			await axiosApiService.coreApi.get(`organization/getwhole/${user.orgId}`)
-=======
-			await axios.get("http://localhost:5000/organization/2")
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response);
@@ -119,7 +113,7 @@ const Profile2 = () => {
 
 		} catch (err) {
 			console.log(err);
-
+			
 		}
 
 	};
@@ -149,7 +143,7 @@ const Profile2 = () => {
 		if (!values.orgEmail) { }
 		else if (!regex.test(values.orgEmail)) { errors.orgEmail = "This is not a valid email format!"; }
 
-		if (!values.orgContactNumber) { errors.orgContactNumber = "Contact Number is required!"; }
+		if (!values.orgContactNumber) {  }
 		else if (!regexphoneno.test(values.orgContactNumber)) { errors.orgContactNumber = "Invalid phonenumber! Format: 00000000000"; }
 
 		if (!values.orgPassword && !values.orgCPassword) { }
@@ -170,6 +164,7 @@ const Profile2 = () => {
 	};
 
 
+
 	return (
 
 		<div style={{ paddingRight: "40px", marginLeft: "100px" }}>
@@ -184,18 +179,6 @@ const Profile2 = () => {
 					}}>
 						<label className="mb-3">Organization Name</label>
 						<div className='orgIcon'>
-<<<<<<< HEAD
-							<input
-								type="text"
-								class="form-control input-Fields"
-								disabled="true"
-								id="orgName"
-								name="orgName"
-								placeholder="Organization Name"
-								value={setOrg?.orgName}
-							/>
-							<button className='btn btn-small btn-outline-secondary'>
-=======
 								<input
 									type="text"
 									class="form-control input-Fields"
@@ -203,13 +186,12 @@ const Profile2 = () => {
 									id="orgName"
 									name="orgName"
 									placeholder="Organization Name"
-									value={setOrg.orgName}
+									value={setOrg?.orgName}
 								/>
 								{/* Edit Button */}
 							<button className='btn btn-small btn-outline-secondary'
 							onClick={() => setOrgShow(!orgHide)}
 							>
->>>>>>> a8ad92a055e4b8af7b703063f586080cd1a0e7b9
 								<img src={Edit} alt="" width="30px" height="30px" />
 							</button>
 
@@ -320,9 +302,7 @@ const Profile2 = () => {
 								value={formValues?.orgPassword}
 								onChange={handleChange}
 							/>
-							<button className='btn btn-small btn-outline-secondary'>
-								<img src={Edit} alt="" width="30px" height="30px" />
-							</button>
+							
 						</div>
 						<div className="formErrors text-danger">
 							<p>{formErrors.orgPassword}</p>
@@ -336,12 +316,10 @@ const Profile2 = () => {
 								id="orgCPassword"
 								name="orgCPassword"
 								placeholder="Confirm Password"
-								value={formValues?.orgCPassword}
+								value={formValues.orgCPassword}
 								onChange={handleChange}
 							/>
-							<button className='btn btn-small btn-outline-secondary'>
-								<img src={Edit} alt="" width="30px" height="30px" />
-							</button>
+							
 						</div>
 						<div className="formErrors text-danger">
 							<p>{formErrors.orgCPassword}</p>

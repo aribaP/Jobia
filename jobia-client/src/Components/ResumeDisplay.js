@@ -1,14 +1,10 @@
 import React from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Rectangle from '../assets/Rectangle.png'
-import { Link } from 'react-router-dom'
-import { FormikProvider } from 'formik';
+import { axiosApiService } from '../services/axiosAPIs';
 
-const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onChangeAllJobsTabs }) => {
-
-	const navigate = useNavigate();
+const ResumeDisplay = () => {
 
 	const initialValues = {
 		getResume: {
@@ -41,17 +37,18 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 			candName: "",
 		}
 	};
+	
 	const [formValues, setFormValues] = useState(initialValues);
-
+	const location = useLocation();
 	const getData = async () => {
-
+	
 		try {
-			await axios.get(`http://localhost:5000/resume/getwhole/${id}`)
+			await axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`)
 				.then((response) => {
 
-					console.log(response.data);
+					console.log(response);
 					console.log("Data recieved");
-					setFormValues(response.data);
+					setFormValues(response);
 					console.log(formValues);
 				})
 
@@ -61,30 +58,12 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 		}
 
 	};
-
+	
 	useEffect(() => {
-		console.log(id);
-		// getData();
-		try {
-			axios.get(`http://localhost:5000/resume/getwhole/${id}`)
-				.then((response) => {
-
-					console.log(response.data);
-					console.log("Data recieved");
-					setFormValues(response.data);
-					console.log(formValues);
-				})
-
-		} catch (err) {
-			console.log(err);
-
-		}
+		
+		getData();
 
 	}, []);
-
-
-
-
 
 	return (
 		<div className='body-resume'>
@@ -94,7 +73,7 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 
 					<div className='profileText' >
 
-						<h2>{formValues.getCand.candName}<br></br><span>{formValues.getResume.position}</span></h2>
+						<h2>{formValues?.getCand.candName}<br></br><span>{formValues?.getResume.position}</span></h2>
 					</div>
 
 					<div className='contactInfo'>
@@ -102,23 +81,23 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 						<ul>
 							<li>
 								<span className='resume-icon'><i class="fa fa-phone" aria-hidden="true"></i></span>
-								<span className='resume-text'>{formValues.getCand.candContactNumber}</span>
+								<span className='resume-text'>{formValues?.getCand.candContactNumber}</span>
 							</li>
 							<li>
 								<span className='resume-icon'><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-								<span className='resume-text'>{formValues.getCand.candEmail}</span>
+								<span className='resume-text'>{formValues?.getCand.candEmail}</span>
 							</li>
 							<li>
 								<span className='resume-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
-								<span className='resume-text'>{formValues.getResume.linkedIn}</span>
+								<span className='resume-text'>{formValues?.getResume.linkedIn}</span>
 							</li>
 							<li>
 								<span className='resume-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
-								<span className='resume-text'>{formValues.getResume.gitHub}</span>
+								<span className='resume-text'>{formValues?.getResume.gitHub}</span>
 							</li>
 							<li>
 								<span className='resume-icon'><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-								<span className='resume-text'>{formValues.getCand.candAddress} {formValues.getCand.candCity}</span>
+								<span className='resume-text'>{formValues?.getCand.candAddress} {formValues?.getCand.candCity}</span>
 							</li>
 						</ul>
 					</div>
@@ -127,16 +106,16 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 						<h3 className='resume-title'>Education</h3>
 						<ul>
 							{
-								formValues.getResume.eduFK.map(details => (
+								formValues?.getResume.eduFK.map(details => (
 									<li>
-										<div key={details.eduEndYear}>
-											<h5 >{details.eduEndYear}</h5>
+										<div key={details?.eduEndYear}>
+											<h5 >{details?.eduEndYear}</h5>
 										</div>
-										<div key={details.eduDegree}>
-											<h6 className='text-white'> {details.eduDegree}</h6>
+										<div key={details?.eduDegree}>
+											<h6 className='text-white'> {details?.eduDegree}</h6>
 										</div>
-										<div key={details.eduInstituteName}>
-											<h6 className='text-muted'>{details.eduInstituteName}</h6>
+										<div key={details?.eduInstituteName}>
+											<h6 className='text-muted'>{details?.eduInstituteName}</h6>
 										</div>
 									</li>
 								))
@@ -152,7 +131,7 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 				<div className='resume-display-right'>
 					<div className='about'>
 						<h2 className='title2'>Objective</h2>
-						<p> {formValues.getResume.careerObjective}</p>
+						<p> {formValues?.getResume.careerObjective}</p>
 
 					</div>
 
@@ -160,21 +139,21 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 						<h2 className='title2'>Experience</h2>
 
 						{
-							formValues.getResume.expFK.map(details => (
+							formValues?.getResume.expFK.map(details => (
 								<div className='box'>
 
 									<div className='yearCompany'>
-										<div key={details.expYear}>
-											<h6>Years of Experience: {details.expYear} </h6>
+										<div key={details?.expYear}>
+											<h6>Years of Experience: {details?.expYear} </h6>
 										</div>
-										<div key={details.expCompanyName}>
-											<h6>Company Name: {details.expCompanyName} </h6>
+										<div key={details?.expCompanyName}>
+											<h6>Company Name: {details?.expCompanyName} </h6>
 										</div>
 									</div>
 									<div className='resume-text'>
-										<div key={details.expDescription}>
+										<div key={details?.expDescription}>
 											<h4>Description</h4>
-											<p> {details.expDescription} </p>
+											<p> {details?.expDescription} </p>
 										</div>
 
 									</div>
@@ -191,14 +170,14 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 							formValues.getResume.projFK.map(details => (
 								<div className='box'>
 									<div className='yearCompany'>
-										<div key={details.projTitle}>
-										<h6> Project Title:  {details.projTitle}</h6>
+										<div key={details?.projTitle}>
+										<h6> Project Title:  {details?.projTitle}</h6>
 									</div>
 									</div>
 									<div className='resume-text'>
-										<div key={details.projDescription}>
+										<div key={details?.projDescription}>
 										<h4>Description</h4>
-										<p>{details.projDescription}</p>
+										<p>{details?.projDescription}</p>
 									</div>
 									</div>
 								</div>
@@ -211,7 +190,7 @@ const ResumeDisplay = ({ id, onChangeStatus, onChangeTabs, onChangeAllJobs, onCh
 					<div className='about skills'>
 						<h2 className='title2'>Skills</h2>
 						<div className='box'>
-							<h6>{formValues.getResume.skills}</h6>
+							<h6>{formValues?.getResume.skills}</h6>
 						</div>
 					</div>
 				</div>

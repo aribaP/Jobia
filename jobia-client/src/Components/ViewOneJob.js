@@ -3,13 +3,12 @@ import Footer from './Footer'
 import NavBarComponent2 from "./NavBarComponent2";
 
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { axiosApiService } from '../services/axiosAPIs';
 
 const ViewOneJob = () => {
 
   const location = useLocation();
-  const navigate = useNavigate();
   const initialvalues = {
     jdId: "",
     jdPosition: "",
@@ -92,13 +91,13 @@ const ViewOneJob = () => {
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Location</label>
                 <textarea type="text" name="jdLocation" class="form-control mb-3 input-Fields"
-                  id="jdLocation" required placeholder="" style={{ width: "100%" }}
+                  id="jdLocation" required placeholder="" sstyle={{ width: "100%" }}
                   value={formValues?.jdLocation}
                   rows='1' disabled />
 
               </div>
               <form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '700px' }}>
-                <button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" >Cancel</button>
+                <Link to= "/AllJobs"><button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" >Back</button></Link>
               </form>
             </div>
           </div>
