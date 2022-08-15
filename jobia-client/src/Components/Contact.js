@@ -15,13 +15,13 @@ const ContactUs = () => {
       </div>
       </section>
         <div class="container contactUsContainer">
-          <div class="row g-2" style={{ marginTop:"20px"}}>
-            <div class="col-6 " style={{marginBottom:"40px"}}  >
+          <div class="row g-2" style={{ marginTop:"20px" }}>
+            <div class="col-sm-6" style={{marginTop: "25px"}}  >
               <div class="contact_img">
-                <img  src={Contact} alt="" width="80%" />
+                <img  src={Contact} alt="" width="85%" />
               </div>
             </div>
-            <div class="col-6 "style={{ padding:"10px"}} >
+            <div class="col-sm-6 "style={{ padding:"10px" , marginTop: "5%"}} >
               <div>
                 <h2 className='mb-revert'>Contact Us!</h2>
                 <div class="mb-4">

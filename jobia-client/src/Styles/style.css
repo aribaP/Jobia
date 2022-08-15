@@ -135,7 +135,7 @@
   height: 240px;
   position: absolute;
   left: 0;
-  top: 461px;
+  top: 284px;
 }
 .body-Login {
   background-color: #21aa8f;
@@ -189,7 +189,7 @@
   height: 220px;
   position: absolute;
   right: 0;
-  top: 412px;
+  top: 356px;
 }
 .profileHeader {
   height: 150px;
@@ -1019,4 +1019,14 @@ footer {
      min-width: 95%;
      margin: 30px 5px;
     }
+  
    }
+   .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: 4.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+}

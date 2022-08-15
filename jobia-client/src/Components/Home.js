@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <NavBarComponent/>
-      
+      <div className="container"></div>
       <section className="home-container">
       <div>
         <h3 className="heading_1">Find The Perfect Job Solution That You <br></br>Deserve With Jobia</h3><br></br>
