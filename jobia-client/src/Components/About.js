@@ -15,7 +15,7 @@ const About = () => {
       </section>
       {/* <div className='aboutUsHeader'>
           <h2 className="aboutUsHeading">ABOUT US</h2>
-    </div> */}
+      </div> */}
       <div className="aboutUsContainer">
         <div class="card text-center p-3 border-0">
           <div class="card-body ">
@@ -25,23 +25,20 @@ const About = () => {
         </div>
         <div className="row m-0">
           <div className="col-sm-6">
-         
               <div class="card-body">
-                <p class="card-text " style={{ marginTop: "60px", marginLeft: 100 , width:"80%",  textAlign: "justify"}}>Jobia provides a platform for both job seekers and organizations to fulfill their needs.
+                <p class="card-text about-us-page">Jobia provides a platform for both job seekers and organizations to fulfill their needs.
                   The portal provides employment opportunities to the job seekers and reduces the effort of searching job of desired position.
-                  It facilitates the organization by filtering all the appropriate resumes according to the job description which eventually minimizes human resource work and screening process.</p>
-        
+                  It facilitates the organization by filtering all the appropriate resumes according to the job description which eventually minimizes human resource work and screening process.
+                </p>
             </div>
           </div>
           <div className="col-sm-6">
-  <div className=' m-3' style={{ marginTop: "50px", marginLeft: "100px" ,  paddingLeft: "80px"}}>
-  <img src={about} alt=""  width="60%"/>
-
-      </div>
-      </div>
+            <div className=' m-3' style={{ marginTop: "50px", marginLeft: "100px"}}>
+              <img src={about} alt="" />
+            </div>
+          </div>
         </div>
       </div>
-      
       <footer>
         <Footer dark={true} />
       </footer>

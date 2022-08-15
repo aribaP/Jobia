@@ -3,7 +3,6 @@
 import React from 'react'
 import '../Styles/style.css'
 import { useState, useEffect } from 'react';
-import polygon from '../assets/Polygon.png'
 import Footer from "../Components/Footer";
 import NavBarComponent from "./NavBarComponent";
 import axios from 'axios';
@@ -136,7 +135,6 @@ const Register = () => {
             </div>
           </form>
         </div>
-        <img className='polygon' src={polygon} alt="" />
       </div><footer>
         <Footer /></footer>
     </>

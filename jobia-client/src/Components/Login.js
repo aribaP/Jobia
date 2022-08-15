@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import {useState} from 'react';
 import validator from 'validator'
 import '../Styles/style.css'
-import PolygonRight from '../assets/PolygonRight.png'
 import Footer from "../Components/Footer";
 import NavBarComponent from "./NavBarComponent";
 
@@ -121,7 +120,6 @@ const Login = () => {
           </div>
           <button className="btn body-button-style11" type="submit" onClick={handleSubmit}>Login </button>
         </div>
-        <img className='polygonRight' src={PolygonRight} alt="" width="100" height="24" />
       </div>
       <footer>
         <Footer />
