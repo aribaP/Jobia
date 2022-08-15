@@ -51,35 +51,26 @@ const savedValues = {
 }
 
 const onSubmit = (values, submitProps) => {
-   
-
     console.log('form data', values);
-
     try {
-        axios.delete("http://localhost:5000/resume/deletewhole/67")
-            .then((response) => {
-                console.log("Data recieved");
-                console.log("Oyeee", response.data);
-            })
-
+        axios.delete("http://localhost:5000/resume/deletewhole/67").then((response) => {
+            console.log("Data recieved");
+            console.log("Oyeee", response.data);
+        })
     } catch (err) {
         console.log(err);
         window.alert('Incorrect credentials');
     }
-
     try {
-        axios.post("http://localhost:5000/resume/addwhole" , [values])
-            .then((response) => {
-                console.log("Data recieved");
-                console.log("Oyeee", response.data);
-                const results = response.data;
-            })
-
+        axios.post("http://localhost:5000/resume/addwhole" , [values]).then((response) => {
+            console.log("Data recieved");
+            console.log("Oyeee", response.data);
+            const results = response.data;
+        })
     } catch (err) {
         console.log(err);
         window.alert('Incorrect credentials');
     }
-
 }
 
 const validationSchema = Yup.object({
@@ -91,53 +82,45 @@ const validationSchema = Yup.object({
 
 const validateComments = value => {
     let error
-    if (!value) {
+    if (! value) {
         error = 'Required'
     }
     return error
 }
+
 const getData = async () => {
-
     try {
-        await axios.get("http://localhost:5000/resume/getwhole/67")
-            .then((response) => {
-                console.log(response.data);
-                console.log("Data recieved");
-                // setResumeDetails(response.data);
-                // console.log("ResumeSet", setResume);
-            })
-
+        await axios.get("http://localhost:5000/resume/getwhole/67").then((response) => {
+            console.log(response.data);
+            console.log("Data recieved");
+            // setResumeDetails(response.data);
+            // console.log("ResumeSet", setResume);
+        })
     } catch (err) {
         console.log(err);
     }
-
 };
 
 
 function UpdateResume() {
 
     const getData = async () => {
-
         try {
-            await axios.get("http://localhost:5000/resume/getwhole/67")
-                .then((response) => {
-                    console.log(response.data[0]);
-                    console.log("Data recieved");
-                    setResumeDetails(response.data[0]);
-                    // console.log("ResumeSet", setResume);
-                })
-
+            await axios.get("http://localhost:5000/resume/getwhole/67").then((response) => {
+                console.log(response.data[0]);
+                console.log("Data recieved");
+                setResumeDetails(response.data[0]);
+                // console.log("ResumeSet", setResume);
+            })
         } catch (err) {
             console.log(err);
         }
-
     };
 
     const [formValues, setFormValues] = useState(null)
     const [setResume, setResumeDetails] = useState();
     useEffect(() => {
         getData();
-
     }, []);
 
 
@@ -156,30 +139,31 @@ function UpdateResume() {
                 console.log('Formik props', formik)
                 return (
                     <div style={{ padding: '30px' }} className="container" >
-                        <div col-12 profile-body-right>
+                        <div col-12 profile-body-right >
                             <div style={{ padding: '30px' }}>
-                                <Form action="#" >
+                                <Form action="#" style={{
+					padding: "30px", border: "1px solid black", 
+					
+					borderRadius: "5px",
+					boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)"
+				}}>
                                     <div class='row' className="form-first">
                                         <div className="detail personal">
-                                            <span className="title"><h1> Resume Creation Form </h1></span>
-
+                                            <span className="title"
+                                            ><h1> Resume Creation Form </h1></span>
                                             <div className='fields'>
                                                 <div className="input-fields">
                                                     <label htmlFor='careerObjective' style={{ paddingTop: '10px' }} className='mb-3'>Objective</label>
                                                     <Field type='text' class="form-control mb-3 input-Fields" id='careerObjective' name='careerObjective' />
                                                 </div>
-
-
                                                 <div className="input-fields">
                                                     <label className='mb-3' htmlFor='position'>position</label>
                                                     <Field type='text' class="form-control mb-3 input-Fields" id='position' name='position' />
                                                 </div>
-
                                                 <div className="input-fields">
                                                     <label className='mb-3' htmlFor='skills'>skills</label>
                                                     <Field type='text' class="form-control mb-3 input-Fields" id='skills' name='skills' validate={validateComments} />
                                                 </div>
-
                                                 <div className="input-fields">
                                                     <label className='mb-3' htmlFor='linkedIn'>linkedIn</label>
                                                     <Field type='text' class="form-control mb-3 input-Fields" id='linkedIn' name='linkedIn' validate={validateComments} />
@@ -187,7 +171,6 @@ function UpdateResume() {
                                             </div>
                                         </div>
                                     </div>
-
                                     <div className="input-field2">
                                         <label className='mb-3'>Education</label>
                                         <div className='flex'>
@@ -208,47 +191,31 @@ function UpdateResume() {
                                                     const { values } = form
                                                     const { eduFK } = values
                                                     return (
-
-                                                        <div className='section'>
-
+                                                        <div className='section mb-5'>
                                                             {eduFK.map((eduFK, index) => (
                                                                 <div className="fields2" key={index} >
 
                                                                     <div className='flex'>
                                                                         <div className='resume-field-inner'>
-                                                                            <div className='input-fields2'>
-                                                                                <Field placeholder="Year" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduEndYear`} type="number" />
-                                                                            </div>
+                                                                            <Field placeholder="Year" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduEndYear`} type="number" />
                                                                         </div>
-
                                                                         <div className='resume-field-inner3'>
-                                                                            <div className='input-fields2'>
-                                                                                <Field placeholder="Institue Name" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduInstituteName`} type="text" />
-                                                                            </div>
+                                                                            <Field placeholder="Institue Name" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduInstituteName`} type="text" />
                                                                         </div>
-
-
                                                                         <div className='resume-field-inner2'>
-                                                                            <div className='input-fields2'>
-                                                                                <Field placeholder="Degree" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduDegree`} type="text" />
-                                                                            </div>
+                                                                            <Field placeholder="Degree" className='form-control mb-3 input-Fields' name={`eduFK[${index}].eduDegree`} type="text" />
                                                                         </div>
+                                                                        {index > 0 && (
+                                                                            <button className='form-control mb-3 btn20' type='button' onClick={() => remove(index)}>-
+                                                                            </button>
+                                                                        )}
                                                                     </div>
-                                                                    {index > 0 && (
-
-                                                                        <button className='form-control mb-3 btn20' type='button' onClick={() => remove(index)}>-
-                                                                        </button>
-
-                                                                    )}
                                                                 </div>
                                                             ))}
-
-
-                                                            <div>
+                                                            <div style={{ float: "right" }}>
                                                                 <button className='form-control mb-3 btn20' type='button' onClick={() => push('')}>+
                                                                 </button>
                                                             </div>
-
                                                         </div>
                                                     )
                                                 }}
@@ -275,47 +242,36 @@ function UpdateResume() {
                                                     const { values } = form
                                                     const { expFK } = values
                                                     return (
-
-                                                        <div className='section'>
-
+                                                        <div className='section mb-5'>
                                                             {expFK.map((expFK, index) => (
                                                                 <div className="fields2" key={index} >
-
                                                                     <div className='flex'>
                                                                         <div className='resume-field-inner'>
                                                                             <Field placeholder=" Total Years of Experience" className='form-control mb-3 input-Fields' name={`expFK[${index}].expYear`} type="number" />
                                                                         </div>
-
                                                                         <div className='resume-field-inner3'>
                                                                             <Field placeholder="Institue Name" className='form-control mb-3 input-Fields' name={`expFK[${index}].expCompanyName`} type="text" />
                                                                         </div>
-
                                                                         <div className='resume-field-inner2'>
                                                                             <Field placeholder="Description" className='form-control mb-3 input-Fields' name={`expFK[${index}].expDescription`} type="text" />
                                                                         </div>
+                                                                        {index > 0 && (
+                                                                            <button className='form-control mb-3 btn21' type='button' onClick={() => remove(index)}>-
+                                                                            </button>
+                                                                        )}
                                                                     </div>
-                                                                    {index > 0 && (
-
-                                                                        <button className='form-control mb-3 btn21' type='button' onClick={() => remove(index)}>-
-                                                                        </button>
-
-                                                                    )}
                                                                 </div>
                                                             ))}
-
-
-                                                            <div>
+                                                            <div style={{ float: "right" }}>
                                                                 <button className='form-control mb-3 btn21' type='button' onClick={() => push('')}>+
                                                                 </button>
                                                             </div>
-
                                                         </div>
                                                     )
                                                 }}
                                             </FieldArray>
                                         </div>
                                     </div>
-
                                     <div className="input-field2">
                                         <label className='mb-3'> Projects</label>
                                         <div className='flex'>
@@ -333,44 +289,33 @@ function UpdateResume() {
                                                     const { values } = form
                                                     const { projFK } = values
                                                     return (
-
-                                                        <div className='section'>
-
+                                                        <div className='section mb-5'>
                                                             {projFK.map((projFK, index) => (
                                                                 <div className="fields2" key={index} >
-
                                                                     <div className='flex'>
                                                                         <div className='resume-field-inner'>
                                                                             <Field placeholder="Project title" className='form-control mb-3 input-Fields' name={`projFK[${index}].projTitle`} type="text" />
                                                                         </div>
-
                                                                         <div className='resume-field-inner4'>
                                                                             <Field placeholder="Description" className='form-control mb-3 input-Fields' name={`projFK[${index}].projDescription`} type="text" />
                                                                         </div>
+                                                                        {index > 0 && (
+                                                                            <button className='form-control mb-3 btn21' type='button' onClick={() => remove(index)}>-
+                                                                            </button>
+                                                                        )}
                                                                     </div>
-
-                                                                    {index > 0 && (
-
-                                                                        <button className='form-control mb-3 btn21' type='button' onClick={() => remove(index)}>-
-                                                                        </button>
-
-                                                                    )}
                                                                 </div>
                                                             ))}
-
-
-                                                            <div>
+                                                            <div style={{ float: "right" }}>
                                                                 <button className='form-control mb-3 btn21' type='button' onClick={() => push('')}>+
                                                                 </button>
                                                             </div>
-
                                                         </div>
                                                     )
                                                 }}
                                             </FieldArray>
                                         </div>
                                     </div>
-                                    
                                     <div className='hello'>
                                         <button className="btn btn-secondary mx-2" type='reset'>Reset</button>
                                         <button
