@@ -11,6 +11,8 @@ import Profilee from '../assets/Profile.png'
 import Resume from './Resume'
 import Jobs from './Jobs'
 import AllJobs from './AllJobs'
+import Setting from './Setting';
+
 import ResumeDisplay from './ResumeDisplay'
 import ViewOneJob from './ViewOneJob'
 
@@ -81,10 +83,13 @@ const Account = (props) => {
               </div>
             </button>
             <button
-              className={check === 'Settings' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-              onClick={() => setCheck('Settings')}
+              className={check === 'Setting' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
+              onClick={() => {
+                setCheck('Setting')
+                setTabs('Setting')
+              }}
             >
-              <div className='Account-Tabs m-l-07'>
+              <div className='Account-Tabs m-l-07'>  
                 <img src={Settings} height='20px' width='20px' />
                 <p className='m-l-2'>Settings</p>
               </div>
@@ -131,7 +136,10 @@ const Account = (props) => {
           {check === 'NotificationsCandidate' &&
             <NotificationsCandidate />
           }
+                    {check === 'Setting' && <Setting /> }
+
         </div>
+
       </div>
           <footer>
       <Footer dark={true} /></footer>

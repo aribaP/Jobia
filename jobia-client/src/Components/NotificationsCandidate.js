@@ -30,7 +30,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                 window.alert("Information deleted");
 
 
-            }).catch(err => { 
+            }).catch(err => {
                 console.log(err);
             })
     }
@@ -51,13 +51,14 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
     }, []);
     return (
-        <div className="padding-20 resume-create-container">
+        <div className="padding-20 resume-create-container"
+        >
             <div
                 style={{
-                    border: "4px solid #5B4F64",
+                    border: "4px solid #1e957d",
                     borderRadius: "20px",
                     width: "100%",
-                }}
+                  }}
 
             ></div>
             <div className='display-5 my-4 btn button-style-full text-black'>
@@ -68,38 +69,59 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
                 formValues.map(details => (
                     <div className="resume-view padding-20 mt-20">
-                      
+
                         <div className="width-100 padding-20">
 
 
                             <div key={details.orgName}>
-                                <h4> <b><u>  Company Name:</u></b>  {details.orgName}</h4>
+                                <h4  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>  Company Name:</u></b>  {details.orgName}</h4>
                             </div>
                             <div key={details.jdPosition}>
-                                <h5> <b><u>  Job Position:</u></b>  {details.jdPosition}</h5>
+                                <h5  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>  Job Position:</u></b>  {details.jdPosition}</h5>
                             </div>
                             <div key={details.jdRequiredSkills}>
-                                <p> <b><u>  Requirements: dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</u></b>   {details.jdRequiredSkills}</p>
+                                <h5  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>   Requirements:</u></b>
+                                    <p style={{
+                                        color: "#333",
+                                        textAlign: "justify"
+                                    }}>
+                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.  
+                                    </p>
+                                    {details.jdRequiredSkills}</h5>
                             </div>
                             <div key={details.jdMinimumExperience}>
-                                <p> <b><u>  Minimum Experience:</u></b>   {details.jdMinimumExperience}</p>
+                                <h5  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>   Minimum Experience:</u></b>   {details.jdMinimumExperience}</h5>
                             </div>
                             <div key={details.jdLocation}>
-                                <p> <b><u>  Location:</u></b>   {details.jdLocation} </p>
+                                <h5  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>   Location:</u></b>   {details.jdLocation} </h5>
                             </div>
                             <div key={details.city}>
-                                <p> <b><u>  City:</u></b>   {details.jdCity} </p>
+                                <h5  style={{
+                                        color: "#21aa8f",
+                                    }}> <b><u>   City:</u></b>   {details.jdCity} </h5>
                             </div>
-
+ <div className='btn1'>
+                            <button className="btn button-style-full btn-clr btn-sm" type="delete" onClick={() => handleDelete(details.scoreId)}> Delete </button>
                         </div>
-                        <div className='btn1'>
-                            <button className="btn button-style-full btn-clr-brown btn-sm" type="delete" onClick={() => handleDelete(details.scoreId)}> Delete </button>
                         </div>
+                       
                     </div>
-                   
+
                 ))
+                
 
             }
+            
         </div>
 
     );

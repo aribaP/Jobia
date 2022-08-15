@@ -108,7 +108,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
             <div className="width-100 padding-20">
 
               <div key={details?.position}>
-                <h3>{details?.position}</h3>
+                <h3>{details?.position} </h3>
               </div>
             </div>
             <div className='btn1'>
