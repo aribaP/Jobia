@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import { useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
 
@@ -37,11 +37,11 @@ const ResumeDisplay = () => {
 			candName: "",
 		}
 	};
-	
+
 	const [formValues, setFormValues] = useState(initialValues);
 	const location = useLocation();
 	const getData = async () => {
-	
+
 		try {
 			await axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`)
 				.then((response) => {
@@ -58,9 +58,9 @@ const ResumeDisplay = () => {
 		}
 
 	};
-	
+
 	useEffect(() => {
-		
+
 		getData();
 
 	}, []);
@@ -171,14 +171,14 @@ const ResumeDisplay = () => {
 								<div className='box'>
 									<div className='yearCompany'>
 										<div key={details?.projTitle}>
-										<h6> Project Title:  {details?.projTitle}</h6>
-									</div>
+											<h6> Project Title:  {details?.projTitle}</h6>
+										</div>
 									</div>
 									<div className='resume-text'>
 										<div key={details?.projDescription}>
-										<h4>Description</h4>
-										<p>{details?.projDescription}</p>
-									</div>
+											<h4>Description</h4>
+											<p>{details?.projDescription}</p>
+										</div>
 									</div>
 								</div>
 

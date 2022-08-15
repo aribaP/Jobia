@@ -5,39 +5,48 @@ import { axiosApiService } from '../services/axiosAPIs';
 
 const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
-  const initialvalues = {
-    scoreId: null,
+  const initialvalues = [{
     resId: null,
-    candId: null,
-    candContactNumber: "",
-    candEmail: "",
-    candName: "",
     careerObjective: "",
-    city: "",
     skills: "",
-    education: {
+    github: "",
+    linkedIn: "",
+    skills: "",
+    position: "",
+    candFK: {
+      candId: null,
+      candName: "",
+      candEmail: "",
+      candPassword: "",
+      candContactNumber: "",
+      candCity: "",
+      candAddress: "",
+      candCNIC: ""
+    },
+    eduFK: {
       eduId: null,
       eduEndYear: null,
       eduInstituteName: ""
     },
-    experience: {
+    expFK: {
       expId: null,
       exoYear: null,
       expCompanyName: "",
       expDescription: "",
     },
-    projects: {
+    projFK: {
       projId: null,
       projTitle: "",
       projDescription: ""
     },
-    github: "",
-    city: "",
-    linkedIn: "",
-    skills: "",
-    position: "",
+    scores: {
+      scoreId: null,
+      score: null,
+      jdId: null,
+      resId: null
+    }
 
-  };
+  }];
 
   const [formValues, setFormValues] = useState([initialvalues]);
 
@@ -50,7 +59,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
         setFormValues(response);
         console.log(formValues);
         window.alert("Information deleted");
-        
+
 
       }).catch(err => {
         console.log(err);
@@ -63,11 +72,13 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
       await axiosApiService.coreApi.get(`organization/notification/${user.orgId}`)
         .then((response) => {
-          setFormValues(response);
+
           console.log("Data recieved");
+          // for(response[0])
           console.log(response);
 
-          console.log(formValues);
+          setFormValues(response);
+          // console.log(formValues);
 
         })
 
@@ -81,7 +92,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
     getData();
 
   }, []);
-  
+
   return (
     <div className="padding-20 resume-create-container">
       <div
@@ -100,24 +111,24 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
         }}> We have found some best matches for you! </h4>
       </div>
-       
-       {
+
+      {
         formValues && formValues?.map(details => (
+          details && details?.map(detail => (
+            <div className="resume-view padding-20 mt-20">
+              <div className="width-100 padding-20">
 
-          <div className="resume-view padding-20 mt-20">
-            <div className="width-100 padding-20">
+                <div key={detail?.position}>
+                  <h3>{detail?.position} </h3>
+                </div>
+              </div>
+              <div className='btn1'>
+                <Link to='/displayresume' state={{ resId: detail?.resId }}><button className="btn button-style-outline me-2 btn-sm" type="submit"> View </button></Link>
+                <button className="btn button-style-full btn-clr-brown btn-sm" type="deleted" onClick={() => handleDelete(detail?.scoreId)}> Delete </button>
 
-              <div key={details?.position}>
-                <h3>{details?.position} </h3>
               </div>
             </div>
-            <div className='btn1'>
-              <Link to='/displayresume' state={{resId: details?.resId}}><button className="btn button-style-outline me-2 btn-sm" type="submit"> View </button></Link>
-              <button className="btn button-style-full btn-clr-brown btn-sm" type="deleted" onClick={() => handleDelete(details?.scoreId)}> Delete </button>
-
-            </div>
-          </div>
-
+          ))
         ))
 
       }

@@ -99,98 +99,33 @@ export class OrganizationService {
         console.log(getJD[0].jdFK.length);
         var scores = new Array();
         for (let index = 0; index < getJD[0].jdFK.length; index++) {
-            console.log( await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }))
+
             if((await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } })).length != 0)
                 scores.push(await this.scoreRepository.find({ where: { jdId: getJD[0].jdFK[index].jdId } }));
 
         }
 
         console.log(scores.length);
-        let resumes;
-        let resumeObject = new Array();
+        let resumes = new Array();
 
         for (let index = 0; index < scores.length; index++) {
             for (let i = 0; i < scores[index].length; i++) {
-     
-                resumes = await this.resumeRepository.find({
-                    relations: ['candFK'],
-                    where: { resId: scores[index]['resId'] }
-                });
-                resumeObject.push(resumes);
+                
+                resumes.push(await this.resumeRepository.find({
+                    relations: ['candFK', 'eduFK', 'expFK', 'projFK', 'scores'],
+                    where: { resId: scores[index][i]['resId'] }
+                }));
+                
             }
         }
 
-        for (let index = 0; index < scores.length; index++) {
-            let element = scores[index];
-            console.log(scores[index][0].scoreId);
-            let getEducation = await this.resumeRepository.find({
-                relations: ['eduFK'],
-                where: { resId: scores[index]['resId'] }
-            });
-
-            let getExperience = await this.resumeRepository.find({
-                relations: ['expFK'],
-                where: { resId: scores[index]['resId'] }
-            });
-
-            let getProject = await this.resumeRepository.find({
-                relations: ['projFK'],
-                where: { resId: scores[index]['resId'] }
-            });
-
-            resumeObject[index] = {
-                resId: resumeObject[index][index].resId,
-                careerObjective: resumeObject[index][index].careerObjective,
-                position: resumeObject[index][index].position,
-                skills: resumeObject[index][index].skills,
-                linkedIn: resumeObject[index][index].linkedIn,
-                gitHub: resumeObject[index][index].gitHub,
-                scoreId: scores[index][0].scoreId,
-                city: resumeObject[index][index].candFK['candCity'],
-                candId: resumeObject[index][index].candFK['candId'],
-                candEmail: resumeObject[index][index].candFK['candEmail'],
-                candContactNumber: resumeObject[index][index].candFK['candContactNumber'],
-                candName: resumeObject[index][index].candFK['candName'],
-                education: getEducation[index]['eduFK'],
-                experience: getExperience[index]['expFK'],
-                projects: getProject[index]['projFK'],
-
-            };
-
-
-        }
-
-        return resumeObject;
+        console.log(resumes[1]);
+        return resumes;
 
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // updateO(orgId: number, orgLogo: string ){
-    //     return this.organizationRepository.update(orgId, );
-    // }
-    // getO(): Promise<organization[]> {
-    //     return this.organizationRepository.find();
-    // }
     showOByEmail(orgEmail: string): Promise<organization> {
         return this.organizationRepository.findOne({ where: { orgEmail } });
     }

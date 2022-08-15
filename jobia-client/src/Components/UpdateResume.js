@@ -2,115 +2,100 @@ import * as Yup from 'yup'
 // import TextError from './TextError'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { axiosApiService } from '../services/axiosAPIs';
 
-const initialValues = {
-    careerObjective: '',
-    position: '',
-    skills: '',
-    gitHub: '',
-    linkedIn: '',
-    eduFK: [{
-        eduEndYear: null,
-        eduInstituteName: "",
-        eduDegree: ""
-    }],
-    expFK: [{
-        expCompanyName: "",
-        expYear: null,
-        expDescription: ""
-    }],
-    projFK: [{
-        projTitle: "",
-        projDescription: ""
-    }]
-}
 
-const savedValues = {
-    careerObjective: '5',
-    position: '5',
-    skills: '5',
-    gitHub: '5',
-    linkedIn: '5',
-    eduFK: [{
-        eduEndYear: null,
-        eduInstituteName: "5",
-        eduDegree: "5"
-    }],
-    expFK: [{
-        expCompanyName: "5",
-        expYear: null,
-        expDescription: "5"
-    }],
-    projFK: [{
-        projTitle: "5",
-        projDescription: "5"
-    }]
-}
-
-const onSubmit = (values, submitProps) => {
-    console.log('form data', values);
-    try {
-        axios.delete("http://localhost:5000/resume/deletewhole/67").then((response) => {
-            console.log("Data recieved");
-            console.log("Oyeee", response.data);
-        })
-    } catch (err) {
-        console.log(err);
-        window.alert('Incorrect credentials');
-    }
-    try {
-        axios.post("http://localhost:5000/resume/addwhole" , [values]).then((response) => {
-            console.log("Data recieved");
-            console.log("Oyeee", response.data);
-            const results = response.data;
-        })
-    } catch (err) {
-        console.log(err);
-        window.alert('Incorrect credentials');
-    }
-}
-
-const validationSchema = Yup.object({
-    careerObjective: Yup.string().required('Required'),
-    position: Yup.string().required('Required'),
-    skills: Yup.string().required('Required'),
-    linkedIn: Yup.string().required('Required'),
-})
-
-const validateComments = value => {
-    let error
-    if (! value) {
-        error = 'Required'
-    }
-    return error
-}
-
-const getData = async () => {
-    try {
-        await axios.get("http://localhost:5000/resume/getwhole/67").then((response) => {
-            console.log(response.data);
-            console.log("Data recieved");
-            // setResumeDetails(response.data);
-            // console.log("ResumeSet", setResume);
-        })
-    } catch (err) {
-        console.log(err);
-    }
-};
 
 
 function UpdateResume() {
 
+    const initialValues = {
+        careerObjective: '',
+        position: '',
+        skills: '',
+        gitHub: '',
+        linkedIn: '',
+        eduFK: [{
+            eduEndYear: null,
+            eduInstituteName: "",
+            eduDegree: ""
+        }],
+        expFK: [{
+            expCompanyName: "",
+            expYear: null,
+            expDescription: ""
+        }],
+        projFK: [{
+            projTitle: "",
+            projDescription: ""
+        }]
+    }
+    
+    const savedValues = {
+        careerObjective: '5',
+        position: '5',
+        skills: '5',
+        gitHub: '5',
+        linkedIn: '5',
+        eduFK: [{
+            eduEndYear: null,
+            eduInstituteName: "5",
+            eduDegree: "5"
+        }],
+        expFK: [{
+            expCompanyName: "5",
+            expYear: null,
+            expDescription: "5"
+        }],
+        projFK: [{
+            projTitle: "5",
+            projDescription: "5"
+        }]
+    }
+    
+    
+    const validationSchema = Yup.object({
+        careerObjective: Yup.string().required('Required'),
+        position: Yup.string().required('Required'),
+        skills: Yup.string().required('Required'),
+        linkedIn: Yup.string().required('Required'),
+    })
+    
+    const validateComments = value => {
+        let error
+        if (! value) {
+            error = 'Required'
+        }
+        return error
+    }
+    const location = useLocation();
+
+    const onSubmit = (values, submitProps) => {
+        console.log('form data', values);
+        
+        try {
+            axiosApiService.coreApi.patch(`resume/updatewhole/${location.state.resId}`,values)
+            .then((response) => {
+                console.log("Data recieved");
+                console.log("Oyeee", response);
+            })
+        } catch (err) {
+            console.log(err);
+            window.alert('Incorrect credentials');
+        }
+    }
+
     const getData = async () => {
         try {
-            await axios.get("http://localhost:5000/resume/getwhole/67").then((response) => {
-                console.log(response.data[0]);
+            axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`)
+            .then((response) => {
+
+                console.log(response);
                 console.log("Data recieved");
-                setResumeDetails(response.data[0]);
-                // console.log("ResumeSet", setResume);
+                setResumeDetails(response);
             })
         } catch (err) {
             console.log(err);
@@ -150,7 +135,8 @@ function UpdateResume() {
                                     <div class='row' className="form-first">
                                         <div className="detail personal">
                                             <span className="title"
-                                            ><h1> Resume Creation Form </h1></span>
+                                            ><h1> Resume Updatation Form </h1></span>
+                                            
                                             <div className='fields'>
                                                 <div className="input-fields">
                                                     <label htmlFor='careerObjective' style={{ paddingTop: '10px' }} className='mb-3'>Objective</label>

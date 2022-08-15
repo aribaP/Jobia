@@ -31,7 +31,7 @@ export class ResumeController {
       return this.resService.showWholeResume(resId);
     }
 
-    @Put('updatewhole/:resId')
+    @Patch('updatewhole/:resId')
     update(
       @Body() resUpdateDto: resumeUpdateDto,
       @Param('resId', ParseIntPipe) resId: number) {
