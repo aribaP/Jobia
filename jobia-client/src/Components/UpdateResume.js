@@ -8,8 +8,6 @@ import { useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
 
 
-
-
 function UpdateResume() {
 
     const initialValues = {
@@ -19,16 +17,19 @@ function UpdateResume() {
         gitHub: '',
         linkedIn: '',
         eduFK: [{
+            eduId: null,
             eduEndYear: null,
             eduInstituteName: "",
             eduDegree: ""
         }],
         expFK: [{
+            expId: null,
             expCompanyName: "",
             expYear: null,
             expDescription: ""
         }],
         projFK: [{
+            projId: null,
             projTitle: "",
             projDescription: ""
         }]
@@ -41,16 +42,19 @@ function UpdateResume() {
         gitHub: '5',
         linkedIn: '5',
         eduFK: [{
+            eduId: null,
             eduEndYear: null,
             eduInstituteName: "5",
             eduDegree: "5"
         }],
         expFK: [{
+            expId: null,
             expCompanyName: "5",
             expYear: null,
             expDescription: "5"
         }],
         projFK: [{
+            projId: null,
             projTitle: "5",
             projDescription: "5"
         }]
@@ -90,7 +94,7 @@ function UpdateResume() {
 
     const getData = async () => {
         try {
-            axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`)
+            axiosApiService.coreApi.get(`resume/getresume/${location.state.resId}`)
             .then((response) => {
 
                 console.log(response);

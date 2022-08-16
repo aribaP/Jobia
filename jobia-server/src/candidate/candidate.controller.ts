@@ -10,7 +10,8 @@ import { candidateLoginDto } from './dto/candidate-login.dts';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
 
 
-
+// @Roles(Role.Candidate)
+// @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('candidate')
 export class CandidateController {
 

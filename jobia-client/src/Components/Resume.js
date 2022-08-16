@@ -4,18 +4,20 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { axiosApiService } from '../services/axiosAPIs';
 
 
 
 function Resume() {
   const [formValues, setFormValues] = useState(null)
-
+  const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
   const initialValues = {
     careerObjective: '',
     position: '',
     skills: '',
     gitHub: '',
     linkedIn: '',
+    candFK: user.candId,
     eduFK: [{
       eduEndYear: null,
       eduInstituteName: "",
@@ -31,7 +33,7 @@ function Resume() {
       projDescription: ""
     }]
   }
-  const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+  
   const onSubmit = (values, submitProps) => {
     const body = {
       careerObjective: values.careerObjective,
@@ -41,11 +43,11 @@ function Resume() {
     console.log('form data', values);
     console.log('form data', body);
     try {
-      axios.post("http://localhost:5000/resume/addwhole", [values])
+     
+      axiosApiService.coreApi.post(`resume/addwhole`, [values])
         .then((response) => {
           console.log("Data recieved");
-          console.log("Oyeee", response.data);
-          const results = response.data;
+          console.log("Oyeee", response);
         })
 
     } catch (err) {

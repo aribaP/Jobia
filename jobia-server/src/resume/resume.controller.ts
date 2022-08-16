@@ -31,6 +31,11 @@ export class ResumeController {
       return this.resService.showWholeResume(resId);
     }
 
+    @Get('/getresume/:resId')
+    getResume(@Param('resId', ParseIntPipe) resId: number) {
+      return this.resService.showResume(resId);
+    }
+
     @Patch('updatewhole/:resId')
     update(
       @Body() resUpdateDto: resumeUpdateDto,

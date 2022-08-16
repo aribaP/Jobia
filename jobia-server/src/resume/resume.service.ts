@@ -145,6 +145,14 @@ export class ResumeService {
         return await this.scoreRepository.find();
 
     }
+    async showResume(resId: number) {
+        return await this.resumeRepository.findOne({
+            relations: ['eduFK', 'expFK', 'projFK'],
+            where: { resId }
+        });
+
+
+    }
 
     async showWholeResume(resId: number) {
         const getCand = await this.resumeRepository.findOne({
@@ -170,7 +178,7 @@ export class ResumeService {
                 candEmail: getCand.candFK.candEmail,
                 candName: getCand.candFK.candName
             },
-            
+
         };
     }
 
