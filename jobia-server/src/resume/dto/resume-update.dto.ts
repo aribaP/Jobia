@@ -18,10 +18,6 @@ export class resumeUpdateDto{
     @IsString()
     gitHub: string
 
-    // @OneToMany(() => resumeProjects, (projFK) => projFK.resFK,  {
-    // }) 
-    // @JoinTable({name: 'projId'})
-    // @PrimaryGeneratedColumn()
-    // projId: number
+    resumeProjects
     // education, experience, project
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
   const handleDelete = (jdId) => {
 
-    axiosApiService.coreApi.delete(`organization/showjobdescription/${jdId}`)
+    axiosApiService.coreApi.delete(`organization/showjobdescription/${jdId}`, {headers : authHeader()})
       .then(response => {
         console.log("Data recieved");
         console.log(response.data);
@@ -33,7 +34,7 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-    axiosApiService.coreApi.get(`organization/showjobdescription/${user.orgId}`)
+    axiosApiService.coreApi.get(`organization/showjobdescription/${user.orgId}`, {headers : authHeader()})
       .then(response => {
 
         console.log("Data recieved");

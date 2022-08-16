@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
@@ -9,7 +10,7 @@ const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
     const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
     if (user.role === "organization") {
-      axiosApiService.coreApi.delete(`organization/delete/${user.orgId}`)
+      axiosApiService.coreApi.delete(`organization/delete/${user.orgId}`, {headers : authHeader()})
         .then(response => {
 
         }).catch(err => {
@@ -17,7 +18,7 @@ const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
         })
     }
     else if (user.role === "candidate") {
-      axiosApiService.coreApi.delete(`organization/delete/${user.candId}`)
+      axiosApiService.coreApi.delete(`organization/delete/${user.candId}`, {headers : authHeader()})
         .then(response => {
 
         }).catch(err => {

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import NavBarComponent2 from "./NavBarComponent2";
 import { useReducer } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
+
 
 const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
@@ -45,7 +47,7 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
   const postData = async (body) => {
 
     try {
-      await axiosApiService.coreApi.post(`job-description/addjobdescription`, body)
+      await axiosApiService.coreApi.post(`job-description/addjobdescription`, body, {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           console.log(response);

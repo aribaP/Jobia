@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
 
@@ -10,7 +11,7 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
 
     try {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-      await axiosApiService.coreApi.get(`candidate/showresume/${user.candId}`)
+      await axiosApiService.coreApi.get(`candidate/showresume/${user.candId}`, {headers : authHeader()})
         .then((response) => {
           console.log(response[0].resFK['resId']);
           console.log("Data recieved");

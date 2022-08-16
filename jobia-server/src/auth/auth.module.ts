@@ -19,7 +19,7 @@ import { OrganizationModule } from 'src/organization/organization.module';
 
         JwtModule.register({
             secret: jwtConstants.secret,
-            signOptions: { expiresIn: '600s'},
+            signOptions: { expiresIn: '6000s'},
 
         })
     ],

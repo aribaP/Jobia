@@ -6,7 +6,7 @@ import Edit from '../assets/edit.png';
 import Footer from './Footer'
 import NavBarComponent2 from "./NavBarComponent2";
 import { axiosApiService } from '../services/axiosAPIs';
-
+import authHeader from '../services/auth-header';
 
 const EditOneJob = () => {
 
@@ -81,7 +81,7 @@ const EditOneJob = () => {
       jdRequiredSkills: body.jdRequiredSkills,
     };
     try {
-      await axiosApiService.coreApi.patch(`job-description/update/${location.state.jdId}`, data)
+      await axiosApiService.coreApi.patch(`job-description/update/${location.state.jdId}`, data, {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);
@@ -98,7 +98,7 @@ const EditOneJob = () => {
   const getData = async () => {
 
     try {
-      await axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`)
+      await axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`, {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           setJDDetails(response);

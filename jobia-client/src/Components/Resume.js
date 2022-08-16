@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { axiosApiService } from '../services/axiosAPIs';
-
+import authHeader from '../services/auth-header';
 
 
 function Resume() {
@@ -44,7 +44,7 @@ function Resume() {
     console.log('form data', body);
     try {
      
-      axiosApiService.coreApi.post(`resume/addwhole`, [values])
+      axiosApiService.coreApi.post(`resume/addwhole`, [values], {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           console.log("Oyeee", response);

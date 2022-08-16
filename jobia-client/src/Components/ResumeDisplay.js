@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const ResumeDisplay = () => {
 
@@ -43,7 +44,7 @@ const ResumeDisplay = () => {
 	const getData = async () => {
 
 		try {
-			await axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`)
+			await axiosApiService.coreApi.get(`resume/getwhole/${location.state.resId}`, {headers : authHeader()})
 				.then((response) => {
 
 					console.log(response);

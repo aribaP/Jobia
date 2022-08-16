@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
@@ -52,7 +53,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
   const handleDelete = (scoreId) => {
     console.log(scoreId);
-    axiosApiService.coreApi.delete(`score/delete/${scoreId}`)
+    axiosApiService.coreApi.delete(`score/delete/${scoreId}`, {headers : authHeader()})
       .then(response => {
         console.log("Data recieved");
         console.log(response);
@@ -70,7 +71,7 @@ const Notifications = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
     try {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-      await axiosApiService.coreApi.get(`organization/notification/${user.orgId}`)
+      await axiosApiService.coreApi.get(`organization/notification/${user.orgId}`, {headers : authHeader()})
         .then((response) => {
 
           console.log("Data recieved");

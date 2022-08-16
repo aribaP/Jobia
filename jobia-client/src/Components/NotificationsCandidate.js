@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
 
 const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
@@ -22,7 +23,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
     const handleDelete = (scoreId) => {
 
         console.log(scoreId);
-        axiosApiService.coreApi.delete(`score/delete/${scoreId}`)
+        axiosApiService.coreApi.delete(`score/delete/${scoreId}`, {headers : authHeader()})
             .then(response => {
                 console.log("Data recieved");
                 console.log(response);
@@ -38,7 +39,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-        axiosApiService.coreApi.get(`candidate/notification/${user.candId}`)
+        axiosApiService.coreApi.get(`candidate/notification/${user.candId}`, {headers : authHeader()})
             .then(response => {
                 setFormValues(response);
                 console.log("Data recieved");

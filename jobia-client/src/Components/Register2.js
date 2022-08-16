@@ -8,6 +8,7 @@ import Footer from "../Components/Footer";
 import NavBarComponent from "./NavBarComponent";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import authHeader from '../services/auth-header';
 
 const Register2 = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Register2 = () => {
     console.log("boduuuu", body);
 
     try {
-      await axios.post("http://localhost:5000/candidate/signupCand", body)
+      await axios.post("http://localhost:5000/candidate/signupCand", body, {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           console.log(response.data);

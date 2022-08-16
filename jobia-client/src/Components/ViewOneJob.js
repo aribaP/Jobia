@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
 import NavBarComponent2 from "./NavBarComponent2";
-
+import authHeader from '../services/auth-header';
 import axios from 'axios';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { axiosApiService } from '../services/axiosAPIs';
@@ -23,7 +23,7 @@ const ViewOneJob = () => {
   useEffect(() => {
     console.log("JdId: ", location.state.jdId);
     
-    axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`)
+    axiosApiService.coreApi.get(`job-description/getone/${location.state.jdId}`, {headers : authHeader()})
       .then(response => {
         console.log("Data recieved");
         console.log(response);

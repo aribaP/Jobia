@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Profilee from '../assets/Profile.png';
 import Edit from '../assets/edit.png';
 import { axiosApiService } from '../services/axiosAPIs';
+import authHeader from '../services/auth-header';
+
 
 const Profile2 = () => {
 
@@ -85,7 +87,7 @@ const Profile2 = () => {
 
 		try {
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axiosApiService.coreApi.patch(`organization/update/${user.orgId}`, data)
+			await axiosApiService.coreApi.patch(`organization/update/${user.orgId}`, data, {headers : authHeader()})
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response.data);
@@ -103,7 +105,7 @@ const Profile2 = () => {
 		
 		try {
 			const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-			await axiosApiService.coreApi.get(`organization/getwhole/${user.orgId}`)
+			await axiosApiService.coreApi.get(`organization/getwhole/${user.orgId}`, {headers : authHeader()})
 				.then((response) => {
 					console.log("Data recieved");
 					console.log(response);

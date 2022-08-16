@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
-
+import authHeader from '../services/auth-header';
 
 function UpdateResume() {
 
@@ -81,7 +81,7 @@ function UpdateResume() {
         console.log('form data', values);
         
         try {
-            axiosApiService.coreApi.patch(`resume/updatewhole/${location.state.resId}`,values)
+            axiosApiService.coreApi.patch(`resume/updatewhole/${location.state.resId}`,values, {headers : authHeader()})
             .then((response) => {
                 console.log("Data recieved");
                 console.log("Oyeee", response);
@@ -94,7 +94,7 @@ function UpdateResume() {
 
     const getData = async () => {
         try {
-            axiosApiService.coreApi.get(`resume/getresume/${location.state.resId}`)
+            axiosApiService.coreApi.get(`resume/getresume/${location.state.resId}`, {headers : authHeader()})
             .then((response) => {
 
                 console.log(response);
