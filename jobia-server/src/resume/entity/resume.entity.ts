@@ -33,17 +33,27 @@ export class resume{
     // education, experience, project
 
     @OneToMany(() => resumeEducation, (eduFK) => eduFK.resFK, {
-        cascade: ['insert', 'update'],
+        cascade: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        eager: true,
     }) // specify inverse side as a second parameter
     eduFK: resumeEducation[]
 
     @OneToMany(() => resumeExperience, (expFK) => expFK.resFK, {
-        cascade: ['insert', 'update'],
+        cascade: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        eager: true,
     }) // specify inverse side as a second parameter
     expFK: resumeExperience[]
 
     @OneToMany(() => resumeProjects, (projFK) => projFK.resFK,  {
-        cascade: ['insert', 'update'],
+        cascade: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        
+        eager: true,
     }) // specify inverse side as a second parameter
     projFK: resumeProjects[]
 

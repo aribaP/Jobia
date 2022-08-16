@@ -87,6 +87,9 @@ export class ResumeService {
         console.log(resCreateDto);
         console.log("2");
         const saved = await this.resumeRepository.save(resCreateDto);
+
+
+
         console.log("1");
         const getAllJD = await this.jobDescriptionRepository.find({});
         console.log("3");
@@ -183,8 +186,11 @@ export class ResumeService {
     }
 
     updateWholeResume(resUpdateDto: resumeUpdateDto, resId: number) {
-        const answer = Object.values(JSON.parse(JSON.stringify(resUpdateDto)));
+       
+        console.log(resUpdateDto);
         return this.resumeRepository.update(resId, resUpdateDto);
+
+
     }
 
     deleteWholeResume(resId: number) {

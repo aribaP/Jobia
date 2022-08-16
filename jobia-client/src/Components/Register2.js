@@ -18,7 +18,8 @@ const Register2 = () => {
     candPassword: "",
     candCNIC: "",
     candCity: "",
-    candContactNumber: ""
+    candContactNumber: "",
+    candAddress: ""
   };
 
   const [formValues, setFormValues] = useState(initialvalues);
@@ -174,6 +175,16 @@ const Register2 = () => {
                 onChange={handleChange} />
               <div className="formErrors text-danger">
                 <p>{formErrors.candContactNumber}</p>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <input type="text" name="candAddress" class="form-control input-Fields"
+                id="candAddress" required placeholder="Enter Address"
+                value={formValues.candAddress}
+                onChange={handleChange} />
+              <div className="formErrors text-danger">
+                <p>{formErrors.candAddress}</p>
               </div>
             </div>
 

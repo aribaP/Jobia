@@ -7,10 +7,14 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
 import authHeader from '../services/auth-header';
+import { useReducer } from 'react';
 
 function UpdateResume() {
 
+    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
+
     const initialValues = {
+        candFK: user.candId,
         careerObjective: '',
         position: '',
         skills: '',
@@ -35,31 +39,6 @@ function UpdateResume() {
         }]
     }
     
-    const savedValues = {
-        careerObjective: '5',
-        position: '5',
-        skills: '5',
-        gitHub: '5',
-        linkedIn: '5',
-        eduFK: [{
-            eduId: null,
-            eduEndYear: null,
-            eduInstituteName: "5",
-            eduDegree: "5"
-        }],
-        expFK: [{
-            expId: null,
-            expCompanyName: "5",
-            expYear: null,
-            expDescription: "5"
-        }],
-        projFK: [{
-            projId: null,
-            projTitle: "5",
-            projDescription: "5"
-        }]
-    }
-    
     
     const validationSchema = Yup.object({
         careerObjective: Yup.string().required('Required'),
@@ -79,9 +58,18 @@ function UpdateResume() {
 
     const onSubmit = (values, submitProps) => {
         console.log('form data', values);
-        
         try {
-            axiosApiService.coreApi.patch(`resume/updatewhole/${location.state.resId}`,values, {headers : authHeader()})
+            axiosApiService.coreApi.delete(`resume/deletewhole/${location.state.resId}`,values, {headers : authHeader()})
+            .then((response) => {
+                console.log("Data recieved");
+                console.log("Oyeee", response);
+            })
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+            axiosApiService.coreApi.post(`resume/addwhole`,[values], {headers : authHeader()})
             .then((response) => {
                 console.log("Data recieved");
                 console.log("Oyeee", response);

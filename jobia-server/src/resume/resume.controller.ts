@@ -20,11 +20,7 @@ export class ResumeController {
       return this.resService.createWholeResume(resCreateDto);
     }
 
-    @Post('/restore')
-    reStoreAll(@Body() resCreateDto: resumeCreateDto) {
-      console.log(resCreateDto);
-      return this.resService.createWholeResume(resCreateDto);
-    }
+ 
 
     @Get('/getwhole/:resId')
     getWholeResume(@Param('resId', ParseIntPipe) resId: number) {
@@ -36,14 +32,14 @@ export class ResumeController {
       return this.resService.showResume(resId);
     }
 
-    @Patch('updatewhole/:resId')
-    update(
-      @Body() resUpdateDto: resumeUpdateDto,
-      @Param('resId', ParseIntPipe) resId: number) {
+    // @Patch('updatewhole/:resId')
+    // update(
+    //   @Body() resUpdateDto: resumeUpdateDto,
+    //   @Param('resId', ParseIntPipe) resId: number) {
 
-      console.log(resUpdateDto);
-      return this.resService.updateWholeResume(resUpdateDto, resId);
-    }
+    //   console.log(resUpdateDto);
+    //   return this.resService.updateWholeResume(resUpdateDto, resId);
+    // }
 
     @Delete('deletewhole/:resId')
     deleteresume(@Param('resId', ParseIntPipe) resId: number) {
