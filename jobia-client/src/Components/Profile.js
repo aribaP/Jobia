@@ -35,6 +35,15 @@ const Profile2 = () => {
   const [setCand, setCandDetails] = useState(initvalues);
   const [formValues, setFormValues] = useState(initialvalues);
 
+  const [candidateHide, setCandidateShow] = useState(false);
+  const [emailHide, setEmailShow] = useState(false);
+  const [phoneHide, setPhoneShow] = useState(false);
+  const [cityHide, setCityShow] = useState(false);
+  const [cnicHide, setCNICShow] = useState(false);
+  const [residentialHide, setResidentialShow] = useState(false);
+  const [passHide, setPassShow] = useState(false);
+  const [confPassHide, setConfPassShow] = useState(false);
+
   let name, value;
   const handleChange = (e) => {
     name = e.target.name;
@@ -176,17 +185,9 @@ const Profile2 = () => {
 
   return (
 
-    <div style={{ paddingRight: "40px", marginLeft:"100px" }}>
-      <div class="row">
-        
-        <div class="col-10 profile-body-right">
-        <div style={{
-					padding: "30px", border: "1px solid black", color: "white",
-					
-					borderRadius: "5px",
-					boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)"
-				}}>
-            <label className="mb-3"> Candidate Name</label>
+    <div className="center-item">
+    <div className='view-job-input-container my-4'>
+        <label className="mb-3"> Candidate Name</label>
             <div className='orgIcon'>
               <input
                 type="text"
@@ -197,13 +198,16 @@ const Profile2 = () => {
                 placeholder="First Name"
                 value={setCand?.candName}
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setCandidateShow(!candidateHide)}
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
 
             </div>
 
             <div className='mb-3'>
+            {candidateHide && 
               <input
                 type="text"
                 class="form-control input-Fields"
@@ -213,6 +217,7 @@ const Profile2 = () => {
                 value={formValues.candName}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candName}</p>
               </div>
@@ -229,12 +234,15 @@ const Profile2 = () => {
                 value={setCand?.candEmail}
                 placeholder="Email Address"
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setEmailShow(!emailHide)}
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
 
             <div className='mb-3'>
+            {emailHide &&
               <input
                 type="email"
                 class="form-control input-Fields"
@@ -244,6 +252,7 @@ const Profile2 = () => {
                 value={formValues.candEmail}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candEmail}</p>
               </div>
@@ -261,11 +270,15 @@ const Profile2 = () => {
                 value={setCand?.candContactNumber}
                 placeholder="Phone Number"
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setPhoneShow(!phoneHide)}
+              
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
             <div>
+            {phoneHide &&
               <input
                 type="text"
                 class="form-control input-Fields"
@@ -275,6 +288,7 @@ const Profile2 = () => {
                 value={formValues.candContactNumber}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candContactNumber}</p>
               </div>
@@ -291,11 +305,15 @@ const Profile2 = () => {
                 value={setCand?.candCity}
                 placeholder="Phone Number"
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setCityShow(!cityHide)}
+              
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
             <div>
+            {cityHide &&
               <input
                 type="text"
                 class="form-control input-Fields"
@@ -305,6 +323,7 @@ const Profile2 = () => {
                 value={formValues.candCity}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candCity}</p>
               </div>
@@ -321,11 +340,14 @@ const Profile2 = () => {
                 value={setCand?.candCNIC}
                 placeholder="Phone Number"
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setCNICShow(!cnicHide)}
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
             <div>
+            {cnicHide &&
               <input
                 type="text"
                 class="form-control input-Fields"
@@ -335,6 +357,7 @@ const Profile2 = () => {
                 value={formValues.candCNIC}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candCNIC}</p>
               </div>
@@ -351,11 +374,14 @@ const Profile2 = () => {
                 value={setCand?.candAddress}
                 placeholder="Phone Number"
               />
-              <button className='btn btn-small btn-outline-secondary'>
+              <button className='btn btn-small btn-outline-secondary'
+                onClick={() => setResidentialShow(!residentialHide)}
+              >
                 <img src={Edit} alt="" width="30px" height="30px" />
               </button>
             </div>
             <div>
+            {residentialHide &&
               <input
                 type="text"
                 class="form-control input-Fields"
@@ -365,6 +391,7 @@ const Profile2 = () => {
                 value={formValues.candAddress}
                 onChange={handleChange}
               />
+            }
               <div className="formErrors text-danger">
                 <p>{formErrors.candAddress}</p>
               </div>
@@ -416,8 +443,7 @@ const Profile2 = () => {
 
           </div>
         </div>
-      </div>
-    </div>
+  
   )
 }
 
