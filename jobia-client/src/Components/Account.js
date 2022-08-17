@@ -102,6 +102,14 @@ const Account = (props) => {
             <Profile />
           }
           {check === 'Resume' &&
+
+          //here we use condition
+          // if resume present
+          // <ExistedResume
+          //     onChangeStatus={(val) => setCheck(val)}
+          //     onChangeTabs={(val) => setTabs(val)}
+          //   />
+          //else
             <CreateResume
               onChangeStatus={(val) => setCheck(val)}
               onChangeTabs={(val) => setTabs(val)}
