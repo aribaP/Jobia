@@ -11,13 +11,13 @@ const RegistrationOption = () => {
 		   {/* <Header /> */}
        <NavBarComponent/>
 
-      <div class="row align-items-start">
+      <div className="row align-items-start">
 
-      <div class="col1">
+      <div className="col1">
       <h4 className='Heading_5'>Are You Job Seeker?</h4>
       <Link to= '/register2'><button type="button" class="btn center">Join Today</button></Link>
     </div>
-    <div class="col2">
+    <div className="col2">
       <h4 className='Heading_5'>Are You Recruiter?</h4>
       <Link to= '/register'><button type="button" class="btn center">Join Today</button></Link> 
     </div>
