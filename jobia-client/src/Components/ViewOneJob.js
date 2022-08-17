@@ -40,24 +40,18 @@ const ViewOneJob = () => {
     <>
       {/* <Header /> */}
       <NavBarComponent2 />    <div>
-        <section className="viewResume">
-          <div>
-            <h2 className="contactUsHeading">View Job</h2>
-          </div>
-        </section>
-        <div class="row" style={{
-          margin: 0, display: "flex",
-          justifyContent: "center",
+ 
+      <div className='view-job-input-container'>
 
 
-        }}>
-          <div class='col-9 profile-body-right'>
-            <div style={{
-              marginTop: "80px", marginBottom: "80px", borderRadius: "3px",
-              boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
-              padding: "20px"
-            }}>
-
+<div className="mb-3">
+  <label className='mb-3 mt-15'>Job Position</label>
+  <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
+    id="jdPosition" required placeholder="" 
+    value={formValues?.jdPosition}
+    disabled
+  />
+</div>
 
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Job Position</label>
@@ -96,13 +90,13 @@ const ViewOneJob = () => {
                   rows='1' disabled />
 
               </div>
-              <form className="d-flex justifyContent width-100" style={{ width: 100, marginLeft: '700px' }}>
+              <form className="d-flex justifyContent width-100" >
                 <Link to= "/AllJobs"><button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" >Back</button></Link>
               </form>
             </div>
           </div>
-        </div>
-      </div>
+        
+      
 
       <footer>
         <Footer dark={true} />
