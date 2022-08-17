@@ -86,7 +86,7 @@ function Resume() {
         return (
           <div style={{ padding: '30px' }} className="container" >
             <div col-12 profile-body-right>
-              <div style={{ padding: '30px' }}>
+              <div >
                 <Form action="#" >
                   <div class='row' className="form-first">
                     <div className="detail personal">
@@ -173,7 +173,7 @@ function Resume() {
                               ))}
 
 
-                              <div>
+                              <div className='plus-button-align'>
                                 <button className='form-control mb-3 btn20' type='button' onClick={() => push('')}>+
                                 </button>
                               </div>
@@ -233,7 +233,7 @@ function Resume() {
                               ))}
 
 
-                              <div>
+                              <div className='plus-button-align'>
                                 <button className='form-control mb-3 btn21' type='button' onClick={() => push('')}>+
                                 </button>
                               </div>
@@ -288,7 +288,7 @@ function Resume() {
                               ))}
 
 
-                              <div>
+                              <div className='plus-button-align'>
                                 <button className='form-control mb-3 btn21' type='button' onClick={() => push('')}>+
                                 </button>
                               </div>
