@@ -865,7 +865,13 @@ text-decoration-line: none;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 10px;
-  font-size: calc(.5rem + .9vw);
+  font-size: calc(.6rem + .9vw);
+
+}
+.title3{
+  color: #003347;
+
+  font-size: 11px;
 
 }
 p{

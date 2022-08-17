@@ -85,19 +85,30 @@ const ResumeDisplay = () => {
 								<span className='resume-text'>{formValues?.getCand.candContactNumber}</span>
 							</li>
 							<li>
-								<span className='resume-icon'><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+								<span className='resume-icon'>
+									{/* <i class="fa fa-envelope-o" aria-hidden="true"></i> */}
+								<i class="bi bi-envelope"></i>
+								</span>
 								<span className='resume-text'>{formValues?.getCand.candEmail}</span>
 							</li>
 							<li>
-								<span className='resume-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+								<span className='resume-icon'>
+									{/* <i class="fa fa-linkedin" aria-hidden="true"></i> */}
+								<i class="bi bi-linkedin"></i></span>
 								<span className='resume-text'>{formValues?.getResume.linkedIn}</span>
 							</li>
 							<li>
-								<span className='resume-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+								<span className='resume-icon'>
+									{/* <i class="fa fa-linkedin" aria-hidden="true"></i> */}
+									<i class="bi bi-github"></i>
+									</span>
 								<span className='resume-text'>{formValues?.getResume.gitHub}</span>
 							</li>
 							<li>
-								<span className='resume-icon'><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+								<span className='resume-icon'>
+									{/* <i class="fa fa-map-marker" aria-hidden="true"></i> */}
+									<i class="bi bi-geo-alt-fill"></i>
+									</span>
 								<span className='resume-text'>{formValues?.getCand.candAddress} {formValues?.getCand.candCity}</span>
 							</li>
 						</ul>
@@ -145,15 +156,15 @@ const ResumeDisplay = () => {
 
 									<div className='yearCompany'>
 										<div key={details?.expYear}>
-											<h6>Years of Experience: {details?.expYear} </h6>
+											<h6 className='title3'>Years of Experience: {details?.expYear} </h6>
 										</div>
 										<div key={details?.expCompanyName}>
-											<h6>Company Name: {details?.expCompanyName} </h6>
+											<h6 className='title3'>Company Name: {details?.expCompanyName} </h6>
 										</div>
 									</div>
 									<div className='resume-text'>
 										<div key={details?.expDescription}>
-											<h4>Description</h4>
+											<h4 className='title3'>Description</h4>
 											<p> {details?.expDescription} </p>
 										</div>
 
@@ -172,12 +183,12 @@ const ResumeDisplay = () => {
 								<div className='box'>
 									<div className='yearCompany'>
 										<div key={details?.projTitle}>
-											<h6> Project Title:  {details?.projTitle}</h6>
+											<h6 className='title3'> Project Title:  {details?.projTitle}</h6>
 										</div>
 									</div>
 									<div className='resume-text'>
 										<div key={details?.projDescription}>
-											<h4>Description</h4>
+											<h4 className='title3'>Description</h4>
 											<p>{details?.projDescription}</p>
 										</div>
 									</div>
@@ -191,7 +202,7 @@ const ResumeDisplay = () => {
 					<div className='about skills'>
 						<h2 className='title2'>Skills</h2>
 						<div className='box'>
-							<h6>{formValues?.getResume.skills}</h6>
+							<h6 className='title3'>{formValues?.getResume.skills}</h6>
 						</div>
 					</div>
 				</div>
