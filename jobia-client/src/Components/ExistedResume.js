@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { axiosApiService } from '../services/axiosAPIs';
 import authHeader from '../services/auth-header';
 
-const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
+const ExistedResume = ({ onChangeStatus, onChangeTabs }) => {
 
 
   const [formValues, setFormValues] = useState();
@@ -50,4 +50,4 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
   )
 }
 
-export default CreateResume
+export default ExistedResume
