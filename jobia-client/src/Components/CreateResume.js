@@ -37,14 +37,22 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
       <h5 className='padding-30 text-center padding-top-0'>Create your resume now so that Jobia will find the perfect Job for you!</h5>
 
       <div className="crud-resume">
-        
+        <Link to="/displayresume" state={{ resId: formValues }}><button style={{ marginLeft: 5, width: 72 }} className="btn btn-primary" type="submit">View</button></Link>
+
         <button style={{ marginLeft: 5 }} className="btn btn-success" type="submit" onClick={() => {
           onChangeStatus('ResumePage')
           onChangeTabs('CreateResume')
 
         }}>Create</button>
 
-              </div>
+        <Link to="/update" state={{ resId: formValues }}><button style={{ marginLeft: 5, color: 'white' }} className="btn btn-warning" type="submit" >Update</button></Link>
+
+
+        <button style={{ marginLeft: 5 }} className="btn btn-danger" type="submit" onClick={() => {
+          onChangeStatus('ResumePage')
+          onChangeTabs('DeleteResume')
+        }}>Delete</button>
+      </div>
     </div>
   )
 }
