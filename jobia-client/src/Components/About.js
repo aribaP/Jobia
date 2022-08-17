@@ -33,7 +33,7 @@ const About = () => {
             </div>
           </div>
           <div className="col-sm-6">
-            <div className=' m-3' style={{ marginTop: "50px", marginLeft: "100px"}}>
+            <div className='m-3 why-choose-img-cont'>
               <img src={about} alt="" />
             </div>
           </div>
