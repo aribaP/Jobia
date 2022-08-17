@@ -112,12 +112,12 @@ function UpdateResume() {
         // validateOnBlur={false}
         // validateOnMount
         >
-            {formik => {
+      {formik => {
                 console.log('Formik props', formik)
                 return (
                     <div style={{ padding: '30px' }} className="container" >
                         <div col-12 profile-body-right >
-                            <div style={{ padding: '30px' }}>
+                            <div >
                                 <Form action="#" style={{
 					padding: "30px", border: "1px solid black", 
 					
