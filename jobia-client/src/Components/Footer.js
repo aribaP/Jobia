@@ -18,7 +18,6 @@ const Footer = (props) => {
 
         </div>
         <div class={dark ? 'col footer-font white-txt' : 'col footer-font'}>
-          <Link to='/policy' >Terms and Policies</Link>
         </div>
         <div class={dark ? 'col footer-font-style white-txt' : 'col footer-font-style'}>
           © Jobia Inc. 2019. We love our users!
