@@ -37,8 +37,8 @@ const Account = (props) => {
       <div className='profileHeader'>
       <h2 style={{ fontWeight: 600 }}>Candidates </h2>
       </div>
-      <div class='row'>
-        <div class='col-2 bg-Gray'>
+      <div class='row m-0'>
+        <div class='col-md-2 bg-Gray'>
           <div style={{ marginTop: '30px' }}>
             <button
               className={check === 'Profile' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
@@ -51,9 +51,10 @@ const Account = (props) => {
             </button>
             {
               !hireEmployee ? <button
-                className={tabs === 'Resume' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
+                className={check === 'Resume' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
                 onClick={() => {
                   setCheck('Resume')
+                  // setTabs('Resume')
                 }}
               >
                 <div className='Account-Tabs m-l-07'>
@@ -97,7 +98,7 @@ const Account = (props) => {
           </div>
 
         </div>
-        <div class='col-10'>
+        <div class='col-md-10'>
           {check === 'Profile' &&
             <Profile />
           }

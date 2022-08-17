@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { axiosApiService } from '../services/axiosAPIs';
 import authHeader from '../services/auth-header';
+import { Fonts } from 'react-bootstrap-icons';
 
 const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
@@ -23,7 +24,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
     const handleDelete = (scoreId) => {
 
         console.log(scoreId);
-        axiosApiService.coreApi.delete(`score/delete/${scoreId}`, {headers : authHeader()})
+        axiosApiService.coreApi.delete(`score/delete/${scoreId}`, { headers: authHeader() })
             .then(response => {
                 console.log("Data recieved");
                 console.log(response);
@@ -39,7 +40,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-        axiosApiService.coreApi.get(`candidate/notification/${user.candId}`, {headers : authHeader()})
+        axiosApiService.coreApi.get(`candidate/notification/${user.candId}`, { headers: authHeader() })
             .then(response => {
                 setFormValues(response);
                 console.log("Data recieved");
@@ -78,12 +79,24 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                             <div key={details?.orgName}>
                                 <h4 style={{
                                     color: "#21aa8f",
-                                }}> <b><u>  Company Name:</u></b>  {details?.orgName}</h4>
+                                }}> <b><u>  Company Name:</u></b>   <p style={{
+                                    color: "#333",
+                                    textAlign: "justify",
+                                    fontFamily: "Montserrat"
+
+                                }}>
+                                    </p>{details?.orgName}</h4>
                             </div>
                             <div key={details?.jdPosition}>
                                 <h5 style={{
                                     color: "#21aa8f",
-                                }}> <b><u>  Job Position:</u></b>  {details?.jdPosition}</h5>
+                                }}> <b><u>  Job Position:</u></b>  <p style={{
+                                    color: "#333",
+                                    textAlign: "justify",
+                                    fontFamily: "Montserrat"
+
+                                }}>
+                                    </p> {details?.jdPosition}</h5>
                             </div>
                             <div key={details?.jdRequiredSkills}>
                                 <h5 style={{
@@ -91,7 +104,9 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                                 }}> <b><u>   Requirements:</u></b>
                                     <p style={{
                                         color: "#333",
-                                        textAlign: "justify"
+                                        textAlign: "justify",
+                                        fontFamily: "Montserrat"
+
                                     }}>
                                     </p>
                                     {details?.jdRequiredSkills}</h5>
@@ -99,17 +114,34 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                             <div key={details?.jdMinimumExperience}>
                                 <h5 style={{
                                     color: "#21aa8f",
-                                }}> <b><u>   Minimum Experience:</u></b>   {details?.jdMinimumExperience}</h5>
+                                }}> <b><u>   Minimum Experience:</u></b>  <p style={{
+                                    color: "#333",
+                                    textAlign: "justify",
+                                    fontFamily: "Montserrat"
+
+                                }}>
+                                    </p>  {details?.jdMinimumExperience}</h5>
                             </div>
                             <div key={details?.jdLocation}>
                                 <h5 style={{
                                     color: "#21aa8f",
-                                }}> <b><u>   Location:</u></b>   {details?.jdLocation} </h5>
+                                }}> <b><u>   Location:</u></b>    <p style={{
+                                    color: "#333",
+                                    textAlign: "justify",
+                                    fontFamily: "Montserrat"
+
+                                }}>
+                                    </p>{details?.jdLocation} </h5>
                             </div>
                             <div key={details?.city}>
                                 <h5 style={{
                                     color: "#21aa8f",
-                                }}> <b><u>   City:</u></b>   {details?.jdCity} </h5>
+                                }}> <b><u>   City:</u></b>   <p style={{
+                                    color: "#333",
+                                    textAlign: "justify",
+                                    fontFamily: "Montserrat"
+                                }}>
+                                    </p> {details?.jdCity} </h5>
                             </div>
                             <div className='btn1'>
                                 <button className="btn button-style-full btn-clr btn-sm" type="delete" onClick={() => handleDelete(details?.scoreId)}> Delete </button>

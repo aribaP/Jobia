@@ -110,7 +110,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div class="mb-3">
+            <div className="mb-3">
               <input type="email" name="orgEmail" class="form-control input-Fields"
                id="orgEmail" required placeholder="Email address"
                 value={formValues.orgEmail}

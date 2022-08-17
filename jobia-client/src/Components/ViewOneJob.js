@@ -40,42 +40,44 @@ const ViewOneJob = () => {
     <>
       {/* <Header /> */}
       <NavBarComponent2 />    <div>
- 
-      <div className='view-job-input-container'>
+        <section className="viewResume">
+          <div>
+            <h2 className="contactUsHeading">View Job</h2>
+          </div>
+        </section>
+        <div style={{
+          margin: 0, display: "flex",
+          justifyContent: "center",
 
 
-<div className="mb-3">
-  <label className='mb-3 mt-15'>Job Position</label>
-  <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
-    id="jdPosition" required placeholder="" 
-    value={formValues?.jdPosition}
-    disabled
-  />
-</div>
+        }}>
+   
+            <div className='view-job-input-container'>
+
 
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Job Position</label>
                 <textarea type="text" name="jdPosition" class="form-control mb-3 input-Fields"
-                  id="jdPosition" required placeholder="" style={{ width: "100%" }}
+                  id="jdPosition" required placeholder="" 
                   value={formValues?.jdPosition}
                   disabled
-                  rows='1' />
+                />
               </div>
 
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Minimum Years</label>
                 <textarea type="number" name="jdMinimumExperience" class="form-control mb-3 input-Fields"
-                  id="jdMinimumExperience" placeholder="In years" style={{ width: "100%" }}
+                  id="jdMinimumExperience" placeholder="In years"
                   value={formValues?.jdMinimumExperience}
-                  rows='1' disabled />
+                  disabled />
               </div>
 
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Requirements</label>
                 <textarea
                   class="form-control mb-3 input-Fields"
-                  id="jdRequiredSkills" style={{ width: "100%" }}
-                  rows="10" disabled
+                  id="jdRequiredSkills"
+                  disabled
                   name='jdRequiredSkills'
                   required
                   value={formValues?.jdRequiredSkills} />
@@ -85,18 +87,18 @@ const ViewOneJob = () => {
               <div className="mb-3">
                 <label className='mb-3 mt-15'>Location</label>
                 <textarea type="text" name="jdLocation" class="form-control mb-3 input-Fields"
-                  id="jdLocation" required placeholder="" sstyle={{ width: "100%" }}
+                  id="jdLocation" required placeholder="" 
                   value={formValues?.jdLocation}
-                  rows='1' disabled />
+                   disabled />
 
               </div>
               <form className="d-flex justifyContent width-100" >
                 <Link to= "/AllJobs"><button className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm" type="submit" >Back</button></Link>
               </form>
             </div>
-          </div>
-        
-      
+          
+        </div>
+      </div>
 
       <footer>
         <Footer dark={true} />

@@ -97,25 +97,19 @@ const Jobs = ({ handleOnSave, onChangeTabs }) => {
 
   return (
     <>
-  
-    {/* <Header /> */}
-    <NavBarComponent2/>      <section className="JobHeader">
+   <NavBarComponent2/>      <section className="JobHeader">
         <div>
           <h2 className="contactUsHeading">Job Application</h2>
         </div>
       </section>
 
 
-      <div class='row' style={{
+      <div  style={{
         margin: 0, display: "flex",
         justifyContent: "center",
       }}>
 
-        <div class='col-8 profile-body-right ' style={{
-          marginTop: "80px",marginBottom: "80px", borderRadius: "3px",
-          boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
-          
-        }}> 
+        <div class=' view-job-input-container ' > 
           <div>
             <div className="mb-3">
               <label className='mb-3 mt-15'>Job Position</label>

@@ -138,23 +138,15 @@ const EditOneJob = () => {
     <>
 
 <NavBarComponent2/>
-      <section className="update">
+<section className="update">
         <div>
           <h2 className="contactUsHeading">Job Update</h2>
         </div>
       </section>
-      <div class="row" style={{
+     
 
-        justifyContent: "center", height: "40%"
-
-      }}>
-
-        <div class="col-10 profile-body-right">
-          <div style={{
-            marginTop: "80px", marginBottom: "80px", borderRadius: "3px",
-            boxShadow: "-1px 3px 18px 0px rgb(0 0 0 / 75%)",
-            padding: "30px"
-          }}>
+        <div class=" edit-one-job-input-container">
+          <div className='edit-job-input'>
             <label className="mb-3"> Job Position</label>
             <div className='orgIcon'>
               <input
@@ -347,7 +339,7 @@ const EditOneJob = () => {
 
 
         </div>
-      </div>
+    
       <footer>
         <Footer dark={true} />
       </footer>
