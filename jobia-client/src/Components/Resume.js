@@ -100,18 +100,23 @@ function Resume() {
 
 
                         <div className="input-fields">
-                          <label className='mb-3' htmlFor='position'>position</label>
+                          <label className='mb-3' htmlFor='position'>Position</label>
                           <Field type='text' class="form-control mb-3 input-Fields" id='position' name='position' />
                         </div>
 
                         <div className="input-fields">
-                          <label className='mb-3' htmlFor='skills'>skills</label>
+                          <label className='mb-3' htmlFor='skills'>Skills</label>
                           <Field type='text' class="form-control mb-3 input-Fields" id='skills' name='skills' validate={validateComments} />
                         </div>
 
                         <div className="input-fields">
-                          <label className='mb-3' htmlFor='linkedIn'>linkedIn</label>
+                          <label className='mb-3' htmlFor='linkedIn'>LinkedIn</label>
                           <Field type='text' class="form-control mb-3 input-Fields" id='linkedIn' name='linkedIn' validate={validateComments} />
+                        </div>
+
+                        <div className="input-fields">
+                          <label className='mb-3' htmlFor='linkedIn'>Github</label>
+                          <Field type='text' class="form-control mb-3 input-Fields" id='gitHub' name='gitHub' validate={validateComments} />
                         </div>
                       </div>
                     </div>

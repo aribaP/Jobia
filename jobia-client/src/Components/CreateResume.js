@@ -25,6 +25,20 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
 
   };
 
+  const DeleteResume = async (resId) => {
+    try {
+      axiosApiService.coreApi.delete(`resume/deletewhole/${resId}`, { headers: authHeader() })
+        .then((response) => {
+          console.log("Data recieved");
+          console.log("Oyeee", response);
+          
+        })
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+
   useEffect(() => {
     getData();
 
@@ -49,8 +63,7 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
 
         <button style={{ marginLeft: 5, width: 72 }}className="btn create"
           type="submit" onClick={() => {
-          onChangeStatus('ResumePage')
-          onChangeTabs('DeleteResume')
+            DeleteResume(formValues)
         }}>Delete</button>
       </div>
     </div>
