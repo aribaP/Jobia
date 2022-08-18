@@ -12,7 +12,8 @@ const ResumeView = ({ onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChang
       <h5 className='padding-30 text-center padding-top-0'>Create your resume now so that Jobia will find the perfect Job for you!</h5>
 
       <div className="crud-resume">
-      <button style={{ marginLeft: 5 }} className="btn btn-success" type="submit" onClick={() => {
+      <button style={{ marginLeft: 5 }} cclassName="btn create"
+          type="submit" onClick={() => {
           onChangeStatus('ResumePage')
           onChangeTabs('CreateResume')
 
