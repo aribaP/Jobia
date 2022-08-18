@@ -86,10 +86,11 @@ export class CandidateService {
             relations: ['resFK'],
             where: { candId: candFK }
         });
-
         
+
         if (getResume[0].resFK) {
             console.log(getResume[0].resFK.resId);
+            console.log("Aria");
 
             const scores = await this.scoreRepository.find({ where: { resId: getResume[0].resFK.resId } });
             console.log(scores.length);
