@@ -45,7 +45,6 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
                     setFormValues(response);
                 console.log("Data recieved");
                 console.log(response);
-
                 console.log(formValues);
 
             }).catch(err => {

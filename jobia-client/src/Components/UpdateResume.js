@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 // import TextError from './TextError'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { axiosApiService } from '../services/axiosAPIs';
@@ -300,13 +300,13 @@ function UpdateResume() {
                                     </div>
                                     <div className='hello'>
                                         <button className="btn btn-secondary mx-2" type='reset'>Reset</button>
-                                        <button
+                                        <Link to ="/displayresume"><button
                                             className="btn btn-success"
                                             type='submit'
                                             disabled={!formik.isValid || formik.isSubmitting}
                                         >
                                             Submit
-                                        </button>
+                                        </button></Link>
                                     </div>
                                 </Form>
                             </div>
