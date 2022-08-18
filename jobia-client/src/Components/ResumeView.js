@@ -8,31 +8,16 @@ const ResumeView = ({ onChangeStatus, onChangeTabs, id, onChangeAllJobs, onChang
   return (
     <div className='padding-20 resume-create-container'>
       <div style={{ border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}></div>
-      <div className='resume-view padding-20 mt-20'>
-        <img src={Rectangle} alt="" width="20%" height="120px" />
-        <div className='width-100 padding-20'>
-          <h3>My Resume</h3>
-          <h6>Last Modified: dd/mm/yy</h6>
-        </div>
-      </div>
-      <form className="d-flex justifyContent width-100">
+      <h4 className='padding-30 text-center'>Oops! Looks like you haven’t created any resume</h4>
+      <h5 className='padding-30 text-center padding-top-0'>Create your resume now so that Jobia will find the perfect Job for you!</h5>
 
-        <button className="btn button-style-outline me-2 btn-sm" type="submit" onClick={() => {
+      <div className="crud-resume">
+      <button style={{ marginLeft: 5 }} className="btn btn-success" type="submit" onClick={() => {
           onChangeStatus('ResumePage')
-          onChangeTabs('Job')
-        }}>View</button>
-
-        <button className="btn button-style-full me-2 btn-sm" type="submit" onClick={() => {
-          onChangeStatus('ResumePage')
-          onChangeTabs('Resume')
-        }}>Update</button>
-
-        <button className="btn button-style-full btn-clr-brown btn-sm create-resume" type="submit" onClick={() => {
-
           onChangeTabs('CreateResume')
-          onChangeStatus('ResumePage')
-        }}>Delete</button>
-      </form>
+
+        }}>Create</button>
+      </div>
     </div>
   )
 }

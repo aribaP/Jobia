@@ -19,13 +19,15 @@ const AllJobs = ({ setCheck, onChangeStatus, onChangeTabs }) => {
 
   const handleDelete = (jdId) => {
 
-    axiosApiService.coreApi.delete(`organization/showjobdescription/${jdId}`, {headers : authHeader()})
+    axiosApiService.coreApi.delete(`job-description/delete/${jdId}`, {headers : authHeader()})
       .then(response => {
         console.log("Data recieved");
         console.log(response.data);
         setFormValues(response.data);
         console.log(formValues);
         window.alert("Information deleted");
+        window.location.reload();
+        navigate("/organizaton");
 
       }).catch(err => {
         console.log(err);

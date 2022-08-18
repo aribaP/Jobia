@@ -9,6 +9,7 @@ import NavBarComponent from "./NavBarComponent";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import authHeader from '../services/auth-header';
+import { axiosApiService } from '../services/axiosAPIs';
 
 const Register2 = () => {
   const navigate = useNavigate();
@@ -45,11 +46,13 @@ const Register2 = () => {
     console.log("boduuuu", body);
 
     try {
-      await axios.post("http://localhost:5000/candidate/signupCand", body, {headers : authHeader()})
+      await axiosApiService.coreApi.post(`candidate/signupCand`, body, {headers : authHeader()})
         .then((response) => {
+          console.log(response);
+          localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, role: "candidate", candId: response?.candId, orgId: response?.orgId}))
+              
           console.log("Data recieved");
-          console.log(response.data);
-          const results = response.data;
+          
           navigate('/account', { replace: true });
         })
 

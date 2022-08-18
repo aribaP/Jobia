@@ -51,6 +51,7 @@ function App() {
         <Route exact path= '/editonejob'element= {<EditOneJob/>}/>
         <Route exact path= '/displayresume'element= {<ResumeDisplay/>}/>
         <Route exact path= '/update'element= {<UpdateResume/>}/>
+        <Route exact path= '/allJobs'element= {<AllJobs/>}/>
         
         
         {/* <Route path='/policy' element={<Policy />}/> */}

@@ -9,26 +9,10 @@ import DeleteModel from './DeleteModel';
 const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
   const [show, setShow] = useState(false);
 
-  const handleDelete = () => {
+  const handleClick = () => {
     // const handleShow = () => setShow(true);
     setShow(true);
-    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-    if (user.role === "organization") {
-      axiosApiService.coreApi.delete(`organization/delete/${user.orgId}`, {headers : authHeader()})
-        .then(response => {
-
-        }).catch(err => {
-          console.log(err);
-        })
-    }
-    else if (user.role === "candidate") {
-      axiosApiService.coreApi.delete(`organization/delete/${user.candId}`, {headers : authHeader()})
-        .then(response => {
-
-        }).catch(err => {
-          console.log(err);
-        })
-    }
+    
   }
   return (
     <div className="padding-20 resume-create-container">
@@ -42,7 +26,7 @@ const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
       ></div>
 
       <div className='btn1 pt-5'>
-      <button onClick={handleDelete} className="btn button-style-full btn-clr-brown btn-sm" type="delete" > Delete your Account</button>
+      <button onClick={handleClick} className="btn button-style-full btn-clr-brown" type="delete" > Delete your Account</button>
 
         <DeleteModel show={show} setShow={setShow} />
       </div>

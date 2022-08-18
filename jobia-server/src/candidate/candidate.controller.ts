@@ -10,49 +10,53 @@ import { candidateLoginDto } from './dto/candidate-login.dts';
 import { candidateUpdateDto } from './dto/candidate-update.dto';
 
 
-// @Roles(Role.Candidate)
-// @UseGuards(AuthGuard('jwt'), RolesGuard)
+
 @Controller('candidate')
 export class CandidateController {
 
     constructor(private candService: CandidateService) { }
 
     @Post('/signupCand')
-    // @UsePipes(ValidationPipe)
     async signUpCandidate(@Body(ValidationPipe) candCreateDto: candidateCreateDto) {
-      return await this.candService.signUpCand(candCreateDto);
+        console.log(candCreateDto);
+        return await this.candService.signUpCand(candCreateDto);
     }
 
-   
+
 
     @Roles(Role.Candidate)
     @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Post('/login')
     @UseFilters(HttpExceptionFilter)
     async loginCandidate(@Body() candLoginDto: candidateLoginDto) {
-      console.log('hi');
-      return await this.candService.loginCand(candLoginDto);
+        console.log('hi');
+        return await this.candService.loginCand(candLoginDto);
 
     }
 
-    //  @UseGuards(AuthGuard('jwt'))
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Patch('update/:candId')
     update(
-      @Body() candUpdateDto: candidateUpdateDto,
-      @Param('candId', ParseIntPipe) candId: number) {
+        @Body() candUpdateDto: candidateUpdateDto,
+        @Param('candId', ParseIntPipe) candId: number) {
 
-      return this.candService.updateC(candUpdateDto, candId);
+        return this.candService.updateC(candUpdateDto, candId);
     }
-    
 
-    // @Roles(Role.Candidate)
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
+
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showresume/:candId')
     showResumeUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
-      return this.candService.showResumeByCandidateId(candId);
+        return this.candService.showResumeByCandidateId(candId);
     }
 
-  
+    
+
+
+
+
     @Roles(Role.Candidate)
     @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get()
@@ -63,29 +67,22 @@ export class CandidateController {
     }
 
 
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/notification/:candId')
     showNotificationUnderCandidate(@Param('candId', ParseIntPipe) candId: number) {
-      return this.candService.getNotification(candId);
+        return this.candService.getNotification(candId);
     }
-
-
-
-
-    //  @UseGuards(AuthGuard('jwt'))
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/:candId')
     getCandidateById(@Param('candId') candId: number) {
-      return this.candService.showCById(candId);
+        return this.candService.showCById(candId);
     }
-
-    //  @UseGuards(AuthGuard('jwt'))
-    // @Get(':candEmail')
-    // getCandidateByEmail(@Param('candEmail') candEmail: string) {
-    //   return this.candService.showCByEmail(candEmail);
-    // }
-
-    //  @UseGuards(AuthGuard('jwt'))
-    @Delete('/:candId')
+    @Roles(Role.Candidate)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    @Delete('delete/:candId')
     deletecandidate(@Param('candId', ParseIntPipe) candId: number) {
-      return this.candService.deleteC(candId);
+        return this.candService.deleteC(candId);
     }
 }

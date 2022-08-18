@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, NavDropdown, Button, Form } from "react-bootstr
 import { Link } from "react-router-dom";
 import JobiaLogo from "../assets/Jobia_Logo.png";
 import DeleteModel from "./DeleteModel";
+import LogoutModel from "./LogoutModel";
 
 
 function NavBarComponent2() {
@@ -13,8 +14,7 @@ function NavBarComponent2() {
   const handleLogout = () => {
     setShow(true);
 
-    const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-    localStorage.removeItem("userToken", JSON.stringify({accessToken: user.access_token, candId: user.candId, orgId: user.orgId}));
+   
   };
 
 
@@ -40,7 +40,7 @@ function NavBarComponent2() {
 
 
           </Nav>
-          <Form className="d-flex" style={{ paddingRight: "20px" }}>
+          <div className="d-flex" style={{ paddingRight: "20px" }}>
            
               <button onClick={handleLogout}
                 className="btn body-button-style1 padding-l-15 padding-r-15"
@@ -48,11 +48,11 @@ function NavBarComponent2() {
               >
                 Logout
               </button>
-              <DeleteModel show={show} setShow={setShow} />
+              <LogoutModel show={show} setShow={setShow} />
         
             
 
-          </Form>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

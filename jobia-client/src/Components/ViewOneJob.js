@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
 import NavBarComponent2 from "./NavBarComponent2";
 import authHeader from '../services/auth-header';
-import axios from 'axios';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { axiosApiService } from '../services/axiosAPIs';
 
@@ -81,6 +80,15 @@ const ViewOneJob = () => {
                   name='jdRequiredSkills'
                   required
                   value={formValues?.jdRequiredSkills} />
+              </div>
+
+              <div className="mb-3">
+                <label className='mb-3 mt-15'>City</label>
+                <textarea type="text" name="jdCity" class="form-control mb-3 input-Fields"
+                  id="jdCity" required placeholder="" 
+                  value={formValues?.jdCity}
+                   disabled />
+
               </div>
 
 

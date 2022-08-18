@@ -8,8 +8,8 @@ import { resumeUpdateDto } from './dto/resume-update.dto';
 import { ResumeService } from './resume.service';
 
 
-// @Roles(Role.Candidate)
-// @UseGuards(AuthGuard('jwt'),RolesGuard)
+@Roles(Role.Candidate)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('resume')
 export class ResumeController {
     constructor(private resService: ResumeService) { }
@@ -19,9 +19,7 @@ export class ResumeController {
       console.log(resCreateDto);
       return this.resService.createWholeResume(resCreateDto);
     }
-
  
-
     @Get('/getwhole/:resId')
     getWholeResume(@Param('resId', ParseIntPipe) resId: number) {
       return this.resService.showWholeResume(resId);

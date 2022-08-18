@@ -16,18 +16,6 @@ import { Role } from 'src/auth/role.enum';
 import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
-export const storage = {
-    storage: diskStorage({
-        destination: './uploads/orgimages',
-        filename: (req, file, cb) => {
-            const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-            const extension: string = path.parse(file.originalname).ext;
-
-            cb(null, `${filename}${extension}`)
-        }
-    })
-}
-
 // @Roles(Role.Organization)
 // @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('organization')
@@ -52,6 +40,8 @@ export class OrganizationController {
         return await this.orgService.loginOrg(orgLoginDto);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Patch('update/:orgId')
     async update(
         @Body(ValidationPipe) orgUpdateDto: organizationUpdateDto,
@@ -60,11 +50,15 @@ export class OrganizationController {
         return await this.orgService.updateOrg(orgUpdateDto, orgId);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/showjobdescription/:orgId')
     showJobDescriptionUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
         return this.orgService.showAllJDOrg(orgId);
     }
 
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('getwhole/:orgId')
     async getorganizationById(@Param('orgId') orgId: number) {
         return await this.orgService.showOById(orgId);
@@ -77,21 +71,8 @@ export class OrganizationController {
         return await this.orgService.deleteO(orgId);
     }
 
-    // @Get('/:orgEmail')
-    // async getorganizationByName(@Param('orgEmail') orgEmail: string) {
-    //     return await this.orgService.showOByEmail(orgEmail);
-    // }
-
-    @Post('/upload/:orgId')
-    @UseInterceptors(FileInterceptor('file', storage))
-    uploadOrgLogo(@UploadedFile() file,
-        @Param('orgId', ParseIntPipe) orgId: number) {
-
-        console.log(file);
-        return this.orgService.updateLogo(file.filename, orgId);
-
-    }
-
+    @Roles(Role.Organization)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Get('/notification/:orgId')
     showNotificationUnderOrganization(@Param('orgId', ParseIntPipe) orgId: number) {
       return this.orgService.getNotification(orgId);

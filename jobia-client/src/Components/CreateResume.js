@@ -30,6 +30,8 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
 
 
   }, []);
+
+  
   return (
     <div className='padding-20 resume-create-container'>
       <div style={{ border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}></div>
@@ -39,12 +41,7 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
       <div className="crud-resume">
         <Link to="/displayresume" state={{ resId: formValues }}><button style={{ marginLeft: 5, width: 72 }} className="btn btn-primary" type="submit">View</button></Link>
 
-        <button style={{ marginLeft: 5 }} className="btn btn-success" type="submit" onClick={() => {
-          onChangeStatus('ResumePage')
-          onChangeTabs('CreateResume')
-
-        }}>Create</button>
-
+        
         <Link to="/update" state={{ resId: formValues }}><button style={{ marginLeft: 5, color: 'white' }} className="btn btn-warning" type="submit" >Update</button></Link>
 
 

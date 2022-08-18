@@ -9,8 +9,8 @@ import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
 
-// @Roles(Role.Organization)
-// @UseGuards(AuthGuard('jwt'),RolesGuard)
+@Roles(Role.Organization)
+@UseGuards(AuthGuard('jwt'),RolesGuard)
 @Controller('job-description')
 export class JobDescriptionController {
     constructor(private jdService: JobDescriptionService) { }
@@ -35,7 +35,7 @@ export class JobDescriptionController {
         return this.jdService.updateJD(jdUpdateDto, jdId);
     }
 
-    @Delete('/:jdId')
+    @Delete('delete/:jdId')
     deletejobDescription(@Param('jdId', ParseIntPipe) jdId: number) {
         return this.jdService.deleteJD(jdId);
     }

@@ -1,6 +1,8 @@
 import { Controller, Delete, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ScoreService } from './score.service';
 
+
+
 @Controller('score')
 export class ScoreController {
     constructor(private scoreService: ScoreService) { }

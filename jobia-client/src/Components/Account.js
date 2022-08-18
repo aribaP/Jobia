@@ -1,3 +1,5 @@
+import { axiosApiService } from '../services/axiosAPIs'
+import authHeader from '../services/auth-header'
 import React, { useState } from 'react'
 import Footer from './Footer'
 import Notifications from '../assets/Notification.png'
@@ -18,6 +20,7 @@ import ViewOneJob from './ViewOneJob'
 
 import NavBarComponent2 from "./NavBarComponent2";
 
+
 const Account = (props) => {
   const [check, setCheck] = useState('Profile')
   const [show, setShow] = useState(true)
@@ -30,6 +33,25 @@ const Account = (props) => {
   console.log('-----tabs------', tabs)
 
 
+  const handlePage = () => {
+    const user = JSON.parse(localStorage.getItem("userToken") ?? "{}");
+    try {
+			 axiosApiService.coreApi.get(`candidate/showresume/${user.candId}`, {headers : authHeader()})
+				.then((response) => {
+
+					console.log("Respone",response[0].resFK['resId']);
+					console.log("Data recieved");
+          if(response[0].resFK['resId'])
+            setCheck('CreateResume')
+          else
+            setCheck('ResumeView')
+				})
+
+		} catch (err) {
+			console.log(err);
+		}
+    
+  }
   return (
     <>
      {/* <Header /> */}
@@ -49,31 +71,24 @@ const Account = (props) => {
                 <p className='m-l-2'>Edit your Profile</p>
               </div>
             </button>
-            {
-              !hireEmployee ? <button
+
+
+            
+              <button
                 className={check === 'Resume' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-                onClick={() => {
-                  setCheck('Resume')
+                onClick={
+                  handlePage
                   // setTabs('Resume')
-                }}
+                }
               >
                 <div className='Account-Tabs m-l-07'>
                   <img src={Resumee} height='20px' width='20px' />
                   <p className='m-l-2'>Control Resume</p>
                 </div>
-              </button> : <button
-                className={tabs === 'Jobs' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
-                onClick={() => {
-                  setCheck('Jobs')
-                  setTabs('Jobs')
-                }}
-              >
-                <div className='Account-Tabs m-l-07'>
-                  <img src={Resumee} height='20px' width='20px' />
-                  <p className='m-l-2'>Job</p>
-                </div>
-              </button>
-            }
+              </button> 
+
+
+            
             <button
               className={check === 'NotificationsCandidate' ? 'Account-button Account-button-border bg-White' : 'Account-button'}
               onClick={() => setCheck('NotificationsCandidate')}
@@ -102,7 +117,7 @@ const Account = (props) => {
           {check === 'Profile' &&
             <Profile />
           }
-          {check === 'Resume' &&
+          {check === 'CreateResume' &&
             <CreateResume
               onChangeStatus={(val) => setCheck(val)}
               onChangeTabs={(val) => setTabs(val)}
@@ -110,7 +125,6 @@ const Account = (props) => {
           }
           {check === 'ResumeView' && <ResumeView
 
-      
 
             onChangeStatus={(val) => setCheck(val)}
             onChangeTabs={(val) => setTabs(val)}

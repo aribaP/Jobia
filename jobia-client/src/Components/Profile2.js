@@ -283,7 +283,7 @@ const Profile2 = () => {
                 id="orgPassword"
                 name="orgPassword"
                 placeholder="Change Password"
-                value={formValues?.orgPassword}
+                value={formValues.orgPassword}
                 onChange={handleChange}
               />
             </div>
@@ -308,20 +308,20 @@ const Profile2 = () => {
             </div>
 
             <form className="d-flex justifyContent width-100">
-              <button
-                className="btn body-button-style3 padding-l-15 padding-r-15 px-3"
+             <Link to= "/organization"> <button
+                className="btn body-button-style3 padding-l-15 padding-r-15 mx-1 px-4 py-2"
                 type="submit"
                 onClick={handleSubmit}
               >
                 Save
-              </button>
-              <button
-                className="btn body-button-style2 padding-l-15 padding-r-15 mx-3 btn-sm"
+              </button></Link>
+              <Link to= "/organization"><button
+                className="btn body-button-style2 padding-l-15 padding-r-15 px-3 mx-2 py-2 btn-sm"
                 type="submit"
                 onClick={handleCancel}
               >
                 Cancel
-              </button>
+              </button></Link>
             </form>
           </div>
         </div>

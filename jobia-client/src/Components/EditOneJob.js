@@ -14,7 +14,7 @@ const EditOneJob = () => {
   const initialvalues = {
     jdId: "",
     jdPosition: "",
-    jdMinimumExperience: "",
+    jdMinimumExperience: null,
     jdRequiredSkills: "",
     jdLocation: "",
     jdCity: ""

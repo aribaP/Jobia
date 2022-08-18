@@ -100,8 +100,7 @@ const Profile2 = () => {
     };
     try {
       const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
-      await axiosApiService.coreApi.patch(`candidate/update/${user.candId}`, data, {Headers
-      : `bearer ${user.accessToken}`})
+      await axiosApiService.coreApi.patch(`candidate/update/${user.candId}`, data, {headers : authHeader()})
         .then((response) => {
           console.log("Data recieved");
           console.log(response);
