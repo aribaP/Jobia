@@ -5,9 +5,7 @@ import '../Styles/style.css'
 import { useState, useEffect } from 'react';
 import Footer from "../Components/Footer";
 import NavBarComponent from "./NavBarComponent";
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import authHeader from '../services/auth-header';
 import { axiosApiService } from '../services/axiosAPIs';
 
 
@@ -40,15 +38,36 @@ const Register = () => {
   const postData = async (body) => {
 
     console.log("boduuuu", body);
+    const data = { email: formValues.orgEmail, password: formValues.orgPassword };
 
     try {
-      await axiosApiService.coreApi.post(`organization/signupOrg`, body, {headers : authHeader()})
+      await axiosApiService.coreApi.post(`organization/signupOrg`, body)
         .then((response) => {
-          localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, role: response[0]?.role, candId: response[0]?.candId, orgId: response[0]?.orgId}))
-             
+
+          try {
+            axiosApiService.coreApi.post(`auth/login`, data)
+              .then((response) => {
+
+                console.log("Data recieved");
+                console.log(response);
+                localStorage.setItem("userToken", JSON.stringify({ accessToken: response[0]?.access_token, role: response[0]?.role, candId: response[0]?.candId, orgId: response[0]?.orgId }))
+
+                navigate('/organization');
+
+              }).catch((err) => {
+                console.log(err);
+                window.alert('Incorrect credentials');
+              })
+
+          } catch (err) {
+            console.log("dw", err);
+          }
           console.log("Data recieved");
           console.log(response);
-          navigate('/organization', { replace: true });
+
+        }).catch((err) => {
+          console.log(err);
+          window.alert("The account with the same email already exist.");
         })
 
     } catch (err) {
@@ -95,16 +114,16 @@ const Register = () => {
 
   return (
     <>
-      <NavBarComponent/>
+      <NavBarComponent />
       <div className='body'>
-      <h4 className='white-txt font-28 mb-revert '>Ready to join the best job solution?</h4>
+        <h4 className='white-txt font-28 mb-revert '>Ready to join the best job solution?</h4>
         <div className='body-form'>
           <form onSubmit={handleSubmit}>
             <h5 className='mb-revert text-center'>Sign up for a free account</h5>
 
             <div class="mb-3">
-              <input type="text" name="orgName" class="form-control input-Fields" 
-              id="orgName" required placeholder="Organization name" 
+              <input type="text" name="orgName" class="form-control input-Fields"
+                id="orgName" required placeholder="Organization name"
                 value={formValues.orgName}
                 onChange={handleChange} />
               <div className="formErrors text-danger">
@@ -114,7 +133,7 @@ const Register = () => {
 
             <div className="mb-3">
               <input type="email" name="orgEmail" class="form-control input-Fields"
-               id="orgEmail" required placeholder="Email address"
+                id="orgEmail" required placeholder="Email address"
                 value={formValues.orgEmail}
                 onChange={handleChange} />
               <div className="formErrors text-danger">
@@ -131,7 +150,7 @@ const Register = () => {
                 <p>{formErrors.orgPassword}</p>
               </div>
             </div>
-            
+
 
             {/* <Link to='/organization'> */}
             <div>

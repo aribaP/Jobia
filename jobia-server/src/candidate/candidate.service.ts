@@ -32,7 +32,8 @@ export class CandidateService {
         if (!exist) {
             return this.candidateRepository.save(candCreateDto);
         }
-
+        else
+        throw new HttpException('Account not found', HttpStatus.CONFLICT);
     }
 
 

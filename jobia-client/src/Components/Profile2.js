@@ -75,8 +75,7 @@ const Profile2 = () => {
 
     try {
       const user = JSON.parse(localStorage.getItem("userToken") ?? "{}");
-      await axiosApiService.coreApi
-        .patch(`organization/update/${user.orgId}`, data, {
+      await axiosApiService.coreApi.patch(`organization/update/${user.orgId}`, data, {
           headers: authHeader(),
         })
         .then((response) => {
@@ -87,6 +86,7 @@ const Profile2 = () => {
         });
     } catch (err) {
       console.log(err);
+      
     }
   };
 

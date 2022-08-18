@@ -26,19 +26,19 @@ export class OrganizationController {
     @Post('/signupOrg')
     // @UsePipes(ValidationPipe)
     async signUpOrganization(@Body(ValidationPipe) orgCreateDto: organizationCreateDto) {
-        console.log(orgCreateDto, "999");
+        console.log(orgCreateDto);
         return await this.orgService.signUpOrg(orgCreateDto);
 
     }
 
-    @Roles(Role.Organization)
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Post('/login')
-    @UseFilters(HttpExceptionFilter)
-    async LoginOrganization(@Body() orgLoginDto: organizationLoginDto) {
-        console.log('hi');
-        return await this.orgService.loginOrg(orgLoginDto);
-    }
+    // @Roles(Role.Organization)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Post('/login')
+    // @UseFilters(HttpExceptionFilter)
+    // async LoginOrganization(@Body() orgLoginDto: organizationLoginDto) {
+    //     console.log('hi');
+    //     return await this.orgService.loginOrg(orgLoginDto);
+    // }
 
     @Roles(Role.Organization)
     @UseGuards(AuthGuard('jwt'), RolesGuard)

@@ -11,7 +11,7 @@ export class organization{
     @Column({nullable:  true})
     orgName: string
 
-    @Column({nullable:  true})
+    @Column({nullable:  true, unique: true})
     orgEmail: string
 
     @Column({nullable:  true})

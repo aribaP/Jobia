@@ -44,15 +44,32 @@ const Register2 = () => {
   const postData = async (body) => {
 
     console.log("boduuuu", body);
+    const data = { email: formValues.candEmail, password: formValues.candPassword };
 
     try {
-      await axiosApiService.coreApi.post(`candidate/signupCand`, body, {headers : authHeader()})
+      await axiosApiService.coreApi.post(`candidate/signupCand`, body, { headers: authHeader() })
         .then((response) => {
           console.log(response);
-          localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, role: "candidate", candId: response?.candId, orgId: response?.orgId}))
-              
+          try {
+            axiosApiService.coreApi.post(`auth/login`, data)
+              .then((response) => {
+
+                console.log("Data recieved");
+                console.log(response);
+                localStorage.setItem("userToken", JSON.stringify({ accessToken: response[0]?.access_token, role: response[0]?.role, candId: response[0]?.candId, orgId: response[0]?.orgId }))
+                navigate('/account', { replace: true });
+
+
+              }).catch((err) => {
+                console.log(err);
+                window.alert('Incorrect credentials');
+              })
+
+          } catch (err) {
+            console.log("dw", err);
+          }
           console.log("Data recieved");
-          
+
           navigate('/account', { replace: true });
         })
 
@@ -87,13 +104,13 @@ const Register2 = () => {
     else if (!regex.test(values.candEmail)) { errors.candEmail = "This is not a valid email format!"; }
 
     if (!values.candCNIC) { errors.candCNIC = "CNIC is required!"; }
-    else if (!regexCNIC.test(values.candCNIC)) {errors.candCNIC = "CNIC must follow the XXXXX-XXXXXXX-X format!"; } 
+    else if (!regexCNIC.test(values.candCNIC)) { errors.candCNIC = "CNIC must follow the XXXXX-XXXXXXX-X format!"; }
 
-    if (!values.candContactNumber) { errors.candContactNumber = "Phone number is required!";}
+    if (!values.candContactNumber) { errors.candContactNumber = "Phone number is required!"; }
     else if (!regexphoneno.test(values.candContactNumber)) { errors.candContactNumber = "Invalid phonenumber!"; }
 
-    if(!values.confirmPassword) { errors.confirmPassword = "Password confirmation is required"; }
-    else if(values.candPassword != values.confirmPassword) { errors.confirmPassword = "Password must be same as above"; }
+    if (!values.confirmPassword) { errors.confirmPassword = "Password confirmation is required"; }
+    else if (values.candPassword != values.confirmPassword) { errors.confirmPassword = "Password must be same as above"; }
 
     if (!values.candPassword) { errors.candPassword = "Password is required"; }
     else if (values.candPassword.length < 7) { errors.candPassword = "Password must be more than 7 characters"; }
@@ -101,7 +118,7 @@ const Register2 = () => {
 
     if (!values.candCity) { errors.candCity = "City is required"; }
 
-    
+
     // if (!validator.isStrongPassword(value, {
     //   minLength: 8, minLowercase: 1,
     //   minUppercase: 1, minNumbers: 1, minSymbols: 1
@@ -114,9 +131,9 @@ const Register2 = () => {
 
   return (
     <>
-    {/* <Header /> */}
-    <NavBarComponent/>
-    
+      {/* <Header /> */}
+      <NavBarComponent />
+
       <div className='body_register'>
         <h4 className='white-txt font-28 mb-revert '>READY TO JOIN THE BEST JOB HIRING SOLUTION ?</h4>
         <div className='body-form-register'>

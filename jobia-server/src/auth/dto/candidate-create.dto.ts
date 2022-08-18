@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Length, Validate } from 'class-validator';
+import { Unique } from 'typeorm';
 
 export class candidateCreateDto {
     candId: number;
@@ -8,6 +9,7 @@ export class candidateCreateDto {
     candName: string;
 
     @IsNotEmpty({ message: 'Email is mandatory.'})
+    @Validate(Unique)
     @IsEmail()
     candEmail: string;
 

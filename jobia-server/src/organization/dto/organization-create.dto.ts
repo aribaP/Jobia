@@ -1,4 +1,6 @@
-import { IsEmail, IsNotEmpty, IsString, Length, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Length, Matches, Validate } from 'class-validator';
+import { Unique } from 'typeorm';
+import { organization } from '../entity/organization.entity';
 
 
 export class organizationCreateDto{
@@ -10,6 +12,7 @@ export class organizationCreateDto{
     
     @IsNotEmpty({ message: 'Email is mandatory.'})
     @IsEmail()
+    @Validate(Unique, [organization, 'orgEmail'])
     orgEmail: string
 
     @IsString()

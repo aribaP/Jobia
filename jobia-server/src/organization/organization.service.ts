@@ -30,9 +30,13 @@ export class OrganizationService {
     async signUpOrg(orgCreateDto: organizationCreateDto): Promise<organization> {
 
         const exist = await this.organizationRepository.findOne({ where: { orgEmail: orgCreateDto.orgEmail } });
+        console.log("Exisr", exist);
         if (!exist) {
+            console.log("hi");
             return this.organizationRepository.save(orgCreateDto);
         }
+        else
+        throw new HttpException('Account not found', HttpStatus.CONFLICT);
 
     }
 

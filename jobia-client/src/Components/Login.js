@@ -52,12 +52,13 @@ const Login = () => {
 
           }).catch((err) => {
             console.log(err);
+            window.alert('Incorrect credentials');
           })
 
       }catch(err){
           console.log("dw",err);
-          window.alert('Incorrect credentials');
-          navigate('/login', { replace: true }); 
+          
+          
       }
 
   };
