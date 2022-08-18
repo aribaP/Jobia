@@ -46,7 +46,7 @@ const Login = () => {
               console.log(response);
               localStorage.setItem("userToken", JSON.stringify({accessToken: response[0]?.access_token, role: response[0]?.role, candId: response[0]?.candId, orgId: response[0]?.orgId}))
               if(response[0].role == 'candidate') 
-                navigate('/account', { replace: true }); 
+                navigate('/account'); 
               else if(response[0].role == 'organization')
                 navigate('/organization');
 
