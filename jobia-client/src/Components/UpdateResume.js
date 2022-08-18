@@ -16,6 +16,7 @@ function UpdateResume() {
     const initialValues = {
         candFK: user.candId,
         careerObjective: '',
+        resId: null,
         position: '',
         skills: '',
         gitHub: '',
@@ -300,7 +301,7 @@ function UpdateResume() {
                                     </div>
                                     <div className='hello'>
                                         <button className="btn btn-secondary mx-2" type='reset'>Reset</button>
-                                        <Link to ="/displayresume"><button
+                                        <Link to ="/account" ><button
                                             className="btn btn-success"
                                             type='submit'
                                             disabled={!formik.isValid || formik.isSubmitting}

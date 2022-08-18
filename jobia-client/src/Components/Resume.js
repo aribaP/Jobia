@@ -306,13 +306,13 @@ function Resume() {
                   </div>
                   <div className='hello'>
                     <button className="btn btn-secondary" type='reset'>Reset</button>
-                    <Link to="/displayresume"><button
+                    <button
                       className="btn btn-success"
                       type='submit'
                       disabled={!formik.isValid || formik.isSubmitting}
                     >
                       Submit
-                    </button></Link>
+                    </button>
                   </div>
                 </Form>
               </div>
