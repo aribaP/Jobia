@@ -41,6 +41,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
         const user = JSON.parse(localStorage.getItem('userToken') ?? '{}');
         axiosApiService.coreApi.get(`candidate/notification/${user.candId}`, {headers : authHeader()})
             .then(response => {
+                if(response[0]?.jdId)
                 setFormValues(response);
                 console.log("Data recieved");
                 console.log(response);
@@ -69,7 +70,7 @@ const NotificationsCandidate = ({ onChangeStatus, onChangeTabs, setCheck }) => {
 
             {
 
-                formValues?.map(details => (
+                formValues && formValues?.map(details => (
                     <div className="resume-view padding-20 mt-20">
 
                         <div className="width-100 padding-20">
