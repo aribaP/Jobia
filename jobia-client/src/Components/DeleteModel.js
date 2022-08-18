@@ -42,10 +42,11 @@ function DeleteModel ({show,setShow}) {
         </Modal.Header>
         <Modal.Body>Do you permanently want to delete your account? </Modal.Body>
         <Modal.Footer>
-          <Link to= "/registrationOption"><Button variant="secondary" onClick={handleDelete}>
+          <Link to= "/registrationOption"><Button className="btn body-button-style1 padding-l-15 padding-r-15" onClick={handleDelete}>
             Delete Account
           </Button></Link>
-          <Button variant="primary" onClick={handleClose}>
+          <Button  style={{ marginLeft: 5, width: 72 }} className="btn create"
+          type="submit" onClick={handleClose}>
             Cancel
           </Button>
         </Modal.Footer>

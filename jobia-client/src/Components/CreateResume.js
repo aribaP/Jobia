@@ -39,15 +39,15 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
       <h5 className='padding-30 text-center padding-top-0'>On this page, you can view, update and delete your resume.</h5>
 
       <div className="crud-resume">
-        <Link to="/displayresume" state={{ resId: formValues }}><button tyle={{ marginLeft: 5, width: 72 }}className="btn create"
+        <Link to="/displayresume" state={{ resId: formValues }}><button style={{ marginLeft: 5, width: 72 }}className="btn create"
           type="submit">View</button></Link>
 
         
-        <Link to="/update" state={{ resId: formValues }}><button tyle={{ marginLeft: 5, width: 72 }}className="btn create"
+        <Link to="/update" state={{ resId: formValues }}><button style={{ marginLeft: 5, width: 72 }}className="btn create"
           type="submit">Update</button></Link>
 
 
-        <button tyle={{ marginLeft: 5, width: 72 }}className="btn create"
+        <button style={{ marginLeft: 5, width: 72 }}className="btn create"
           type="submit" onClick={() => {
           onChangeStatus('ResumePage')
           onChangeTabs('DeleteResume')

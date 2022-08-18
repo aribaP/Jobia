@@ -26,7 +26,7 @@ const Setting = ({ onChangeStatus, onChangeTabs, setCheck }) => {
       ></div>
 
       <div className='btn1 pt-5'>
-      <button onClick={handleClick} className="btn button-style-full btn-clr-brown" type="delete" > Delete your Account</button>
+      <button onClick={handleClick} className="btn btn body-button-style1 padding-l-15 padding-r-15" type="delete" > Delete your Account</button>
 
         <DeleteModel show={show} setShow={setShow} />
       </div>

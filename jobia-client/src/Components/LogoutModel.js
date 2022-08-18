@@ -23,10 +23,12 @@ function LogoutModel ({show,setShow}) {
         </Modal.Header>
         <Modal.Body>Do you want to logout? </Modal.Body>
         <Modal.Footer>
-          <Link to= "/login"><Button variant="secondary" onClick={handleLogout}>
+          <Link to= "/login"><Button    className="btn body-button-style1 padding-l-15 padding-r-15"
+                type="submit" onClick={handleLogout}>
             Logout
           </Button></Link>
-          <Button variant="primary" onClick={handleClose}>
+          <Button  style={{ marginLeft: 5, width: 72 }} className="btn create"
+          type="submit" onClick={handleClose}>
             Cancel
           </Button>
         </Modal.Footer>
