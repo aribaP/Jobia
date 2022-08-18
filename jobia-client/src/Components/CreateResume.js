@@ -34,7 +34,7 @@ const CreateResume = ({ onChangeStatus, onChangeTabs }) => {
   
   return (
     <div className='padding-20 resume-create-container'>
-      <div style={{ border: '4px solid #5B4F64', borderRadius: '20px', width: '100%' }}></div>
+      <div style={{ border: '4px solid #21aa8f', borderRadius: '20px', width: '100%' }}></div>
       <h4 className='padding-30 text-center'>Now you have created a resume</h4>
       <h5 className='padding-30 text-center padding-top-0'>On this page, you can view, update and delete your resume.</h5>
 
