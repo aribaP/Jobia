@@ -88,7 +88,7 @@ export class CandidateService {
         });
         
 
-        if (getResume[0].resFK) {
+        if (getResume[0]?.resFK) {
             console.log(getResume[0].resFK.resId);
             console.log("Aria");
 
@@ -108,14 +108,14 @@ export class CandidateService {
 
 
                 JDObject[index] = {
-                    jdId: JDObject[index][0].jdId,
-                    jdPosition: JDObject[index][0].jdPosition,
-                    jdRequiredSkills: JDObject[index][0].jdRequiredSkills,
-                    jdMinimumExperience: JDObject[index][0].jdMinimumExperience,
-                    jdCity: JDObject[index][0].jdCity,
-                    jdLocation: JDObject[index][0].jdLocation,
+                    jdId: JDObject[index][0]?.jdId,
+                    jdPosition: JDObject[index][0]?.jdPosition,
+                    jdRequiredSkills: JDObject[index][0]?.jdRequiredSkills,
+                    jdMinimumExperience: JDObject[index][0]?.jdMinimumExperience,
+                    jdCity: JDObject[index][0]?.jdCity,
+                    jdLocation: JDObject[index][0]?.jdLocation,
                     scoreId: scores[index].scoreId,
-                    orgName: JDObject[index][0].orgFK['orgName']
+                    orgName: JDObject[index][0]?.orgFK['orgName']
 
                 };
 

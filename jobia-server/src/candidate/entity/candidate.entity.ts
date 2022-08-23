@@ -1,5 +1,5 @@
 import { resume } from "src/resume/entity/resume.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()                          // typeORM Decorator
 export class candidate{
@@ -24,7 +24,7 @@ export class candidate{
     @Column({nullable: true})
     candAddress: string
 
-    @Column({nullable: true})
+    @Column({nullable: true, unique: true})
     candCNIC: string
 
     @OneToOne(() => resume, (resFK) => resFK.candFK) // specify inverse side as a second parameter
